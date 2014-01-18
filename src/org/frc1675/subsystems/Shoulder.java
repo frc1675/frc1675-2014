@@ -24,10 +24,12 @@ public class Shoulder extends PIDSubsystem {
     private final int potMedAngle = 70;
     private final int potHighAngle = 80;
     private final int potScale = 50;
+    //private static final double p = 10;
     AnalogPotentiometer pot;
     SpeedController motor;
 
    public Shoulder(double p, double i,double d) {
+     
        super(p,i,d);
         this.pot = new AnalogPotentiometer(potPort,potScale);
         this.motor = new Talon(shoulderMotorPort);
