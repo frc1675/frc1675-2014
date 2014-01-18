@@ -3,6 +3,7 @@ package org.frc1675.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.frc1675.OI;
+import org.frc1675.subsystems.VisionTracking;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -13,6 +14,8 @@ import org.frc1675.OI;
 public abstract class CommandBase extends Command {
 
     public static OI oi;
+        public static VisionTracking vision = new VisionTracking();
+
     // Create a single static instance of all of your subsystems
 //    public static ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 
