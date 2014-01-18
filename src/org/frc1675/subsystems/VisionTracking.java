@@ -35,7 +35,8 @@ public class VisionTracking extends Subsystem {
    
     final double VIEW_ANGLE = 49;		//Axis M1013  // Dont change
     final int RECTANGULARITY_CONSTANT = 75;  // this is the percentage of how close to a rectange.
-    final double IDEAL_HORIZONTAL_RATIO = (4.0 / 23.5);  // DONT change this.
+    final double IDEAL_HORIZONTAL_RATIO = (4.0 / 23.5);// DONT change this.
+    final double IDEAL_VERTICAL_RATIO = (32.0/4.0);
     
     AxisCamera camera;
 
@@ -63,6 +64,19 @@ public class VisionTracking extends Subsystem {
         }
         return targetFound;
 
+    }
+    private boolean isVerticalTarget(){ // dont use this calss
+         boolean targetFound = false;
+        cc = new CriteriaCollection();      // create the criteria for the particle filter
+        cc.addCriteria(MeasurementType.IMAQ_MT_AREA, AREA_MINIMUM, 65535, false);
+         try {
+            targetFound = pictureAnalysis();
+        } catch (AxisCameraException ex) {
+            ex.printStackTrace();
+        } catch (NIVisionException ex) {
+            ex.printStackTrace();
+        }
+        return targetFound;
     }
 
     private boolean pictureAnalysis() throws AxisCameraException, NIVisionException {
