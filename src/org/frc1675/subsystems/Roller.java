@@ -5,6 +5,7 @@
  */
 package org.frc1675.subsystems;
 
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -14,7 +15,25 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author josh
  */
 public class Roller extends Subsystem {
-
+    public static final int ROLLER_CLAW_SPIKE = 1;
+    Relay relay;
+    
+    
+    public Roller(){
+        relay = new Relay(ROLLER_CLAW_SPIKE);       
+    }
+    
+    public void intake(){
+        relay.set(Relay.Value.kForward);
+    }
+    
+    public void eject(){
+        relay.set(Relay.Value.kReverse);
+    }
+    
+    public void turnOff(){
+        relay.set(Relay.Value.kOff);
+    }
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

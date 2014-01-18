@@ -21,9 +21,9 @@ public abstract class CommandBase extends Command {
     
     // Create a single static instance of all of the subsystems
     public static Jaw jaw = new Jaw();
-    public static Puncher puncher = new Puncher();
+    //public static Puncher puncher = new Puncher();
     public static Roller rollerClaw = new Roller();
-    public static Shoulder shoulder = new Shoulder();
+    //public static Shoulder shoulder = new Shoulder();
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
