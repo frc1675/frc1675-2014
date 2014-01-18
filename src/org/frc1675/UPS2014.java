@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.frc1675.commands.CommandBase;
+import org.frc1675.subsystems.VisionTracking;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,7 +23,7 @@ import org.frc1675.commands.CommandBase;
  * directory.
  */
 public class UPS2014 extends IterativeRobot {
-
+        Command command; 
 //    Command autonomousCommand;
 
     /**
@@ -32,12 +33,11 @@ public class UPS2014 extends IterativeRobot {
     public void robotInit() {
         // instantiate the command used for the autonomous period
 //        autonomousCommand = new ExampleCommand();
-
-        // Initialize all subsystems
         CommandBase.init();
     }
 
     public void autonomousInit() {
+        System.out.println("Auton start");
         // schedule the autonomous command (example)
 //        autonomousCommand.start();
     }
