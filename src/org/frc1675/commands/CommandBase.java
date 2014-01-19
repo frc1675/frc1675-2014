@@ -3,10 +3,13 @@ package org.frc1675.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.frc1675.OI;
+import org.frc1675.RobotMap;
 import org.frc1675.subsystems.Jaw;
 import org.frc1675.subsystems.Puncher;
 import org.frc1675.subsystems.Roller;
 import org.frc1675.subsystems.Shoulder;
+import org.frc1675.subsystems.TheCompressor;
+import org.frc1675.subsystems.VisionTracking;
 
 /**
 
@@ -21,10 +24,12 @@ public abstract class CommandBase extends Command {
     
     // Create a single static instance of all of the subsystems
     public static Jaw jaw = new Jaw();
-    //public static Puncher puncher = new Puncher();
+    public static Puncher puncher = new Puncher(RobotMap.PUNCHER_P, RobotMap.PUNCHER_I, RobotMap.PUNCHER_D);
     public static Roller rollerClaw = new Roller();
-    //public static Shoulder shoulder = new Shoulder();
-
+    public static Shoulder shoulder = new Shoulder(RobotMap.SHOULDER_P, RobotMap.SHOULDER_I, RobotMap.SHOULDER_D);
+    public static TheCompressor compressor = new TheCompressor();
+    public static VisionTracking vision = new VisionTracking();
+    
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from

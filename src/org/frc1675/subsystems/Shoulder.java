@@ -10,38 +10,32 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.interfaces.Potentiometer;
+import org.frc1675.RobotMap;
 
 /**
  * Shoulder represents the system used for changing the angle of the entire claw
  * and shooter assembly.
+ *
  * @author josh
  */
 public class Shoulder extends PIDSubsystem {
-    private final int shoulderMotorPort = 1;
-    private final int potPort = 2;
-    private final int potLowAngle = 60;
-    private final int potMedAngle = 70;
-    private final int potHighAngle = 80;
+
     private final int potScale = 50;
-    //private static final double p = 10;
     AnalogPotentiometer pot;
     SpeedController motor;
 
-   public Shoulder(double p, double i,double d) {
-     
-       super(p,i,d);
-        this.pot = new AnalogPotentiometer(potPort,potScale);
-        this.motor = new Talon(shoulderMotorPort);
+    public Shoulder(double p, double i, double d) {
+        super(p, i, d);
+        this.pot = new AnalogPotentiometer(RobotMap.SHOULDER_POT, potScale);
+        this.motor = new Talon(RobotMap.SHOULDER_MOTOR);
     }
-    
-    
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-    public void rawMoveShoulder(double joystickValue){
+
+    public void rawMoveShoulder(double joystickValue) {
         motor.set(joystickValue);
     }
 
@@ -52,6 +46,5 @@ public class Shoulder extends PIDSubsystem {
     protected void usePIDOutput(double d) {
         motor.set(d);
     }
-   
-    
-            }
+
+}

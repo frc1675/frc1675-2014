@@ -32,17 +32,18 @@ public class VisionTracking extends Subsystem {
     final int MAX_PARTICLES = 8;         // Dont change this!! (if you do, make it smaller).
     final double VISION_TOLERANCE = .5;  //Change this to allow different shapes (ie. Not Perfect Rectanges)
     CriteriaCollection cc;
-   
+
     final double VIEW_ANGLE = 49;		//Axis M1013  // Dont change
     final int RECTANGULARITY_CONSTANT = 75;  // this is the percentage of how close to a rectange.
     final double IDEAL_HORIZONTAL_RATIO = (4.0 / 23.5);// DONT change this.
-    final double IDEAL_VERTICAL_RATIO = (32.0/4.0);
-    
+    final double IDEAL_VERTICAL_RATIO = (32.0 / 4.0);
+
     AxisCamera camera;
 
-    public VisionTracking(){
+    public VisionTracking() {
         camera = AxisCamera.getInstance();  // get an instance of the camera
     }
+
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void initDefaultCommand() {
@@ -65,11 +66,12 @@ public class VisionTracking extends Subsystem {
         return targetFound;
 
     }
-    private boolean isVerticalTarget(){ // dont use this calss
-         boolean targetFound = false;
+
+    private boolean isVerticalTarget() { // dont use this calss
+        boolean targetFound = false;
         cc = new CriteriaCollection();      // create the criteria for the particle filter
         cc.addCriteria(MeasurementType.IMAQ_MT_AREA, AREA_MINIMUM, 65535, false);
-         try {
+        try {
             targetFound = pictureAnalysis();
         } catch (AxisCameraException ex) {
             ex.printStackTrace();
