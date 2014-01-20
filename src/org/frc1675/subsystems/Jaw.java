@@ -31,12 +31,12 @@ public class Jaw extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
 
-    public void extend() {
+    public void close() {
         extend.set(true);
         retract.set(false);
     }
 
-    public void retract() {
+    public void open() {
         retract.set(true);
         extend.set(false);
     }
