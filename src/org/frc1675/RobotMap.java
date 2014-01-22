@@ -39,6 +39,8 @@ public class RobotMap {
     public static final int SHOULDER_POT = 3;
 
     //controller stuff
+    public static final int DRIVER_CONTROLLER = 1;
+    public static final int OPERATOR_CONTROLLER = 2;
     public static final double CONTROLLER_DEAD_ZONE = .2;
 
     //PID

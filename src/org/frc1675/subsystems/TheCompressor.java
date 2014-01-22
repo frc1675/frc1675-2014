@@ -7,10 +7,13 @@ package org.frc1675.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.Relay;
 import org.frc1675.RobotMap;
+
 /**
+ * Does all things relating to compressor
  *
- * @author John
+ * @author Tony
  */
 public class TheCompressor extends Subsystem {
 
@@ -30,6 +33,7 @@ public class TheCompressor extends Subsystem {
     }
 
     public void disable() {
+        compressor.setRelayValue(Relay.Value.kOff);
         compressor.stop();
     }
 }

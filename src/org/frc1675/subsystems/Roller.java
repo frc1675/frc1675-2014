@@ -13,6 +13,7 @@ import org.frc1675.RobotMap;
  * Roller represents the powered roller at the end of the top arm of the claw.
  * It has 3 states: Intake (pulling a ball in), Eject (send a ball out), and at
  * all other times, the wheels are not powered.
+ *
  * @author josh
  */
 public class Roller extends Subsystem {
@@ -31,7 +32,7 @@ public class Roller extends Subsystem {
         relay.set(Relay.Value.kReverse);
     }
 
-    public void turnOff() {
+    public void stop() {
         relay.set(Relay.Value.kOff);
     }
 

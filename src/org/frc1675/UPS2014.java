@@ -4,9 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 package org.frc1675;
-
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -24,7 +22,6 @@ import org.frc1675.commands.CommandBase;
 public class UPS2014 extends IterativeRobot {
 
 //    Command autonomousCommand;
-
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -50,7 +47,7 @@ public class UPS2014 extends IterativeRobot {
     }
 
     public void teleopInit() {
-	// This makes sure that the autonomous stops running when
+        // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
@@ -63,7 +60,7 @@ public class UPS2014 extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
     }
-    
+
     /**
      * This function is called periodically during test mode
      */

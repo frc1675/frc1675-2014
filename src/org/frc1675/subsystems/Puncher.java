@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.frc1675.RobotMap;
+import org.frc1675.commands.WindWinchWithJoysticks;
 
 /**
  * Puncher represents the ball punching mechanism. We control a winch, pull it
@@ -37,6 +38,7 @@ public class Puncher extends PIDSubsystem {
     }
 
     public void initDefaultCommand() {
+        setDefaultCommand(new WindWinchWithJoysticks());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
