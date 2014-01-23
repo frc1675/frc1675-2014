@@ -6,53 +6,52 @@
 package org.frc1675.commands;
 
 import edu.wpi.first.wpilibj.Timer;
+import org.frc1675.RobotMap;
 
 /**
+ * Give this a setpoint in encoder ticks and the winch will wind to it
  *
- * @author John
+ * @author Tony
  */
-public class SetShoulderWithPID extends CommandBase {
-    double angle;
+public class SetWinch extends CommandBase {
+
     Timer timer;
-    public SetShoulderWithPID(double degrees) {
-        requires(shoulder);
+    int setpoint;
+    boolean isAtSetpoint;
+
+    public SetWinch(int ticks) {
         timer = new Timer();
-        angle = degrees;
+        setpoint = ticks;
+        requires(puncher);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        shoulder.setPIDSetpoint(angle);
+        isAtSetpoint = puncher.goToSetpoint(setpoint);  
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
+        isAtSetpoint = puncher.goToSetpoint(setpoint);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if ((shoulder.getPIDController().onTarget()) && (timer.get()!=0)){
-            timer.start();
-        }else if(timer.get() > 0 && !(shoulder.getPIDController().onTarget())){
-            timer.stop();
-            timer.reset();
-            timer.stop();           
-        }else if (timer.get()>.5){
-            return true;
-        }
-        return false;
+        return isAtSetpoint;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        shoulder.stop();
+        puncher.stop();
+        timer.stop();
+        timer.reset();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        end();
     }
 }

@@ -6,18 +6,19 @@
 package org.frc1675.commands;
 
 import edu.wpi.first.wpilibj.Timer;
+import org.frc1675.RobotMap;
 
 /**
- * Opens Jaw
+ * This will set the shoulder to the pickup angle set in RobotMap
  *
  * @author Tony
  */
-public class JawOpen extends CommandBase {
+public class SetShoulderToPickup extends CommandBase {
 
     Timer timer;
 
-    public JawOpen() {
-        requires(jaw);
+    public SetShoulderToPickup() {
+        requires(shoulder);
         timer = new Timer();
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -25,27 +26,33 @@ public class JawOpen extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        timer.start();
+        shoulder.setPIDSetpoint(RobotMap.FLOOR_ANGLE);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        jaw.open();
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (timer.get() > .25) {
+        if ((shoulder.getPIDController().onTarget()) && (timer.get() == 0)) {
+            timer.start();
+        } else if (timer.get() > 0 && !(shoulder.getPIDController().onTarget())) {
+            timer.stop();
+            timer.reset();
+        } else if (timer.get() > RobotMap.PID_TARGET_TIME) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        shoulder.stopAndReset();
         timer.stop();
         timer.reset();
+
     }
 
     // Called when another command which requires one or more of the same

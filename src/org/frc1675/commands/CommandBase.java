@@ -26,7 +26,7 @@ public abstract class CommandBase extends Command {
 
     // Create a single static instance of all of the subsystems
     public static Jaw jaw = new Jaw();
-    public static Puncher puncher = new Puncher(RobotMap.PUNCHER_P, RobotMap.PUNCHER_I, RobotMap.PUNCHER_D);
+    public static Puncher puncher = new Puncher();
     public static Roller rollerClaw = new Roller();
     public static Shoulder shoulder = new Shoulder(RobotMap.SHOULDER_P, RobotMap.SHOULDER_I, RobotMap.SHOULDER_D);
     public static TheCompressor compressor = new TheCompressor();

@@ -16,6 +16,7 @@ public class RobotMap {
     // number and the module. For example you with a rangefinder:
     // public static final int rangefinderPort = 1;
     // public static final int rangefinderModule = 1;
+    
     //relays
     public static final int ROLLER_CLAW_SPIKE = 1;
     public static final int COMPRESSOR_SPIKE = 2;
@@ -31,7 +32,7 @@ public class RobotMap {
     public static final int JAW_RETRACT = 4;
 
     //digital sensors
-    public static final int WINCH_ENCODER_CHANNEL_A = 1;
+    public static final int WINCH_ENCODER = 1;
     public static final int WINCH_ENCODER_CHANNEL_B = 2;
     public static final int PRESSURE_SWITCH = 3;
 
@@ -44,12 +45,13 @@ public class RobotMap {
     public static final double CONTROLLER_DEAD_ZONE = .2;
 
     //PID
-    public static final double PUNCHER_P = 1;
-    public static final double PUNCHER_I = 0;
-    public static final double PUNCHER_D = 0;
-
     public static final double SHOULDER_P = 1;
     public static final double SHOULDER_I = 0;
     public static final double SHOULDER_D = 0;
+    
+    public static final double PID_TARGET_TIME = .5;
+    
+    //setpoints
+    public static final double FLOOR_ANGLE = 2;  //degrees
 
 }

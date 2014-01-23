@@ -5,11 +5,10 @@
  */
 package org.frc1675.subsystems;
 
-import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.frc1675.RobotMap;
 import org.frc1675.commands.WindWinchWithJoysticks;
@@ -21,19 +20,18 @@ import org.frc1675.commands.WindWinchWithJoysticks;
  *
  * @author josh
  */
-public class Puncher extends PIDSubsystem {
+public class Puncher extends Subsystem {
 
     private Solenoid extend;
     private Solenoid retract;
     private SpeedController winchMotor;
-    private Encoder encoder;
+    private Counter counter;
 
-    public Puncher(double p, double i, double d) {
-        super(p, i, d);
+    public Puncher() {
         extend = new Solenoid(RobotMap.SHOOTER_EXTEND);
         retract = new Solenoid(RobotMap.SHOOTER_RETRACT);
         winchMotor = new Talon(RobotMap.WINCH_MOTOR);
-        encoder = new Encoder(RobotMap.WINCH_ENCODER_CHANNEL_A, RobotMap.WINCH_ENCODER_CHANNEL_B);
+        counter = new Counter(RobotMap.WINCH_ENCODER);
 
     }
 
@@ -61,11 +59,17 @@ public class Puncher extends PIDSubsystem {
         }
     }
 
-    protected double returnPIDInput() {
-        return encoder.get();
+    public boolean goToSetpoint(int setpoint) {    //returns if its at setpoint
+        if (counter.get() < setpoint) {
+            winchMotor.set(1);
+            return false;
+        } else {
+            winchMotor.set(0);
+            return true;
+        }
     }
 
-    protected void usePIDOutput(double d) {
-        winchMotor.set(d);
+    public void stop() {
+        winchMotor.set(0);
     }
 }

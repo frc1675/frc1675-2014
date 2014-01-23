@@ -6,8 +6,8 @@
 package org.frc1675.commands;
 
 /**
- * Set as initDefaultCommand. Will poll joysticks periodically and set shoulder
- * motor to that value.
+ * Set as initDefaultCommand. Will poll operator left y periodically and set
+ * shoulder motor to that value.
  *
  * @author Tony
  */
