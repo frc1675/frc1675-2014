@@ -15,11 +15,11 @@ import org.frc1675.RobotMap;
  *
  * @author Tony
  */
-public class TheCompressor extends Subsystem {
+public class CompressorSystem extends Subsystem {
 
     Compressor compressor;
 
-    public TheCompressor() {
+    public CompressorSystem() {
         compressor = new Compressor(RobotMap.PRESSURE_SWITCH, RobotMap.COMPRESSOR_SPIKE);
     }
 

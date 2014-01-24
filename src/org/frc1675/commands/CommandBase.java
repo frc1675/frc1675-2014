@@ -8,7 +8,7 @@ import org.frc1675.subsystems.arm.Jaw;
 import org.frc1675.subsystems.arm.Puncher;
 import org.frc1675.subsystems.arm.Roller;
 import org.frc1675.subsystems.arm.Shoulder;
-import org.frc1675.subsystems.TheCompressor;
+import org.frc1675.subsystems.CompressorSystem;
 import org.frc1675.subsystems.VisionTracking;
 
 /**
@@ -29,7 +29,7 @@ public abstract class CommandBase extends Command {
     public static Puncher puncher = new Puncher();
     public static Roller rollerClaw = new Roller();
     public static Shoulder shoulder = new Shoulder(RobotMap.SHOULDER_P, RobotMap.SHOULDER_I, RobotMap.SHOULDER_D);
-    public static TheCompressor compressor = new TheCompressor();
+    public static CompressorSystem compressor = new CompressorSystem();
     public static VisionTracking vision = new VisionTracking();
 
     public static void init() {
