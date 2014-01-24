@@ -4,10 +4,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.frc1675.OI;
 import org.frc1675.RobotMap;
-import org.frc1675.subsystems.Jaw;
-import org.frc1675.subsystems.Puncher;
-import org.frc1675.subsystems.Roller;
-import org.frc1675.subsystems.Shoulder;
+import org.frc1675.subsystems.arm.Jaw;
+import org.frc1675.subsystems.arm.Puncher;
+import org.frc1675.subsystems.arm.Roller;
+import org.frc1675.subsystems.arm.Shoulder;
 import org.frc1675.subsystems.TheCompressor;
 import org.frc1675.subsystems.VisionTracking;
 

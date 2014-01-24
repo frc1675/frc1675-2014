@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.subsystems;
+package org.frc1675.subsystems.arm;
 
 import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.Solenoid;
