@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.frc1675.RobotMap;
-import org.frc1675.commands.ShoulderMoveWithJoysticks;
+import org.frc1675.commands.arm.shoulder.ShoulderMoveWithJoysticks;
 
 /**
  * Shoulder represents the system used for changing the angle of the entire claw

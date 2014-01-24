@@ -3,26 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands;
+package org.frc1675.commands.arm.shoulder;
+
+import org.frc1675.commands.CommandBase;
 
 /**
+ * Set as initDefaultCommand. Will poll operator left y periodically and set
+ * shoulder motor to that value.
  *
  * @author Tony
  */
-public class RollerIntake extends CommandBase {
+public class ShoulderMoveWithJoysticks extends CommandBase {
 
-    public RollerIntake() {
-        requires(rollerClaw);
+    double speed;
+
+    public ShoulderMoveWithJoysticks() {
+        requires(shoulder);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        rollerClaw.intake();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        rollerClaw.intake();
+        shoulder.rawMoveShoulder(oi.getOperatorLeftY());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -32,9 +37,11 @@ public class RollerIntake extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        rollerClaw.stop();
+        shoulder.rawMoveShoulder(0);
     }
 
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
     protected void interrupted() {
         end();
     }

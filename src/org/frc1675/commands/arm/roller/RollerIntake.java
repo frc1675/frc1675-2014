@@ -3,27 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands;
+package org.frc1675.commands.arm.roller;
+
+import org.frc1675.commands.CommandBase;
 
 /**
- * Sets the roller claw to eject. Use a whileHeld type command
  *
  * @author Tony
  */
-public class RollerEject extends CommandBase {
+public class RollerIntake extends CommandBase {
 
-    public RollerEject() {
+    public RollerIntake() {
         requires(rollerClaw);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        rollerClaw.eject();
+        rollerClaw.intake();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        rollerClaw.eject();
+        rollerClaw.intake();
     }
 
     // Make this return true when this Command no longer needs to run execute()

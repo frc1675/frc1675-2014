@@ -3,29 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands;
+package org.frc1675.commands.arm.puncher;
+
+import edu.wpi.first.wpilibj.Timer;
+import org.frc1675.commands.CommandBase;
 
 /**
- * Set as initDefaultCommand. Will poll operator right y periodically and set
- * shoulder motor to that value. It cannot be backdriven.
+ * Pulls pin out of puncher so the ball shoots. Should be called in a whileHeld
+ * command
  *
  * @author Tony
  */
-public class WindWinchWithJoysticks extends CommandBase {
+public class PuncherShoot extends CommandBase {
 
-    public WindWinchWithJoysticks() {
+    Timer timer;
+
+    public PuncherShoot() {
         requires(puncher);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        timer = new Timer();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        puncher.rawRunWinch(oi.getOperatorRightY());
+        puncher.shoot();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -35,7 +40,8 @@ public class WindWinchWithJoysticks extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        puncher.rawRunWinch(0);
+        timer.stop();
+        timer.reset();
     }
 
     // Called when another command which requires one or more of the same

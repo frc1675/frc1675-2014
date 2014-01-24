@@ -3,39 +3,51 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands;
+package org.frc1675.commands.arm.puncher;
+
+import edu.wpi.first.wpilibj.Timer;
+import org.frc1675.RobotMap;
+import org.frc1675.commands.CommandBase;
 
 /**
- * Set as initDefaultCommand. Will poll operator left y periodically and set
- * shoulder motor to that value.
+ * Give this a setpoint in encoder ticks and the winch will wind to it
  *
  * @author Tony
  */
-public class ShoulderMoveWithJoysticks extends CommandBase {
+public class SetWinch extends CommandBase {
 
-    double speed;
+    Timer timer;
+    int setpoint;
+    boolean isAtSetpoint;
 
-    public ShoulderMoveWithJoysticks() {
-        requires(shoulder);
+    public SetWinch(int ticks) {
+        timer = new Timer();
+        setpoint = ticks;
+        requires(puncher);
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        isAtSetpoint = puncher.goToSetpoint(setpoint);  
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        shoulder.rawMoveShoulder(oi.getOperatorLeftY());
+        isAtSetpoint = puncher.goToSetpoint(setpoint);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isAtSetpoint;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        shoulder.rawMoveShoulder(0);
+        puncher.stop();
+        timer.stop();
+        timer.reset();
     }
 
     // Called when another command which requires one or more of the same

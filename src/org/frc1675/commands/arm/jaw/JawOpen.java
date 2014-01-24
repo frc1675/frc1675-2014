@@ -3,48 +3,48 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands;
+package org.frc1675.commands.arm.jaw;
 
 import edu.wpi.first.wpilibj.Timer;
-import org.frc1675.RobotMap;
+import org.frc1675.commands.CommandBase;
 
 /**
- * Give this a setpoint in encoder ticks and the winch will wind to it
+ * Opens Jaw
  *
  * @author Tony
  */
-public class SetWinch extends CommandBase {
+public class JawOpen extends CommandBase {
 
     Timer timer;
-    int setpoint;
-    boolean isAtSetpoint;
 
-    public SetWinch(int ticks) {
+    public JawOpen() {
+        requires(jaw);
         timer = new Timer();
-        setpoint = ticks;
-        requires(puncher);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        isAtSetpoint = puncher.goToSetpoint(setpoint);  
+        timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        isAtSetpoint = puncher.goToSetpoint(setpoint);
+        jaw.open();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isAtSetpoint;
+        if (timer.get() > .25) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        puncher.stop();
         timer.stop();
         timer.reset();
     }

@@ -3,40 +3,51 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands;
+package org.frc1675.commands.arm.jaw;
+
+import edu.wpi.first.wpilibj.Timer;
+import org.frc1675.commands.CommandBase;
 
 /**
- * Use this to set the shoulder to any angle other than the floor. It will
- * maintain this angle.
+ * Closes jaw.
  *
  * @author Tony
  */
-public class SetShoulder extends CommandBase {
-    int setpoint;
-    public SetShoulder(int ticks) {
-        requires(puncher);
-        setpoint = ticks;
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+public class JawClose extends CommandBase {
+
+    Timer timer;
+
+    public JawClose() {
+        requires(jaw);
+        timer = new Timer();
+
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        puncher.goToSetpoint(setpoint);
+        timer.start();
+
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        jaw.close();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        if (timer.get() > .25) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        puncher.stop();
+        timer.stop();
+        timer.reset();
     }
 
     // Called when another command which requires one or more of the same

@@ -3,21 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands;
+package org.frc1675.commands.arm.puncher;
 
 import edu.wpi.first.wpilibj.Timer;
+import org.frc1675.commands.CommandBase;
 
 /**
- * Pulls pin out of puncher so the ball shoots. Should be called in a whileHeld
- * command
+ * Puts pin back in the puncher so you can shoot later.
  *
  * @author Tony
  */
-public class PuncherShoot extends CommandBase {
+public class PuncherPutPinIn extends CommandBase {
 
     Timer timer;
 
-    public PuncherShoot() {
+    public PuncherPutPinIn() {
         requires(puncher);
         timer = new Timer();
     }
@@ -29,12 +29,17 @@ public class PuncherShoot extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        puncher.shoot();
+        puncher.putPinIn();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        if (timer.get() > .25) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     // Called once after isFinished returns true

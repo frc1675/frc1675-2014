@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.frc1675.RobotMap;
-import org.frc1675.commands.WindWinchWithJoysticks;
+import org.frc1675.commands.arm.puncher.WindWinchWithJoysticks;
 
 /**
  * Puncher represents the ball punching mechanism. We control a winch, pull it
