@@ -16,9 +16,9 @@ import org.frc1675.commands.CommandBase;
  */
 public class SetWinch extends CommandBase {
 
-    Timer timer;
-    int setpoint;
-    boolean isAtSetpoint;
+    private Timer timer;
+    private int setpoint;
+    private boolean isAtSetpoint;
 
     public SetWinch(int ticks) {
         timer = new Timer();

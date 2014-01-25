@@ -16,7 +16,7 @@ import org.frc1675.commands.CommandBase;
  */
 public class SetShoulderToPickup extends CommandBase {
 
-    Timer timer;
+    private Timer timer;
 
     public SetShoulderToPickup() {
         requires(shoulder);

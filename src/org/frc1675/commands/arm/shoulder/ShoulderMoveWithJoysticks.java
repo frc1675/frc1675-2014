@@ -15,7 +15,7 @@ import org.frc1675.commands.CommandBase;
  */
 public class ShoulderMoveWithJoysticks extends CommandBase {
 
-    double speed;
+    private double speed;
 
     public ShoulderMoveWithJoysticks() {
         requires(shoulder);

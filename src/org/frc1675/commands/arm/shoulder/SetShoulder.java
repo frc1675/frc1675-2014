@@ -14,7 +14,8 @@ import org.frc1675.commands.CommandBase;
  * @author Tony
  */
 public class SetShoulder extends CommandBase {
-    int setpoint;
+    private int setpoint;
+    
     public SetShoulder(int ticks) {
         requires(puncher);
         setpoint = ticks;

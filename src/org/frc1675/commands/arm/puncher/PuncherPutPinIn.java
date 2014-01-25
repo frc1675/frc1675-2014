@@ -15,7 +15,7 @@ import org.frc1675.commands.CommandBase;
  */
 public class PuncherPutPinIn extends CommandBase {
 
-    Timer timer;
+    private Timer timer;
 
     public PuncherPutPinIn() {
         requires(puncher);

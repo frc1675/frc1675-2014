@@ -15,7 +15,7 @@ import org.frc1675.commands.CommandBase;
  */
 public class JawClose extends CommandBase {
 
-    Timer timer;
+    private Timer timer;
 
     public JawClose() {
         requires(jaw);
