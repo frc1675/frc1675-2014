@@ -18,8 +18,8 @@ import org.frc1675.RobotMap;
  */
 public class Jaw extends Subsystem {
 
-    Solenoid extend;
-    Solenoid retract;
+    private Solenoid extend;
+    private Solenoid retract;
 
     public Jaw() {
         extend = new Solenoid(RobotMap.JAW_EXTEND);

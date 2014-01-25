@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import org.frc1675.RobotMap;
 import org.frc1675.commands.arm.shoulder.ShoulderMoveWithJoysticks;
 
@@ -23,8 +22,8 @@ public class Shoulder extends PIDSubsystem {
 
     private static final int ABSOLUTE_TOLERANCE = 5;  //degrees
     private static final int POT_SCALE = 50;
-    AnalogPotentiometer pot;
-    SpeedController motor;
+    private AnalogPotentiometer pot;
+    private SpeedController motor;
 
     public Shoulder(double p, double i, double d) {
         super(p, i, d);

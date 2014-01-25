@@ -17,7 +17,7 @@ import org.frc1675.RobotMap;
  */
 public class CompressorSystem extends Subsystem {
 
-    Compressor compressor;
+    private Compressor compressor;
 
     public CompressorSystem() {
         compressor = new Compressor(RobotMap.PRESSURE_SWITCH, RobotMap.COMPRESSOR_SPIKE);

@@ -22,21 +22,21 @@ import edu.wpi.first.wpilibj.image.RGBImage;
  */
 public class VisionTracking extends Subsystem {
 
-    final int RED_LOW = 220;            // Should not have to change but if you do need to change follow steps below
-    final int RED_HIGH = 256;           // 1) Run code.
-    final int GREEN_LOW = 140;          // 2) Use FTP to get picture called ("Vtracking1.jpg)
-    final int GREEN_HIGH = 220;         // 3) Open picture with Paint and select color of rectangle
-    final int BLUE_LOW = 10;            // 4) Go to "More colors" in paint and click on selected colors
-    final int BLUE_HIGH = 75;           // 5) Change these values to match values in Paint
-    final int AREA_MINIMUM = 150;          // Filters out rectangles with smaller area
-    final int MAX_PARTICLES = 8;         // Dont change this!! (if you do, make it smaller).
-    final double VISION_TOLERANCE = .5;  //Change this to allow different shapes (ie. Not Perfect Rectanges)
-    CriteriaCollection cc;
+    private final int RED_LOW = 220;            // Should not have to change but if you do need to change follow steps below
+    private final int RED_HIGH = 256;           // 1) Run code.
+    private final int GREEN_LOW = 140;          // 2) Use FTP to get picture called ("Vtracking1.jpg)
+    private final int GREEN_HIGH = 220;         // 3) Open picture with Paint and select color of rectangle
+    private final int BLUE_LOW = 10;            // 4) Go to "More colors" in paint and click on selected colors
+    private final int BLUE_HIGH = 75;           // 5) Change these values to match values in Paint
+    private final int AREA_MINIMUM = 150;          // Filters out rectangles with smaller area
+    private final int MAX_PARTICLES = 8;         // Dont change this!! (if you do, make it smaller).
+    private final double VISION_TOLERANCE = .5;  //Change this to allow different shapes (ie. Not Perfect Rectanges)
+    private CriteriaCollection cc;
 
-    final double VIEW_ANGLE = 49;		//Axis M1013  // Dont change
-    final int RECTANGULARITY_CONSTANT = 75;  // this is the percentage of how close to a rectange.
-    final double IDEAL_HORIZONTAL_RATIO = (4.0 / 23.5);// DONT change this.
-    final double IDEAL_VERTICAL_RATIO = (32.0 / 4.0);
+    private final double VIEW_ANGLE = 49;		//Axis M1013  // Dont change
+    private final int RECTANGULARITY_CONSTANT = 75;  // this is the percentage of how close to a rectange.
+    private final double IDEAL_HORIZONTAL_RATIO = (4.0 / 23.5);// DONT change this.
+    private final double IDEAL_VERTICAL_RATIO = (32.0 / 4.0);
 
     AxisCamera camera;
 

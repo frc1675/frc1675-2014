@@ -18,7 +18,7 @@ import org.frc1675.RobotMap;
  */
 public class Roller extends Subsystem {
 
-    Relay relay;
+    private Relay relay;
 
     public Roller() {
         relay = new Relay(RobotMap.ROLLER_CLAW_SPIKE);
