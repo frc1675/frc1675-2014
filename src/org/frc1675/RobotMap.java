@@ -20,8 +20,8 @@ public class RobotMap {
     public static final int ROLLER_CLAW_SPIKE = 1;
     public static final int COMPRESSOR_SPIKE = 2;
     //motors
-    public static final int WINCH_MOTOR = 1;
-    public static final int SHOULDER_MOTOR = 2;
+    public static final int WINCH_MOTOR = 3;
+    public static final int SHOULDER_MOTOR = 4;
     //pneumatics
     public static final int SHOOTER_EXTEND = 1;  //put pin in
     public static final int SHOOTER_RETRACT = 2;  //shoot

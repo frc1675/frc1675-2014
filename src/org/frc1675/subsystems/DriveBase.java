@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.frc1675.RobotMap;
+import org.frc1675.commands.TankDriveCommand;
 
 /**
  *
@@ -37,14 +38,14 @@ public class DriveBase extends Subsystem {
         power = adjustForDeadZone(power);
 
         if (power == 0.0) {
-            rightTimer.reset();
-        } else if (rightTimer.get() < RobotMap.DriveConstants.RAMP_TIME) {
+            leftTimer.reset();
+        } else if (leftTimer.get() < RobotMap.DriveConstants.RAMP_TIME) {
             power = power * (rightTimer.get() / RobotMap.DriveConstants.RAMP_TIME);
         }
         //Acceleration code scales power with timer for left side.
         
-            leftFrontMotor.set(power);
-            leftBackMotor.set(power);
+            leftFrontMotor.set(-power);
+            leftBackMotor.set(-power);
         }
     
 
@@ -57,8 +58,8 @@ public class DriveBase extends Subsystem {
             power = power * (rightTimer.get() / RobotMap.DriveConstants.RAMP_TIME);
         }
 
-        rightFrontMotor.set(-power);
-        rightBackMotor.set(-power);
+        rightFrontMotor.set(power);
+        rightBackMotor.set(power);
     }
 
     public double adjustForDeadZone(double controllerInput) {
@@ -81,5 +82,6 @@ public class DriveBase extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
         //setDefaultCommand(new ArcadeDriveCommand());
+        setDefaultCommand(new TankDriveCommand());
     }
 }
