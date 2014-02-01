@@ -27,6 +27,8 @@ public class RobotMap {
     public static final int SHOOTER_RETRACT = 2;  //shoot
     public static final int JAW_EXTEND = 3;
     public static final int JAW_RETRACT = 4;
+    public static final int SHIFTER_HIGH = 6;
+    public static final int SHIFTER_LOW = 5;
     //digital sensors
     public static final int WINCH_ENCODER = 1;
     public static final int WINCH_ENCODER_CHANNEL_B = 2;
