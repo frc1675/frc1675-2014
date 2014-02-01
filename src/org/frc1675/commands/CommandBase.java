@@ -10,6 +10,7 @@ import org.frc1675.subsystems.arm.Roller;
 import org.frc1675.subsystems.arm.Shoulder;
 import org.frc1675.subsystems.CompressorSystem;
 import org.frc1675.subsystems.DriveBase;
+import org.frc1675.subsystems.Shifter;
 import org.frc1675.subsystems.VisionTracking;
 
 /**
@@ -33,6 +34,7 @@ public abstract class CommandBase extends Command {
     public static CompressorSystem compressor = new CompressorSystem();
     public static VisionTracking vision = new VisionTracking();
     public static DriveBase driveBase = new DriveBase(); 
+    public static Shifter shifter = new Shifter();
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
