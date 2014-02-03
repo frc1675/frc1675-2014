@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.frc1675.commands.CommandBase;
+import org.frc1675.commands.MakeCompressorWork;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,13 +21,15 @@ import org.frc1675.commands.CommandBase;
  * directory.
  */
 public class UPS2014 extends IterativeRobot {
-
+    
 //    Command autonomousCommand;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+    Command autonomousCommand;
     public void robotInit() {
+        autonomousCommand = new MakeCompressorWork();
         // instantiate the command used for the autonomous period
 //        autonomousCommand = new ExampleCommand();
 
@@ -35,6 +38,7 @@ public class UPS2014 extends IterativeRobot {
     }
 
     public void autonomousInit() {
+        autonomousCommand.start();
         // schedule the autonomous command (example)
 //        autonomousCommand.start();
     }
@@ -52,6 +56,8 @@ public class UPS2014 extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
 //        autonomousCommand.cancel();
+        
+        
     }
 
     /**

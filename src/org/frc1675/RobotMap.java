@@ -17,8 +17,8 @@ public class RobotMap {
     // public static final int rangefinderPort = 1;
     // public static final int rangefinderModule = 1;
     //relays
-    public static final int ROLLER_CLAW_SPIKE = 1;
-    public static final int COMPRESSOR_SPIKE = 2;
+    public static final int ROLLER_CLAW_SPIKE = 2;
+    public static final int COMPRESSOR_SPIKE = 1;
     //motors
     public static final int WINCH_MOTOR = 3;
     public static final int SHOULDER_MOTOR = 4;
@@ -30,9 +30,9 @@ public class RobotMap {
     public static final int SHIFTER_HIGH = 6;
     public static final int SHIFTER_LOW = 5;
     //digital sensors
-    public static final int WINCH_ENCODER = 1;
+    public static final int WINCH_ENCODER = 3;
     public static final int WINCH_ENCODER_CHANNEL_B = 2;
-    public static final int PRESSURE_SWITCH = 3;
+    public static final int PRESSURE_SWITCH = 1;
     //analog sensors
     public static final int SHOULDER_POT = 3;
     //controller stuff

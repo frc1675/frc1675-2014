@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Relay;
 import org.frc1675.RobotMap;
+import org.frc1675.commands.MakeCompressorWork;
 
 /**
  * Does all things relating to compressor
@@ -24,6 +25,7 @@ public class CompressorSystem extends Subsystem {
     }
 
     public void initDefaultCommand() {
+        new MakeCompressorWork();
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
