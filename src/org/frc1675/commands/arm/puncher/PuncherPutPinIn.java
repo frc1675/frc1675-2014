@@ -6,6 +6,7 @@
 package org.frc1675.commands.arm.puncher;
 
 import edu.wpi.first.wpilibj.Timer;
+import org.frc1675.RobotMap;
 import org.frc1675.commands.CommandBase;
 
 /**
@@ -34,13 +35,15 @@ public class PuncherPutPinIn extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (timer.get() > .25) {
+        if (timer.get() > RobotMap.PNEUMATIC_FIRE_TIME) {
             return true;
-        } else {
+        }else{
             return false;
         }
 
     }
+
+    
 
     // Called once after isFinished returns true
     protected void end() {

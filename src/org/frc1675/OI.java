@@ -3,15 +3,20 @@ package org.frc1675;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.frc1675.commands.ShiftHigh;
+import org.frc1675.commands.ShiftLow;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-
+    
     private Joystick driverController = new Joystick(RobotMap.DRIVER_CONTROLLER);
     private Joystick operatorController = new Joystick(RobotMap.OPERATOR_CONTROLLER);
+    private JoystickButton driverRightBumper = new JoystickButton(driverController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
+    private JoystickButton driverLeftBumper = new JoystickButton(driverController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
@@ -38,6 +43,11 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+    public OI() {
+        driverRightBumper.whenPressed(new ShiftHigh());
+        driverLeftBumper.whenPressed(new ShiftLow());
+    }
+    
     public double getOperatorLeftY() {
         double analogStick = operatorController.getRawAxis(XBoxControllerMap.LEFT_Y_AXIS);
         
