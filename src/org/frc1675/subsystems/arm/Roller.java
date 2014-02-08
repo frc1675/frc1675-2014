@@ -5,7 +5,7 @@
  */
 package org.frc1675.subsystems.arm;
 
-import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.frc1675.RobotMap;
 
@@ -14,26 +14,26 @@ import org.frc1675.RobotMap;
  * It has 3 states: Intake (pulling a ball in), Eject (send a ball out), and at
  * all other times, the wheels are not powered.
  *
- * @author josh
+ * @author Tony
  */
 public class Roller extends Subsystem {
 
-    private Relay relay;
+    private Talon talon;
 
     public Roller() {
-        relay = new Relay(RobotMap.ROLLER_CLAW_SPIKE);
+        talon = new Talon(RobotMap.ROLLER_CLAW_MOTOR);
     }
 
     public void intake() {
-        relay.set(Relay.Value.kForward);
+        talon.set(1);
     }
 
     public void eject() {
-        relay.set(Relay.Value.kReverse);
+        talon.set(-1);
     }
 
     public void stop() {
-        relay.set(Relay.Value.kOff);
+        talon.set(0);
     }
 
     public void initDefaultCommand() {

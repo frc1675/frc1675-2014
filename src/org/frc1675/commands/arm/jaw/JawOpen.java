@@ -6,6 +6,7 @@
 package org.frc1675.commands.arm.jaw;
 
 import edu.wpi.first.wpilibj.Timer;
+import org.frc1675.RobotMap;
 import org.frc1675.commands.CommandBase;
 
 /**
@@ -36,7 +37,7 @@ public class JawOpen extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (timer.get() > .25) {
+        if (timer.get() > RobotMap.PNEUMATIC_FIRE_TIME) {
             return true;
         } else {
             return false;

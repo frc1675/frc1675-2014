@@ -38,7 +38,7 @@ public class UPS2014 extends IterativeRobot {
     }
 
     public void autonomousInit() {
-        autonomousCommand.start();
+//        autonomousCommand.start();
         // schedule the autonomous command (example)
 //        autonomousCommand.start();
     }

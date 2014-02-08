@@ -8,8 +8,8 @@ package org.frc1675.commands;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * Starts compressor working; periodically polls pressure switch and sets relay
- * accordingly
+ * Starts compressor working; the code behind the scenes periodically polls
+ * pressure switch and sets relay accordingly
  *
  * @author Tony
  */
@@ -35,10 +35,12 @@ public class MakeCompressorWork extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+        compressor.disable();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        end();
     }
 }
