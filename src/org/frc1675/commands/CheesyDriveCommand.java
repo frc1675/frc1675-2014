@@ -5,13 +5,14 @@
  */
 package org.frc1675.commands;
 
+import org.frc1675.commands.CommandBase;
 
 /**
  *
  * @author hemilia_bedilia
  */
 public class CheesyDriveCommand extends CommandBase {
-    
+
     public CheesyDriveCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -26,27 +27,30 @@ public class CheesyDriveCommand extends CommandBase {
     protected void execute() {
         double forward = oi.getDriverLeftY();
         double turn = oi.getDriverRightY();
-        
+        boolean quickTurn = oi.getDriverTrigger();
         double left;
         double right;
-        
+
         left = forward - turn;
         right = forward + turn;
         double surplus = 0;
-        if (left > 1){
-            surplus = left - 1;
-            right = right - surplus;
-        } else if (right > -1){
-            surplus = right - 1;
-            left = left - surplus;
-        } else if (left < -1){
-            surplus = -1 - left;
-            right = right + surplus;
-        } else if (right < -1){
-            surplus = -1 - right;
-            left = left + surplus;
+
+        if (quickTurn == true) {
+            if (left > 1) {
+                surplus = left - 1;
+                right = right - surplus;
+            } else if (right > -1) {
+                surplus = right - 1;
+                left = left - surplus;
+            } else if (left < -1) {
+                surplus = -1 - left;
+                right = right + surplus;
+            } else if (right < -1) {
+                surplus = -1 - right;
+                left = left + surplus;
+            }
         }
-        
+
         driveBase.setLeftMotors(left);
         driveBase.setRightMotors(right);
     }

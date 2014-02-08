@@ -102,6 +102,21 @@ public class OI {
         return deadzoneAnalogStick;
     }
     
+    public boolean getDriverTrigger() {
+        double trigger = driverController.getRawAxis(XBoxControllerMap.TRIGGER_AXIS);
+        boolean triggerBoolean = false;
+        if (trigger < -0.25){
+            triggerBoolean = true;
+        }
+        return triggerBoolean;
+    }
+    
+    public double getOperaterTrigger() {
+        double trigger = operatorController.getRawAxis(XBoxControllerMap.TRIGGER_AXIS);
+        
+        return trigger;
+    }
+    
     public double adjustForDeadZone(double axisInput) {
         if (Math.abs(axisInput) <= RobotMap.CONTROLLER_DEAD_ZONE) {
             axisInput = 0;
