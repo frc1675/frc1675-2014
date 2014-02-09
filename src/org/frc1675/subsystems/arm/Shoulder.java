@@ -29,6 +29,7 @@ public class Shoulder extends PIDSubsystem {
         super(p, i, d);
         this.pot = new AnalogPotentiometer(RobotMap.SHOULDER_POT, POT_SCALE);
         this.motor = new Talon(RobotMap.SHOULDER_MOTOR);
+        this.setInputRange(-1, 251);
         this.setAbsoluteTolerance(ABSOLUTE_TOLERANCE);
     }
 
@@ -43,21 +44,33 @@ public class Shoulder extends PIDSubsystem {
     }
 
     protected double returnPIDInput() {
-        return pot.get();
+        return pot.get();        
     }
 
     protected void usePIDOutput(double d) {
-        motor.set(d);
+        motor.set((-d)/2);
+        System.out.println("Sent Value" + d);
     }
 
     public void setPIDSetpoint(double angle) {
         this.setSetpoint(angle);
         this.enable();
     }
+    public void rawSetAngle(double angle){
+        if (pot.get()>angle){
+            motor.set(0);
+        }
+        else{
+            motor.set(.5);
+        }
+    }
 
     public void stopAndReset() {
         this.disable();
         motor.set(0);
+    }
+    public double getPot(){
+        return pot.get();
     }
 
 }

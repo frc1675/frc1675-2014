@@ -20,9 +20,10 @@ public class RobotMap {
 
     public static final int COMPRESSOR_SPIKE = 1;
     //motors
-    public static final int WINCH_MOTOR = 3;
-    public static final int SHOULDER_MOTOR = 4;
-    public static final int ROLLER_CLAW_MOTOR = 7;
+    public static final int WINCH_MOTOR = 2;
+    public static final int WINCH_MOTOR_TWO = 6;
+    public static final int SHOULDER_MOTOR = 1;
+    public static final int ROLLER_CLAW_MOTOR = 5;
     //pneumatics
     public static final int SHOOTER_EXTEND = 1;  //put pin in
     public static final int SHOOTER_RETRACT = 2;  //shoot
@@ -45,18 +46,18 @@ public class RobotMap {
     //drive stuff
     public static class DriveConstants {
         public static final double MOTOR_DEAD_ZONE = 0.268;
-        public static final int LEFT_FRONT_MOTOR = 1;
-        public static final int LEFT_BACK_MOTOR = 2;
-        public static final int RIGHT_FRONT_MOTOR = 5;
-        public static final int RIGHT_BACK_MOTOR = 6;
+        public static final int LEFT_FRONT_MOTOR = 3;
+        public static final int LEFT_BACK_MOTOR = 4;
+        public static final int RIGHT_FRONT_MOTOR = 7;
+        public static final int RIGHT_BACK_MOTOR = 8;
         public static final double RAMP_TIME = 0.25;
     }
     
     //PID
-    public static final double SHOULDER_P = 1;
-    public static final double SHOULDER_I = 0;
+    public static final double SHOULDER_P = .1;
+    public static final double SHOULDER_I = .03;
     public static final double SHOULDER_D = 0;
     public static final double PID_TARGET_TIME = .5;
     //setpoints
-    public static final double FLOOR_ANGLE = 2;  //degrees
+    public static final double FLOOR_ANGLE = 4;  //degrees
 }
