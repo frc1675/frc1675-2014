@@ -46,10 +46,10 @@ public class RobotMap {
     //drive stuff
     public static class DriveConstants {
         public static final double MOTOR_DEAD_ZONE = 0.268;
-        public static final int LEFT_FRONT_MOTOR = 7;
-        public static final int LEFT_BACK_MOTOR = 8;
-        public static final int RIGHT_FRONT_MOTOR = 3;
-        public static final int RIGHT_BACK_MOTOR = 4;
+        public static final int LEFT_FRONT_MOTOR = 3;
+        public static final int LEFT_BACK_MOTOR = 4;
+        public static final int RIGHT_FRONT_MOTOR = 7;
+        public static final int RIGHT_BACK_MOTOR = 8;
         public static final double RAMP_TIME = 0.25;
     }
     
