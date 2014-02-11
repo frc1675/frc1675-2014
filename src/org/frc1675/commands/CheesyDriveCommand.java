@@ -1,4 +1,4 @@
-    /*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -31,8 +31,8 @@ public class CheesyDriveCommand extends CommandBase {
         double left;
         double right;
 
-        left = forward - turn;
-        right = forward + turn;
+        left = forward + turn;
+        right = forward - turn;
         double surplus = 0;
 
         if (quickTurn == true) {
