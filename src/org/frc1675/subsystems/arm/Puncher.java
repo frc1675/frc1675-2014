@@ -25,12 +25,14 @@ public class Puncher extends Subsystem {
     private Solenoid extend;
     private Solenoid retract;
     private SpeedController winchMotor;
+    private SpeedController winchMotorTwo;
     private Counter counter;
 
     public Puncher() {
         extend = new Solenoid(RobotMap.SHOOTER_EXTEND);
         retract = new Solenoid(RobotMap.SHOOTER_RETRACT);
         winchMotor = new Talon(RobotMap.WINCH_MOTOR);
+        winchMotorTwo = new Talon(RobotMap.WINCH_MOTOR_TWO);
         counter = new Counter(RobotMap.WINCH_ENCODER);
 
     }
@@ -54,22 +56,27 @@ public class Puncher extends Subsystem {
     public void rawRunWinch(double joystickValue) {
         if (joystickValue > RobotMap.CONTROLLER_DEAD_ZONE) {
             winchMotor.set(joystickValue);
+            winchMotorTwo.set(joystickValue);
         } else {
             winchMotor.set(0);
+            winchMotorTwo.set(0);
         }
     }
 
     public boolean goToSetpoint(int setpoint) {    //returns if its at setpoint
         if (counter.get() < setpoint) {
             winchMotor.set(1);
+            winchMotorTwo.set(1);
             return false;
         } else {
             winchMotor.set(0);
+            winchMotorTwo.set(0);
             return true;
         }
     }
 
     public void stop() {
         winchMotor.set(0);
+        winchMotorTwo.set(0);
     }
 }
