@@ -26,7 +26,7 @@ public class CheesyDriveCommand extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         double forward = oi.getDriverLeftY();
-        double turn = oi.getDriverRightY();
+        double turn = oi.getDriverRightX();
         boolean quickTurn = oi.getDriverTrigger();
         double left;
         double right;

@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.frc1675.RobotMap;
+import org.frc1675.commands.CheesyDriveCommand;
 import org.frc1675.commands.TankDriveCommand;
 
 /**
@@ -40,7 +41,7 @@ public class DriveBase extends Subsystem {
         if (power == 0.0) {
             leftTimer.reset();
         } else if (leftTimer.get() < RobotMap.DriveConstants.RAMP_TIME) {
-            power = power * (rightTimer.get() / RobotMap.DriveConstants.RAMP_TIME);
+            power = power * (leftTimer.get() / RobotMap.DriveConstants.RAMP_TIME);
         }
         //Acceleration code scales power with timer for left side.
         
