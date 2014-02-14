@@ -2,7 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands;
+package org.frc1675.commands.drives;
+
+import org.frc1675.commands.CommandBase;
 
 /**
  *

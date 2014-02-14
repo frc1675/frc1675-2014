@@ -4,18 +4,23 @@
  * and open the template in the editor.
  */
 package org.frc1675.commands;
+
 import edu.wpi.first.wpilibj.Timer;
 import org.frc1675.RobotMap;
+import org.frc1675.commands.CommandBase;
+import org.frc1675.subsystems.Shifter;
+
 
 /**
- * Shifts to low gear, solenoid specified in robotMap
  *
  * @author Tony
+ * This shifts to the high gear, solenoid specified in robotMap
  */
-public class ShiftLow extends CommandBase {
-private Timer timer;
+public class ShiftGears extends CommandBase {
+    
+    private Timer timer;
 
-    public ShiftLow() {
+    public ShiftGears() {
         requires(shifter);
         timer = new Timer();
     }
@@ -27,7 +32,11 @@ private Timer timer;
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        shifter.shiftToLowGear();
+        if(shifter.isInHighGear()){
+            shifter.shiftToLowGear();
+        }else{
+            shifter.shiftToHighGear();
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()

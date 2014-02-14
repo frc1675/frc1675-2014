@@ -9,9 +9,10 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.frc1675.RobotMap;
-import org.frc1675.commands.CheesyDriveCommand;
-import org.frc1675.commands.TankDriveCommand;
+import org.frc1675.commands.drives.CheesyDriveCommand;
+import org.frc1675.commands.drives.TankDriveCommand;
 
 /**
  *
@@ -33,6 +34,24 @@ public class DriveBase extends Subsystem {
         rightTimer = new Timer();
         rightTimer.start();
         //Change all Victor to Talon on real robot    
+    }
+    
+    public void setTankDrive() {
+        setDefaultCommand(new TankDriveCommand());
+        System.out.println("Robot Set to Tank Drive");
+        SmartDashboard.putString("Drive Command", "Tank Drive");
+    }
+    
+    public void setCheesyDrive() {
+        setDefaultCommand(new CheesyDriveCommand());
+        System.out.println("Robot Set to Cheesy Drive");
+        SmartDashboard.putString("Drive Command", "Cheesy Drive");
+    }
+    
+    public void setArcadeDrive() {
+//        setDefaultCommand(new ArcadeDriveCommand());
+        System.out.println("ERROR X: Arcade Drive Not Currently Available"); //Robot Set to Arcade Drive");
+//        SmartDashboard.putString("Drive Command", "Arcade Drive");
     }
 
     public void setLeftMotors(double power) {

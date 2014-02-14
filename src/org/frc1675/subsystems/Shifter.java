@@ -7,6 +7,7 @@ package org.frc1675.subsystems;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.frc1675.RobotMap;
 
 /**
@@ -16,6 +17,7 @@ import org.frc1675.RobotMap;
 public class Shifter extends Subsystem {
     Solenoid high;
     Solenoid low;
+    private static boolean onHighGear;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public Shifter(){
@@ -25,11 +27,20 @@ public class Shifter extends Subsystem {
     public void shiftToHighGear(){
         high.set(true);
         low.set(false);
+        onHighGear = true;
+        SmartDashboard.putString("Current Gear", "High");
     }
     public void shiftToLowGear(){
         high.set(false);
         low.set(true);
+        onHighGear = false;
+        SmartDashboard.putString("Current Gear", "Low");
     }
+    
+    public boolean isInHighGear(){
+        return onHighGear;
+    }
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

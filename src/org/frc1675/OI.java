@@ -4,17 +4,26 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.frc1675.commands.ShiftHigh;
-import org.frc1675.commands.ShiftLow;
+import org.frc1675.commands.drives.driveSwitch.DriveSelection;
+import org.frc1675.commands.drives.driveSwitch.NoDriveCommand;
+import org.frc1675.commands.drives.driveSwitch.SetDriveCommand;
+import org.frc1675.commands.ShiftGears;
+import utilities.RebindableJoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    
     private Joystick driverController = new Joystick(RobotMap.DRIVER_CONTROLLER);
     private Joystick operatorController = new Joystick(RobotMap.OPERATOR_CONTROLLER);
+    
+    //Face Buttons
+    RebindableJoystickButton aButton = new RebindableJoystickButton(driverController, XBoxControllerMap.A_BUTTON);
+    RebindableJoystickButton bButton = new RebindableJoystickButton(driverController, XBoxControllerMap.B_BUTTON);
+    RebindableJoystickButton xButton = new RebindableJoystickButton(driverController, XBoxControllerMap.X_BUTTON);
+    RebindableJoystickButton yButton = new RebindableJoystickButton(driverController, XBoxControllerMap.Y_BUTTON);
+
     private JoystickButton driverRightBumper = new JoystickButton(driverController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
     private JoystickButton driverLeftBumper = new JoystickButton(driverController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
     //// CREATING BUTTONS
@@ -44,8 +53,24 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
     public OI() {
-        driverRightBumper.whenPressed(new ShiftHigh());
-        driverLeftBumper.whenPressed(new ShiftLow());
+//        driverRightBumper.whenPressed(new ShiftHigh());
+//        driverLeftBumper.whenPressed(new ShiftLow());public OI() {
+        driverLeftBumper.whenPressed(new DriveSelection(true));
+        driverLeftBumper.whenReleased(new DriveSelection(false));
+        driverRightBumper.whenPressed(new ShiftGears());
+        setDefaultCommands();
+    }
+
+    public void setSwitchDriveCommands() {
+        aButton.whenPressed(new SetDriveCommand(RobotMap.TANK_DRIVE));
+        bButton.whenPressed(new SetDriveCommand(RobotMap.ARCADE_DRIVE));
+        xButton.whenPressed(new SetDriveCommand(RobotMap.CHEESY_DRIVE));
+    }
+    
+    public final void setDefaultCommands(){
+        aButton.whenPressed(new NoDriveCommand());
+        bButton.whenPressed(new NoDriveCommand());
+        xButton.whenPressed(new NoDriveCommand());
     }
     
     public double getOperatorLeftY() {

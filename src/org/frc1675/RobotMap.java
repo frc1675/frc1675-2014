@@ -53,6 +53,12 @@ public class RobotMap {
         public static final double RAMP_TIME = 0.25;
     }
     
+    //drive command ID
+    public static final int TANK_DRIVE = 1;
+    public static final int ARCADE_DRIVE = 2;
+    public static final int CHEESY_DRIVE = 3;
+    
+    
     //PID
     public static final double SHOULDER_P = .1;
     public static final double SHOULDER_I = .03;
