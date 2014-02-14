@@ -19,10 +19,10 @@ public class OI {
     private Joystick operatorController = new Joystick(RobotMap.OPERATOR_CONTROLLER);
     
     //Face Buttons
-    RebindableJoystickButton aButton = new RebindableJoystickButton(driverController, XBoxControllerMap.A_BUTTON);
-    RebindableJoystickButton bButton = new RebindableJoystickButton(driverController, XBoxControllerMap.B_BUTTON);
-    RebindableJoystickButton xButton = new RebindableJoystickButton(driverController, XBoxControllerMap.X_BUTTON);
-    RebindableJoystickButton yButton = new RebindableJoystickButton(driverController, XBoxControllerMap.Y_BUTTON);
+    RebindableJoystickButton driverAButton = new RebindableJoystickButton(driverController, XBoxControllerMap.A_BUTTON);
+    RebindableJoystickButton driverBButton = new RebindableJoystickButton(driverController, XBoxControllerMap.B_BUTTON);
+    RebindableJoystickButton driverXButton = new RebindableJoystickButton(driverController, XBoxControllerMap.X_BUTTON);
+    RebindableJoystickButton driverYButton = new RebindableJoystickButton(driverController, XBoxControllerMap.Y_BUTTON);
 
     private JoystickButton driverRightBumper = new JoystickButton(driverController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
     private JoystickButton driverLeftBumper = new JoystickButton(driverController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
@@ -53,8 +53,6 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
     public OI() {
-//        driverRightBumper.whenPressed(new ShiftHigh());
-//        driverLeftBumper.whenPressed(new ShiftLow());public OI() {
         driverLeftBumper.whenPressed(new DriveSelection(true));
         driverLeftBumper.whenReleased(new DriveSelection(false));
         driverRightBumper.whenPressed(new ShiftGears());
@@ -62,15 +60,15 @@ public class OI {
     }
 
     public void setSwitchDriveCommands() {
-        aButton.whenPressed(new SetDriveCommand(RobotMap.TANK_DRIVE));
-        bButton.whenPressed(new SetDriveCommand(RobotMap.ARCADE_DRIVE));
-        xButton.whenPressed(new SetDriveCommand(RobotMap.CHEESY_DRIVE));
+        driverAButton.whenPressed(new SetDriveCommand(RobotMap.TANK_DRIVE));
+        driverBButton.whenPressed(new SetDriveCommand(RobotMap.ARCADE_DRIVE));
+        driverXButton.whenPressed(new SetDriveCommand(RobotMap.CHEESY_DRIVE));
     }
     
     public final void setDefaultCommands(){
-        aButton.whenPressed(new NoDriveCommand());
-        bButton.whenPressed(new NoDriveCommand());
-        xButton.whenPressed(new NoDriveCommand());
+        driverAButton.whenPressed(new NoDriveCommand());
+        driverBButton.whenPressed(new NoDriveCommand());
+        driverXButton.whenPressed(new NoDriveCommand());
     }
     
     public double getOperatorLeftY() {
