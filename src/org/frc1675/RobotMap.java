@@ -27,10 +27,10 @@ public class RobotMap {
     //pneumatics
     public static final int SHOOTER_EXTEND = 1;  //put pin in
     public static final int SHOOTER_RETRACT = 2;  //shoot
-    public static final int JAW_EXTEND = 3;
-    public static final int JAW_RETRACT = 4;
-    public static final int SHIFTER_HIGH = 6;
-    public static final int SHIFTER_LOW = 5;
+    public static final int JAW_EXTEND = 5;
+    public static final int JAW_RETRACT = 6;
+    public static final int SHIFTER_HIGH = 4;
+    public static final int SHIFTER_LOW = 3;
     public static final double PNEUMATIC_FIRE_TIME = .25;
     //digital sensors
     public static final int WINCH_ENCODER = 3;
@@ -39,7 +39,7 @@ public class RobotMap {
     //analog sensors
     public static final int SHOULDER_POT = 3;
     //controller stuff
-    public static final double CONTROLLER_DEAD_ZONE = .12;
+    public static final double CONTROLLER_DEAD_ZONE = .15;
     public static final int DRIVER_CONTROLLER = 1;
     public static final int OPERATOR_CONTROLLER = 2;
 
