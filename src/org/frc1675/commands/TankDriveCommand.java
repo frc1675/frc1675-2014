@@ -23,8 +23,8 @@ public class TankDriveCommand extends CommandBase {
         double leftTankY = oi.getDriverLeftY();
         double rightTankY = oi.getDriverRightY();
         
-        driveBase.setLeftMotors(-leftTankY);
-        driveBase.setRightMotors(-rightTankY);
+        driveBase.setLeftMotors(leftTankY);
+        driveBase.setRightMotors(rightTankY);
     }
 
     // Make this return true when this Command no longer needs to run execute()

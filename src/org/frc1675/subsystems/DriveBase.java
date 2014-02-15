@@ -45,8 +45,8 @@ public class DriveBase extends Subsystem {
         }
         //Acceleration code scales power with timer for left side.
         
-            leftFrontMotor.set(power);
-            leftBackMotor.set(power);
+            leftFrontMotor.set(-power);
+            leftBackMotor.set(-power);
         }
     
 
@@ -59,8 +59,8 @@ public class DriveBase extends Subsystem {
             power = power * (rightTimer.get() / RobotMap.DriveConstants.RAMP_TIME);
         }
 
-        rightFrontMotor.set(-power);
-        rightBackMotor.set(-power);
+        rightFrontMotor.set(power);
+        rightBackMotor.set(power);
     }
 
     public double adjustForDeadZone(double controllerInput) {
