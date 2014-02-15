@@ -33,7 +33,7 @@ public abstract class CommandBase extends Command {
     public static Shoulder shoulder = new Shoulder(RobotMap.SHOULDER_P, RobotMap.SHOULDER_I, RobotMap.SHOULDER_D);
     public static CompressorSystem compressor = new CompressorSystem();
 //    public static VisionTracking vision = new VisionTracking();
-    public static DriveBase driveBase = new DriveBase(); 
+    public static DriveBase driveBase = new DriveBase(RobotMap.DRIVE_ENCODER_P, RobotMap.DRIVE_ENCODER_I, RobotMap.DRIVE_ENCODER_D); 
     public static Shifter shifter = new Shifter();
 
     public static void init() {
@@ -52,4 +52,5 @@ public abstract class CommandBase extends Command {
     public CommandBase() {
         super();
     }
+    
 }

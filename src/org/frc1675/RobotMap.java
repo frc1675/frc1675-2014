@@ -17,21 +17,23 @@ public class RobotMap {
     // public static final int rangefinderPort = 1;
     // public static final int rangefinderModule = 1;
     //relays
-
     public static final int COMPRESSOR_SPIKE = 1;
+
     //motors
     public static final int WINCH_MOTOR = 5;
     public static final int WINCH_MOTOR_TWO = 6;
     public static final int SHOULDER_MOTOR = 1;
     public static final int ROLLER_CLAW_MOTOR = 2;
+
     //pneumatics
-    public static final int SHOOTER_EXTEND = 5;  //put pin in
-    public static final int SHOOTER_RETRACT = 6;  //shoot
+    public static final int SHOOTER_EXTEND = 6;  //put pin in
+    public static final int SHOOTER_RETRACT = 5;  //shoot
     public static final int JAW_EXTEND = 7;
     public static final int JAW_RETRACT = 8;
     public static final int SHIFTER_HIGH = 4;
     public static final int SHIFTER_LOW = 3;
     public static final double PNEUMATIC_FIRE_TIME = .25;
+
     //digital sensors
     public static final int PRESSURE_SWITCH = 1;
     public static final int WINCH_ENCODER_CHANNEL_A = 2;
@@ -44,6 +46,7 @@ public class RobotMap {
 
     //analog sensors
     public static final int SHOULDER_POT = 3;
+
     //controller stuff
     public static final double CONTROLLER_DEAD_ZONE = .15;
     public static final int DRIVER_CONTROLLER = 1;
@@ -51,6 +54,7 @@ public class RobotMap {
 
     //drive stuff
     public static class DriveConstants {
+
         public static final double MOTOR_DEAD_ZONE = 0.268;
         public static final int LEFT_FRONT_MOTOR = 3;
         public static final int LEFT_BACK_MOTOR = 4;
@@ -58,12 +62,28 @@ public class RobotMap {
         public static final int RIGHT_BACK_MOTOR = 8;
         public static final double RAMP_TIME = 0.25;
     }
-    
+
     //PID
     public static final double SHOULDER_P = .1;
     public static final double SHOULDER_I = .03;
     public static final double SHOULDER_D = 0;
-    public static final double PID_TARGET_TIME = .5;
-    //setpoints
-    public static final double FLOOR_ANGLE = 10;  //degrees
+    public static final double SHOULDER_PID_TARGET_TIME = .5;
+
+    public static final double DRIVE_ENCODER_P = .1;
+    public static final double DRIVE_ENCODER_I = 0;
+    public static final double DRIVE_ENCODER_D = 0;
+    public static final double DRIVE_ENCODER_PID_TARGET_TIME = .25;
+
+//setpoints
+    public static final int FLOOR_ANGLE = 10;  //degrees
+    public static final int FORWARD_SHOOT_ANGLE = 60;
+    public static final int BACKWARD_SHOOT_ANGLE = 120;
+
+    public static final int WINCH_ENERGY = 2500;  //encoder ticks
+
+//auton stuff
+    public static final double DISTANCE_TO_SHOT = 48; //inches
+    public static final double DISTANCE_EXTRA_TO_DRIVE_BACK = 15; //inches
+    public static final double EXTRA_DISTANCE_BACK_TO_BALL = 5; //inches
+    public static final double TIME_TO_PICK_UP_BALL = .7; //seconds
 }
