@@ -6,6 +6,13 @@ import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.frc1675.commands.ShiftHigh;
 import org.frc1675.commands.ShiftLow;
+import org.frc1675.commands.arm.jaw.JawClose;
+import org.frc1675.commands.arm.jaw.JawOpen;
+import org.frc1675.commands.arm.roller.RollerEject;
+import org.frc1675.commands.arm.roller.RollerIntake;
+import org.frc1675.commands.arm.roller.RollerStop;
+import org.frc1675.commands.arm.shoulder.SetShoulder;
+import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -13,10 +20,29 @@ import org.frc1675.commands.ShiftLow;
  */
 public class OI {
     
-    private Joystick driverController = new Joystick(RobotMap.DRIVER_CONTROLLER);
-    private Joystick operatorController = new Joystick(RobotMap.OPERATOR_CONTROLLER);
-    private JoystickButton driverRightBumper = new JoystickButton(driverController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
-    private JoystickButton driverLeftBumper = new JoystickButton(driverController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
+    public Joystick driverController = new Joystick(RobotMap.DRIVER_CONTROLLER);    
+    private Button driverB = new JoystickButton(driverController, XBoxControllerMap.B_BUTTON);
+    private Button driverX = new JoystickButton(driverController, XBoxControllerMap.X_BUTTON);
+    private Button driverY = new JoystickButton(driverController, XBoxControllerMap.Y_BUTTON);    
+    private Button driverA = new JoystickButton(driverController, XBoxControllerMap.A_BUTTON);
+    private Button driverRightBumper = new JoystickButton(driverController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
+    private Button driverLeftBumper = new JoystickButton(driverController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
+    private Button driverLeftJoystickButton = new JoystickButton(driverController, XBoxControllerMap.RIGHT_JOYSTICK_BUTTON);
+    private Button driverRightJoystickButton = new JoystickButton(driverController, XBoxControllerMap.LEFT_JOYSTICK_BUTTON);
+    private Button driverDPadRight = new DPadButton(driverController, DPadButton.RIGHT);
+    private Button driverDPadLeft = new DPadButton(driverController, DPadButton.LEFT);
+    
+    public Joystick operatorController = new Joystick(RobotMap.OPERATOR_CONTROLLER);    
+    private Button operatorB = new JoystickButton(operatorController, XBoxControllerMap.B_BUTTON);
+    private Button operatorX = new JoystickButton(operatorController, XBoxControllerMap.X_BUTTON);
+    private Button operatorY = new JoystickButton(operatorController, XBoxControllerMap.Y_BUTTON);    
+    private Button operatorA = new JoystickButton(operatorController, XBoxControllerMap.A_BUTTON);
+    private Button operatorRightBumper = new JoystickButton(operatorController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
+    private Button operatorLeftBumper = new JoystickButton(operatorController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
+    private Button operatorLeftJoystickButton = new JoystickButton(operatorController, XBoxControllerMap.RIGHT_JOYSTICK_BUTTON);
+    private Button operatorRightJoystickButton = new JoystickButton(operatorController, XBoxControllerMap.LEFT_JOYSTICK_BUTTON);
+    private Button operatorDPadRight = new DPadButton(operatorController, DPadButton.RIGHT);
+    private Button operatorDPadLeft = new DPadButton(operatorController, DPadButton.LEFT);
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
@@ -46,6 +72,14 @@ public class OI {
     public OI() {
         driverRightBumper.whenPressed(new ShiftHigh());
         driverLeftBumper.whenPressed(new ShiftLow());
+        
+        operatorDPadLeft.whenPressed(new RollerIntake());
+        operatorDPadRight.whenPressed(new RollerEject());
+        operatorLeftBumper.whenPressed(new RollerStop());
+        //operatorY.whenPressed(new JawOpen());
+        //operatorA.whenPressed(new JawClose());
+        //operatorRightBumper.whenPressed(new SetShoulder(45));
+        //operatorLeftBumper.whenPressed(new SetShoulderToPickup());
     }
     
     public double getOperatorLeftY() {
@@ -55,7 +89,7 @@ public class OI {
         
         return deadzoneAnalogStick;
     }
-
+    
     public double getOperatorRightY() {
         double analogStick = operatorController.getRawAxis(XBoxControllerMap.RIGHT_Y_AXIS);
         
@@ -63,7 +97,7 @@ public class OI {
         
         return deadzoneAnalogStick;
     }
-
+    
     public double getDriverLeftY() {
         double analogStick = driverController.getRawAxis(XBoxControllerMap.LEFT_Y_AXIS);
         
@@ -71,7 +105,7 @@ public class OI {
         
         return deadzoneAnalogStick;
     }
-
+    
     public double getDriverRightY() {
         double analogStick = driverController.getRawAxis(XBoxControllerMap.RIGHT_Y_AXIS);
         
@@ -79,7 +113,7 @@ public class OI {
         
         return deadzoneAnalogStick;
     }
-
+    
     public double getOperatorLeftX() {
         double analogStick = operatorController.getRawAxis(XBoxControllerMap.LEFT_X_AXIS);
         
@@ -87,7 +121,7 @@ public class OI {
         
         return deadzoneAnalogStick;
     }
-
+    
     public double getOperatorRightX() {
         double analogStick = operatorController.getRawAxis(XBoxControllerMap.RIGHT_X_AXIS);
         
@@ -95,7 +129,7 @@ public class OI {
         
         return deadzoneAnalogStick;
     }
-
+    
     public double getDriverLeftX() {
         double analogStick = driverController.getRawAxis(XBoxControllerMap.LEFT_X_AXIS);
         
@@ -103,7 +137,7 @@ public class OI {
         
         return deadzoneAnalogStick;
     }
-
+    
     public double getDriverRightX() {
         double analogStick = driverController.getRawAxis(XBoxControllerMap.RIGHT_X_AXIS);
         
@@ -115,7 +149,7 @@ public class OI {
     public boolean getDriverTrigger() {
         double trigger = driverController.getRawAxis(XBoxControllerMap.TRIGGER_AXIS);
         boolean triggerBoolean = false;
-        if (trigger < -0.25){
+        if (trigger < -0.25) {
             triggerBoolean = true;
         }
         return triggerBoolean;
@@ -137,7 +171,7 @@ public class OI {
                     / (1 - RobotMap.CONTROLLER_DEAD_ZONE);
             // This scales for controller dead zone. 
         }
-
+        
         return axisInput;
     }
     

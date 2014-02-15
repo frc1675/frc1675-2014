@@ -20,22 +20,28 @@ public class RobotMap {
 
     public static final int COMPRESSOR_SPIKE = 1;
     //motors
-    public static final int WINCH_MOTOR = 2;
+    public static final int WINCH_MOTOR = 5;
     public static final int WINCH_MOTOR_TWO = 6;
     public static final int SHOULDER_MOTOR = 1;
-    public static final int ROLLER_CLAW_MOTOR = 5;
+    public static final int ROLLER_CLAW_MOTOR = 2;
     //pneumatics
-    public static final int SHOOTER_EXTEND = 1;  //put pin in
-    public static final int SHOOTER_RETRACT = 2;  //shoot
-    public static final int JAW_EXTEND = 5;
-    public static final int JAW_RETRACT = 6;
+    public static final int SHOOTER_EXTEND = 5;  //put pin in
+    public static final int SHOOTER_RETRACT = 6;  //shoot
+    public static final int JAW_EXTEND = 7;
+    public static final int JAW_RETRACT = 8;
     public static final int SHIFTER_HIGH = 4;
     public static final int SHIFTER_LOW = 3;
     public static final double PNEUMATIC_FIRE_TIME = .25;
     //digital sensors
-    public static final int WINCH_ENCODER = 3;
-    public static final int WINCH_ENCODER_CHANNEL_B = 2;
     public static final int PRESSURE_SWITCH = 1;
+    public static final int WINCH_ENCODER_CHANNEL_A = 2;
+    public static final int WINCH_ENCODER_CHANNEL_B = 3;
+    public static final int DRIVE_LEFT_ENCODER_CHANNEL_A = 4;
+    public static final int DRIVE_LEFT_ENCODER_CHANNEL_B = 5;
+    public static final int DRIVE_RIGHT_ENCODER_CHANNEL_A = 6;
+    public static final int DRIVE_RIGHT_ENCODER_CHANNEL_B = 7;
+    public static final double DRIVE_ENCODER_TICKS = 360;
+
     //analog sensors
     public static final int SHOULDER_POT = 3;
     //controller stuff
@@ -59,5 +65,5 @@ public class RobotMap {
     public static final double SHOULDER_D = 0;
     public static final double PID_TARGET_TIME = .5;
     //setpoints
-    public static final double FLOOR_ANGLE = 4;  //degrees
+    public static final double FLOOR_ANGLE = 10;  //degrees
 }

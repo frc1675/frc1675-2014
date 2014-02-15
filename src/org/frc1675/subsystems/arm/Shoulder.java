@@ -34,7 +34,7 @@ public class Shoulder extends PIDSubsystem {
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new ShoulderMoveWithJoysticks());
+        //setDefaultCommand(new ShoulderMoveWithJoysticks());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }

@@ -5,7 +5,7 @@
  */
 package org.frc1675.subsystems.arm;
 
-import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
@@ -26,19 +26,19 @@ public class Puncher extends Subsystem {
     private Solenoid retract;
     private SpeedController winchMotor;
     private SpeedController winchMotorTwo;
-    private Counter counter;
+    private Encoder encoder;
 
     public Puncher() {
         extend = new Solenoid(RobotMap.SHOOTER_EXTEND);
         retract = new Solenoid(RobotMap.SHOOTER_RETRACT);
         winchMotor = new Talon(RobotMap.WINCH_MOTOR);
         winchMotorTwo = new Talon(RobotMap.WINCH_MOTOR_TWO);
-        counter = new Counter(RobotMap.WINCH_ENCODER);
+        encoder = new Encoder(RobotMap.WINCH_ENCODER_CHANNEL_A, RobotMap.WINCH_ENCODER_CHANNEL_B);
 
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new WindWinchWithJoysticks());
+        //setDefaultCommand(new WindWinchWithJoysticks());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
@@ -64,7 +64,7 @@ public class Puncher extends Subsystem {
     }
 
     public boolean goToSetpoint(int setpoint) {    //returns if its at setpoint
-        if (counter.get() < setpoint) {
+        if (encoder.get() < setpoint) {
             winchMotor.set(1);
             winchMotorTwo.set(1);
             return false;

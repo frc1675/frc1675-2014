@@ -3,41 +3,52 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands.arm.roller;
+package org.frc1675.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import org.frc1675.commands.CommandBase;
 
 /**
- * Sets the roller claw to eject an does that until further notice
  *
  * @author Tony
+ *
+ * Use in command groups when you need gaps between commands.
+ *
  */
-public class RollerEject extends CommandBase {
+public class Wait extends CommandBase {
 
-    public RollerEject() {
-        requires(rollerClaw);
+    Timer timer;
+    double waitTime;
+
+    public Wait(double seconds) {
+        timer = new Timer();
+        waitTime = seconds;
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        rollerClaw.eject();
+        timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        rollerClaw.eject();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return timer.get() > waitTime;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        rollerClaw.stop();
+        timer.stop();
+        timer.reset();
     }
 
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
     protected void interrupted() {
         end();
     }
