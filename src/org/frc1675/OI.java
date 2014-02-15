@@ -51,7 +51,7 @@ public class OI {
     public double getOperatorLeftY() {
         double analogStick = operatorController.getRawAxis(XBoxControllerMap.LEFT_Y_AXIS);
         
-        double deadzoneAnalogStick = adjustForDeadZone(analogStick);
+        double deadzoneAnalogStick = adjustForAxisDeadzone(analogStick);
         
         return deadzoneAnalogStick;
     }
@@ -59,7 +59,7 @@ public class OI {
     public double getOperatorRightY() {
         double analogStick = operatorController.getRawAxis(XBoxControllerMap.RIGHT_Y_AXIS);
         
-        double deadzoneAnalogStick = adjustForDeadZone(analogStick);
+        double deadzoneAnalogStick = adjustForAxisDeadzone(analogStick);
         
         return deadzoneAnalogStick;
     }
@@ -67,7 +67,7 @@ public class OI {
     public double getDriverLeftY() {
         double analogStick = driverController.getRawAxis(XBoxControllerMap.LEFT_Y_AXIS);
         
-        double deadzoneAnalogStick = adjustForDeadZone(analogStick);
+        double deadzoneAnalogStick = adjustForAxisDeadzone(analogStick);
         
         return deadzoneAnalogStick;
     }
@@ -75,7 +75,7 @@ public class OI {
     public double getDriverRightY() {
         double analogStick = driverController.getRawAxis(XBoxControllerMap.RIGHT_Y_AXIS);
         
-        double deadzoneAnalogStick = adjustForDeadZone(analogStick);
+        double deadzoneAnalogStick = adjustForAxisDeadzone(analogStick);
         
         return deadzoneAnalogStick;
     }
@@ -83,7 +83,7 @@ public class OI {
     public double getOperatorLeftX() {
         double analogStick = operatorController.getRawAxis(XBoxControllerMap.LEFT_X_AXIS);
         
-        double deadzoneAnalogStick = adjustForDeadZone(analogStick);
+        double deadzoneAnalogStick = adjustForAxisDeadzone(analogStick);
         
         return deadzoneAnalogStick;
     }
@@ -91,7 +91,7 @@ public class OI {
     public double getOperatorRightX() {
         double analogStick = operatorController.getRawAxis(XBoxControllerMap.RIGHT_X_AXIS);
         
-        double deadzoneAnalogStick = adjustForDeadZone(analogStick);
+        double deadzoneAnalogStick = adjustForAxisDeadzone(analogStick);
         
         return deadzoneAnalogStick;
     }
@@ -99,7 +99,7 @@ public class OI {
     public double getDriverLeftX() {
         double analogStick = driverController.getRawAxis(XBoxControllerMap.LEFT_X_AXIS);
         
-        double deadzoneAnalogStick = adjustForDeadZone(analogStick);
+        double deadzoneAnalogStick = adjustForAxisDeadzone(analogStick);
         
         return deadzoneAnalogStick;
     }
@@ -107,11 +107,33 @@ public class OI {
     public double getDriverRightX() {
         double analogStick = driverController.getRawAxis(XBoxControllerMap.RIGHT_X_AXIS);
         
-        double deadzoneAnalogStick = adjustForDeadZone(analogStick);
+        double deadzoneAnalogStick = adjustForAxisDeadzone(analogStick);
         
         return deadzoneAnalogStick;
     }
     
+     public double getScaledLeftAnalogVector() {
+
+        double leftAxisX = driverController.getRawAxis(XBoxControllerMap.LEFT_X_AXIS);
+        double leftAxisY = driverController.getRawAxis(XBoxControllerMap.LEFT_Y_AXIS);
+
+        double scaledLeftAnalogVector = adjustForVectorDeadZone(leftAxisX, leftAxisY);
+
+        return scaledLeftAnalogVector;
+
+    }
+
+    public double getScaledRightAnalogVector() {
+
+        double rightAxisX = driverController.getRawAxis(XBoxControllerMap.RIGHT_X_AXIS);
+        double rightAxisY = driverController.getRawAxis(XBoxControllerMap.RIGHT_Y_AXIS);
+
+        double scaledRightAnalogVector = adjustForVectorDeadZone(rightAxisX, rightAxisY);
+
+        return scaledRightAnalogVector;
+
+    }
+     
     public boolean getDriverTrigger() {
         double trigger = driverController.getRawAxis(XBoxControllerMap.TRIGGER_AXIS);
         boolean triggerBoolean = false;
@@ -121,24 +143,48 @@ public class OI {
         return triggerBoolean;
     }
     
+    
     public double getOperaterTrigger() {
         double trigger = operatorController.getRawAxis(XBoxControllerMap.TRIGGER_AXIS);
         
         return trigger;
     }
     
-    public double adjustForDeadZone(double axisInput) {
+     /**
+     * Sorry, this axis will treat both axes as the y axis when it passes them into 
+     * adjustForVectorDeadzone. 
+     */
+    private double adjustForAxisDeadzone(double axisInput) {
+        double axisOutput; 
+        
         if (Math.abs(axisInput) <= RobotMap.CONTROLLER_DEAD_ZONE) {
-            axisInput = 0;
+            axisOutput = 0;
         } else {
-            axisInput = (axisInput / Math.abs(axisInput))
-                    * // This determines sign. 
-                    (Math.abs(axisInput) - RobotMap.CONTROLLER_DEAD_ZONE)
-                    / (1 - RobotMap.CONTROLLER_DEAD_ZONE);
-            // This scales for controller dead zone. 
+            axisOutput = calculateScaledVector(axisInput, axisInput);
         }
+        
+        return axisOutput;
+    }
 
-        return axisInput;
+    private double adjustForVectorDeadZone(double xAxis, double yAxis) {
+        double magnitude = Math.sqrt(xAxis * xAxis + yAxis * yAxis);
+        double scaledVector;
+
+        if (Math.abs(magnitude) <= RobotMap.CONTROLLER_DEAD_ZONE) {
+            scaledVector = 0;
+        } else {
+            scaledVector = calculateScaledVector(yAxis, magnitude);
+        }
+        return scaledVector;
+    }
+
+    private double calculateScaledVector(double signDeterminingAxis, double magnitude) {
+        double scaledVector;
+        double sign = (signDeterminingAxis / Math.abs(signDeterminingAxis));
+        scaledVector = sign * (Math.abs(magnitude) - RobotMap.CONTROLLER_DEAD_ZONE)
+                / (1 - RobotMap.CONTROLLER_DEAD_ZONE);
+        // This scales for controller dead zone.
+        return scaledVector;
     }
     
 }
