@@ -22,6 +22,7 @@ import org.frc1675.commands.arm.puncher.WindWinchWithJoysticks;
  */
 public class Puncher extends Subsystem {
 
+    private static final double WINCH_POWER = .6;
     private Solenoid extend;
     private Solenoid retract;
     private SpeedController winchMotor;
@@ -34,11 +35,11 @@ public class Puncher extends Subsystem {
         winchMotor = new Talon(RobotMap.WINCH_MOTOR);
         winchMotorTwo = new Talon(RobotMap.WINCH_MOTOR_TWO);
         encoder = new Encoder(RobotMap.WINCH_ENCODER_CHANNEL_A, RobotMap.WINCH_ENCODER_CHANNEL_B);
-
+        encoder.start();
     }
 
     public void initDefaultCommand() {
-        //setDefaultCommand(new WindWinchWithJoysticks());
+        setDefaultCommand(new WindWinchWithJoysticks());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
@@ -54,19 +55,24 @@ public class Puncher extends Subsystem {
     }
 
     public void rawRunWinch(double joystickValue) {
-        if (joystickValue > RobotMap.CONTROLLER_DEAD_ZONE) {
+        if (joystickValue > (RobotMap.CONTROLLER_DEAD_ZONE)+.2) {
             winchMotor.set(joystickValue);
             winchMotorTwo.set(joystickValue);
         } else {
             winchMotor.set(0);
             winchMotorTwo.set(0);
         }
+        System.out.println("WINCH " + encoder.getRaw());
     }
 
-    public boolean goToSetpoint(int setpoint) {    //returns if its at setpoint
+    public void resetEncoder() {
+        encoder.reset();
+    }
+
+    public boolean goToSetpoint(int setpoint) {    //returns true if its at setpoint
         if (encoder.get() < setpoint) {
-            winchMotor.set(1);
-            winchMotorTwo.set(1);
+            winchMotor.set(WINCH_POWER);
+            winchMotorTwo.set(WINCH_POWER);
             return false;
         } else {
             winchMotor.set(0);

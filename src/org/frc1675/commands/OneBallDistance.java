@@ -7,35 +7,32 @@ package org.frc1675.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.RobotMap;
-import org.frc1675.commands.arm.jaw.JawClose;
-import org.frc1675.commands.arm.jaw.JawOpen;
-import org.frc1675.commands.arm.puncher.PuncherPutPinIn;
-import org.frc1675.commands.arm.puncher.PuncherShoot;
-import org.frc1675.commands.arm.puncher.SetWinch;
-import org.frc1675.commands.arm.roller.RollerStop;
+import org.frc1675.commands.arm.roller.RollerIntake;
+import org.frc1675.commands.arm.shoulder.SetShoulder;
+import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 
 /**
- *
- * When the shooter is primed and we want to shoot the ball; use this command
- * group to shoot it.  
+ * This autonomous mode uses encoders and PID to shoot one ball and drive back
+ * to the middle zone.
  *
  * @author Tony
- *
  */
-public class Shoot extends CommandGroup {
+public class OneBallDistance extends CommandGroup {
 
-    private static final double SHOOT_TIME = 3.0;
-
-    public Shoot() {
-        addParallel(new RollerStop());
-        addSequential(new JawOpen());
-        addSequential(new PuncherShoot());
-        addSequential(new Wait(SHOOT_TIME));
-
+    public OneBallDistance() {
+        addParallel(new ShiftLow());
+        addParallel(new SetShoulder(RobotMap.FORWARD_SHOOT_ANGLE));
+        addSequential(new DriveForDistance(RobotMap.DISTANCE_TO_SHOT));
+        addSequential(new Shoot());
+        addParallel(new PostShoot());
+        addParallel(new DriveForDistance(-(RobotMap.DISTANCE_TO_SHOT + RobotMap.DISTANCE_EXTRA_TO_DRIVE_BACK)));
+        addParallel(new SetShoulderToPickup());
+        addParallel(new RollerIntake());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
+
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());

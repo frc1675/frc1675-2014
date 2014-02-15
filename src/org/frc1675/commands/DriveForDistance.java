@@ -6,55 +6,61 @@
 package org.frc1675.commands;
 
 import edu.wpi.first.wpilibj.Timer;
+import org.frc1675.RobotMap;
 
 /**
- * Tells drive motors to move for a given time and power(kind of, because it
- * gets scaled for acceleration and stuff). Use for autonomous
+ *
+ * Use this to drive straight using PID until you reach a setpoint given in
+ * inches.
  *
  * @author Tony
+ *
  */
-public class DriveForTime extends CommandBase {
+public class DriveForDistance extends CommandBase {
 
     Timer timer;
-    double time;
-    double power;
+    double distance;
 
-    public DriveForTime(double seconds, double kindOfLikePower) {
+    public DriveForDistance(double inches) {
         requires(driveBase);
-        timer = new Timer();
-        time = seconds;
-        power = kindOfLikePower;
+        distance = inches;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        driveBase.setLeftMotors(power);
-        driveBase.setRightMotors(power);
         timer.start();
+        driveBase.driveStraightTo(distance);
+
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        driveBase.setLeftMotors(power);
-        driveBase.setRightMotors(power);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (timer.get() > time);
+        if (driveBase.rightIsOnTarget() && driveBase.leftIsOnTarget() && (timer.get() == 0)) {
+            timer.start();
+        } else if (timer.get() > 0 && !(driveBase.leftIsOnTarget() && driveBase.rightIsOnTarget())) {
+            timer.stop();
+            timer.reset();
+        } else if (timer.get() > RobotMap.DRIVE_ENCODER_PID_TARGET_TIME) {
+            return true;
+        }
+        return false;
+
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        driveBase.setLeftMotors(0);
-        driveBase.setRightMotors(0);
+        driveBase.disablePid();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        end();
+        driveBase.disablePid();
     }
 }

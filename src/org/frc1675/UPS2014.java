@@ -73,4 +73,7 @@ public class UPS2014 extends IterativeRobot {
     public void testPeriodic() {
         LiveWindow.run();
     }
+    public void disabledInit(){
+        Scheduler.getInstance().removeAll();
+    }
 }

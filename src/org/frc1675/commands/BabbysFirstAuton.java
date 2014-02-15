@@ -6,36 +6,24 @@
 package org.frc1675.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.frc1675.RobotMap;
-import org.frc1675.commands.arm.jaw.JawClose;
-import org.frc1675.commands.arm.jaw.JawOpen;
-import org.frc1675.commands.arm.puncher.PuncherPutPinIn;
-import org.frc1675.commands.arm.puncher.PuncherShoot;
-import org.frc1675.commands.arm.puncher.SetWinch;
-import org.frc1675.commands.arm.roller.RollerStop;
 
 /**
  *
- * When the shooter is primed and we want to shoot the ball; use this command
- * group to shoot it.  
- *
  * @author Tony
  *
+ * This auton drives forward and backwards. It works!
  */
-public class Shoot extends CommandGroup {
+public class BabbysFirstAuton extends CommandGroup {
 
-    private static final double SHOOT_TIME = 3.0;
-
-    public Shoot() {
-        addParallel(new RollerStop());
-        addSequential(new JawOpen());
-        addSequential(new PuncherShoot());
-        addSequential(new Wait(SHOOT_TIME));
-
+    public BabbysFirstAuton() {
+        addSequential(new DriveForTime(1, 1.0));
+        addSequential(new Wait(2));
+        addSequential(new DriveForTime(1, -1.0));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
+
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());

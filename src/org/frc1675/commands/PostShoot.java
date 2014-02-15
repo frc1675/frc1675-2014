@@ -8,29 +8,22 @@ package org.frc1675.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.RobotMap;
 import org.frc1675.commands.arm.jaw.JawClose;
-import org.frc1675.commands.arm.jaw.JawOpen;
 import org.frc1675.commands.arm.puncher.PuncherPutPinIn;
-import org.frc1675.commands.arm.puncher.PuncherShoot;
 import org.frc1675.commands.arm.puncher.SetWinch;
-import org.frc1675.commands.arm.roller.RollerStop;
 
 /**
+ * This CommandGroup returns the shooter to its original state so it is ready to
+ * shoot again.
  *
- * When the shooter is primed and we want to shoot the ball; use this command
- * group to shoot it.  
  *
  * @author Tony
- *
  */
-public class Shoot extends CommandGroup {
+public class PostShoot extends CommandGroup {
 
-    private static final double SHOOT_TIME = 3.0;
-
-    public Shoot() {
-        addParallel(new RollerStop());
-        addSequential(new JawOpen());
-        addSequential(new PuncherShoot());
-        addSequential(new Wait(SHOOT_TIME));
+    public PostShoot() {
+        addSequential(new PuncherPutPinIn());
+        addSequential(new JawClose());
+        addSequential(new SetWinch(RobotMap.WINCH_ENERGY));
 
         // Add Commands here:
         // e.g. addSequential(new Command1());

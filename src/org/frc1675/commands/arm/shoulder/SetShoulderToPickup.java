@@ -42,7 +42,7 @@ public class SetShoulderToPickup extends CommandBase {
         } else if (timer.get() > 0 && !(shoulder.getPIDController().onTarget())) {
             timer.stop();
             timer.reset();
-        } else if (timer.get() > RobotMap.PID_TARGET_TIME) {
+        } else if (timer.get() > RobotMap.SHOULDER_PID_TARGET_TIME) {
             return true;
         }
         return false;

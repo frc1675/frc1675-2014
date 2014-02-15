@@ -34,7 +34,7 @@ public class Shoulder extends PIDSubsystem {
     }
 
     public void initDefaultCommand() {
-        //setDefaultCommand(new ShoulderMoveWithJoysticks());
+        setDefaultCommand(new ShoulderMoveWithJoysticks());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
@@ -44,12 +44,12 @@ public class Shoulder extends PIDSubsystem {
     }
 
     protected double returnPIDInput() {
-        return pot.get();        
+        return pot.get();
     }
 
     protected void usePIDOutput(double d) {
         motor.set((-d)/2);
-        System.out.println("Sent Value" + d);
+        //System.out.println("Sent Value" + d);
     }
 
     public void setPIDSetpoint(double angle) {
@@ -67,6 +67,7 @@ public class Shoulder extends PIDSubsystem {
 
     public void stopAndReset() {
         this.disable();
+        this.getPIDController().reset();
         motor.set(0);
     }
     public double getPot(){

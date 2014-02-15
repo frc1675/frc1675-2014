@@ -8,6 +8,7 @@ package org.frc1675.subsystems.arm;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.frc1675.RobotMap;
+import org.frc1675.commands.arm.roller.RollerStop;
 
 /**
  * Roller represents the powered roller at the end of the top arm of the claw.
@@ -39,5 +40,6 @@ public class Roller extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new RollerStop());
     }
 }
