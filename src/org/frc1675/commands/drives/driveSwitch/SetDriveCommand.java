@@ -29,11 +29,11 @@ public class SetDriveCommand extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         if (driveID == RobotMap.ARCADE_DRIVE) {
-            driveBase.setArcadeDrive(); //setDrive = new ArcadeDriveCommand();
+            driveBase.setArcadeDrive();
         } else if (driveID == RobotMap.CHEESY_DRIVE) {
-            driveBase.setCheesyDrive(); //setDrive = new CheesyDriveCommand();
+            driveBase.setCheesyDrive();
         } else {
-            driveBase.setTankDrive(); //setDrive = new TankDriveCommand();
+            driveBase.setTankDrive();
         }
     }
 

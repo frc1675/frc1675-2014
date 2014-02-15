@@ -12,7 +12,7 @@ import org.frc1675.commands.CommandBase;
  * @author Quangdao
  */
 public class DriveSelection extends CommandBase {
-        private boolean selectionIsActive;
+    private boolean selectionIsActive;
     
     public DriveSelection() {
         // Use requires() here to declare subsystem dependencies

@@ -64,8 +64,9 @@ public class DriveBase extends Subsystem {
         }
         //Acceleration code scales power with timer for left side.
         
-            leftFrontMotor.set(power);
-            leftBackMotor.set(power);
+            leftFrontMotor.set(-power);
+            leftBackMotor.set(-power);
+            SmartDashboard.putNumber("Left Motor Power", power);
         }
     
 
@@ -78,8 +79,9 @@ public class DriveBase extends Subsystem {
             power = power * (rightTimer.get() / RobotMap.DriveConstants.RAMP_TIME);
         }
 
-        rightFrontMotor.set(-power);
-        rightBackMotor.set(-power);
+        rightFrontMotor.set(power);
+        rightBackMotor.set(power);
+            SmartDashboard.putNumber("Right Motor Power", power);
     }
 
     public double adjustForDeadZone(double controllerInput) {
@@ -103,5 +105,6 @@ public class DriveBase extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
         //setDefaultCommand(new ArcadeDriveCommand());
         setDefaultCommand(new TankDriveCommand());
+        SmartDashboard.putString("Drive Command", "Tank Drive");
     }
 }
