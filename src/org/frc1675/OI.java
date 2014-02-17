@@ -11,6 +11,7 @@ import org.frc1675.commands.Shoot;
 import org.frc1675.commands.TeleopShoot;
 import org.frc1675.commands.arm.jaw.JawClose;
 import org.frc1675.commands.arm.jaw.JawOpen;
+import org.frc1675.commands.arm.puncher.GoToLimit;
 import org.frc1675.commands.arm.puncher.PuncherPutPinIn;
 import org.frc1675.commands.arm.puncher.PuncherShoot;
 import org.frc1675.commands.arm.roller.RollerEject;
@@ -78,16 +79,14 @@ public class OI {
         driverRightBumper.whenPressed(new ShiftHigh());
         driverLeftBumper.whenPressed(new ShiftLow());
         driverA.whenPressed(new TeleopShoot());
-        driverX.whenPressed(new PuncherShoot());
-        driverB.whenPressed(new PuncherPutPinIn());
 
         operatorDPadLeft.whileHeld(new RollerIntake());
         operatorDPadRight.whileHeld(new RollerEject());
-        operatorY.whenPressed(new JawOpen());
+        operatorX.whenPressed(new JawOpen());
+        operatorY.whenPressed(new PuncherShoot());
+        operatorB.whenPressed(new PuncherPutPinIn());
         operatorA.whenPressed(new JawClose());
-        //operatorY.whenPressed(new JawOpen());
-        //operatorA.whenPressed(new JawClose());
-        //operatorRightBumper.whenPressed(new SetShoulder(45));
+        //operatorRightBumper.whenPressed(new GoToLimit());
         //operatorLeftBumper.whenPressed(new SetShoulderToPickup());
     }
 

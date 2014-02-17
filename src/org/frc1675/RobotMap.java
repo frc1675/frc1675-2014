@@ -42,6 +42,7 @@ public class RobotMap {
     public static final int DRIVE_LEFT_ENCODER_CHANNEL_B = 5;
     public static final int DRIVE_RIGHT_ENCODER_CHANNEL_A = 6;
     public static final int DRIVE_RIGHT_ENCODER_CHANNEL_B = 7;
+    public static final int WINCH_LIMIT = 8;
     public static final double DRIVE_ENCODER_TICKS = 360;
 
     //analog sensors
@@ -64,8 +65,8 @@ public class RobotMap {
     }
 
     //PID
-    public static final double SHOULDER_P = .1;
-    public static final double SHOULDER_I = .03;
+    public static final double SHOULDER_P = .05;
+    public static final double SHOULDER_I = 0;
     public static final double SHOULDER_D = 0;
     public static final double SHOULDER_PID_TARGET_TIME = .5;
 
@@ -75,11 +76,11 @@ public class RobotMap {
     public static final double DRIVE_ENCODER_PID_TARGET_TIME = .25;
 
 //setpoints
-    public static final int FLOOR_ANGLE = 10;  //degrees
-    public static final int FORWARD_SHOOT_ANGLE = 60;
+    public static final int FLOOR_ANGLE = 0;  //degrees
+    public static final int FORWARD_SHOOT_ANGLE = 30;
     public static final int BACKWARD_SHOOT_ANGLE = 120;
 
-    public static final int WINCH_ENERGY = 2500;  //encoder ticks
+    public static final int WINCH_ENERGY = 750;  //encoder ticks
 
 //auton stuff
     public static final double DISTANCE_TO_SHOT = 48; //inches

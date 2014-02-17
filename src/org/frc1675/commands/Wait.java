@@ -10,9 +10,9 @@ import org.frc1675.commands.CommandBase;
 
 /**
  *
- * @author Tony
- *
  * Use in command groups when you need gaps between commands.
+ *
+ * @author Tony
  *
  */
 public class Wait extends CommandBase {

@@ -5,6 +5,7 @@
  */
 package org.frc1675.subsystems.arm;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -22,9 +23,10 @@ import org.frc1675.commands.arm.puncher.WindWinchWithJoysticks;
  */
 public class Puncher extends Subsystem {
 
-    private static final double WINCH_POWER = .6;
+    private static final double WINCH_POWER = .3;
     private Solenoid extend;
     private Solenoid retract;
+    private DigitalInput limitSwitch;
     private SpeedController winchMotor;
     private SpeedController winchMotorTwo;
     private Encoder encoder;
@@ -34,6 +36,7 @@ public class Puncher extends Subsystem {
         retract = new Solenoid(RobotMap.SHOOTER_RETRACT);
         winchMotor = new Talon(RobotMap.WINCH_MOTOR);
         winchMotorTwo = new Talon(RobotMap.WINCH_MOTOR_TWO);
+        limitSwitch = new DigitalInput(RobotMap.WINCH_LIMIT);
         encoder = new Encoder(RobotMap.WINCH_ENCODER_CHANNEL_A, RobotMap.WINCH_ENCODER_CHANNEL_B);
         encoder.start();
     }
@@ -55,21 +58,35 @@ public class Puncher extends Subsystem {
     }
 
     public void rawRunWinch(double joystickValue) {
-        if (joystickValue > (RobotMap.CONTROLLER_DEAD_ZONE)+.2) {
+        if (joystickValue > (RobotMap.CONTROLLER_DEAD_ZONE) + .2) {
             winchMotor.set(joystickValue);
             winchMotorTwo.set(joystickValue);
         } else {
             winchMotor.set(0);
             winchMotorTwo.set(0);
         }
-        System.out.println("WINCH " + encoder.getRaw());
+        //System.out.println("WINCH " + encoder.get());
     }
 
-    public void resetEncoder() {
+    public boolean goToLimit() {
+        if (limitSwitch.get()) {
+            winchMotor.set(WINCH_POWER);
+            winchMotorTwo.set(WINCH_POWER);
+            return false;
+        } else {
+            winchMotor.set(0);
+            winchMotorTwo.set(0);
+            return true;
+        }
+    }
+
+    public void resetAndRestartEncoder() {
         encoder.reset();
+        encoder.start();
     }
 
     public boolean goToSetpoint(int setpoint) {    //returns true if its at setpoint
+        //System.out.println("WINCH " + encoder.get());
         if (encoder.get() < setpoint) {
             winchMotor.set(WINCH_POWER);
             winchMotorTwo.set(WINCH_POWER);

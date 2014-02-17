@@ -30,8 +30,8 @@ public class DriveForTime extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        driveBase.setLeftMotors(power);
-        driveBase.setRightMotors(power);
+        driveBase.setLeftMotors(0);
+        driveBase.setRightMotors(0);
         timer.start();
     }
 

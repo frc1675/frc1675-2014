@@ -8,9 +8,9 @@ package org.frc1675.commands.arm.roller;
 import org.frc1675.commands.CommandBase;
 
 /**
+ * Stops the roller claw and then has it do nothing
  *
  * @author Tony
- * Stops the roller claw
  */
 public class RollerStop extends CommandBase {
 
@@ -27,12 +27,11 @@ public class RollerStop extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        rollerClaw.stop();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true

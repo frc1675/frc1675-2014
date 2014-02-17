@@ -9,7 +9,8 @@ import org.frc1675.commands.CommandBase;
 
 /**
  * Set as initDefaultCommand. Will poll operator right y periodically and set
- * shoulder motor to that value. It cannot be backdriven.
+ * shoulder motor to that value. It cannot be backdriven. I was told that was
+ * really bad.
  *
  * @author Tony
  */
@@ -28,7 +29,6 @@ public class WindWinchWithJoysticks extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         puncher.rawRunWinch(oi.getOperatorRightY());
-        System.out.println();
     }
 
     // Make this return true when this Command no longer needs to run execute()

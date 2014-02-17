@@ -10,36 +10,42 @@ import org.frc1675.RobotMap;
 import org.frc1675.commands.CommandBase;
 
 /**
- * Pulls pin out of puncher so the ball shoots.
+ * This will wind the winch until the Vex button is pressed. The encoder doesn't
+ * work too well.
  *
  * @author Tony
  */
-public class PuncherShoot extends CommandBase {
+public class GoToLimit extends CommandBase {
 
     private Timer timer;
+    private int setpoint;
+    private boolean isAtSetpoint;
 
-    public PuncherShoot() {
-        requires(puncher);
+    public GoToLimit() {
         timer = new Timer();
+        requires(puncher);
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        timer.start();
+        isAtSetpoint = puncher.goToLimit();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        puncher.shoot();
+        isAtSetpoint = puncher.goToLimit();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (timer.get() > RobotMap.PNEUMATIC_FIRE_TIME);
+        return isAtSetpoint;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        puncher.stop();
         timer.stop();
         timer.reset();
     }

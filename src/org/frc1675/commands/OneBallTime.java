@@ -19,15 +19,18 @@ import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
  */
 public class OneBallTime extends CommandGroup {
 
+    private static final double TIME_TO_REACH_SHOOT = 1.5;
+    private static final double EXTRA_TIME_TO_DRIVE_BACK = .5;
+
     public OneBallTime() {
         addParallel(new ShiftLow());
         addSequential(new SetShoulder(RobotMap.FORWARD_SHOOT_ANGLE));
-        addSequential(new DriveForTime(1, 1.0));
+        addSequential(new DriveForTime(TIME_TO_REACH_SHOOT, 1.0));
         addSequential(new Shoot());
         addParallel(new SetShoulderToPickup());
         addParallel(new RollerIntake());
         addParallel(new PostShoot());
-        addParallel(new DriveForTime(1.3, -1.0));
+        addParallel(new DriveForTime((TIME_TO_REACH_SHOOT + EXTRA_TIME_TO_DRIVE_BACK), -1.0));
 
         // Add Commands here:
         // e.g. addSequential(new Command1());
