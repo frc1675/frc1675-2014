@@ -7,34 +7,29 @@ package org.frc1675.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.RobotMap;
-import org.frc1675.commands.arm.jaw.JawClose;
-import org.frc1675.commands.arm.jaw.JawOpen;
-import org.frc1675.commands.arm.puncher.PuncherPutPinIn;
-import org.frc1675.commands.arm.puncher.PuncherShoot;
-import org.frc1675.commands.arm.puncher.SetWinch;
-import org.frc1675.commands.arm.roller.RollerStop;
+import org.frc1675.commands.arm.roller.RollerIntake;
+import org.frc1675.commands.arm.shoulder.SetShoulder;
+import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 
 /**
- * This command group combines the Shoot and PostShoot commands for teleop
- * control.
+ * Run this after 5 seconds in auton if you want to shoot hot.
  *
  * @author Tony
  */
-public class TeleopShoot extends CommandGroup {
+public class HotStepTwo extends CommandGroup {
 
-    public TeleopShoot() {
-        addParallel(new RollerStop());
-        addSequential(new JawOpen());
-        addSequential(new PuncherShoot());
-        addSequential(new Wait(1.0));
-        addSequential(new PuncherPutPinIn());
-        addSequential(new JawClose());
-        addSequential(new SetWinch(RobotMap.WINCH_ENERGY));
+    public HotStepTwo() {
+        addParallel(new SetShoulder(RobotMap.FORWARD_SHOOT_ANGLE));
+        addSequential(new Shoot());
+        addParallel(new PostShoot());
+        addParallel(new DriveForDistance(-(RobotMap.DISTANCE_TO_SHOT + RobotMap.DISTANCE_EXTRA_TO_DRIVE_BACK)));
+        addParallel(new SetShoulderToPickup());
+        addParallel(new RollerIntake());
+
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
-
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());

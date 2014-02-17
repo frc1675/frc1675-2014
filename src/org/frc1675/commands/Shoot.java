@@ -17,14 +17,14 @@ import org.frc1675.commands.arm.roller.RollerStop;
 /**
  *
  * When the shooter is primed and we want to shoot the ball; use this command
- * group to shoot it.  
+ * group to shoot it.
  *
  * @author Tony
  *
  */
 public class Shoot extends CommandGroup {
 
-    private static final double SHOOT_TIME = 3.0;
+    private static final double SHOOT_TIME = .5;
 
     public Shoot() {
         addParallel(new RollerStop());
