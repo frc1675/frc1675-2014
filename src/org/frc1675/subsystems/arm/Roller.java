@@ -26,11 +26,11 @@ public class Roller extends Subsystem {
     }
 
     public void intake() {
-        talon.set(-1);
+        talon.set(1);
     }
 
     public void eject() {
-        talon.set(1);
+        talon.set(-1);
     }
 
     public void stop() {

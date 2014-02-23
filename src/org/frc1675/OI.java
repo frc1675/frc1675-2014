@@ -11,7 +11,7 @@ import org.frc1675.commands.Shoot;
 import org.frc1675.commands.TeleopShoot;
 import org.frc1675.commands.arm.jaw.JawClose;
 import org.frc1675.commands.arm.jaw.JawOpen;
-import org.frc1675.commands.arm.puncher.GoToLimit;
+import org.frc1675.commands.arm.puncher.PuncherGoToLimit;
 import org.frc1675.commands.arm.puncher.PuncherPutPinIn;
 import org.frc1675.commands.arm.puncher.PuncherShoot;
 import org.frc1675.commands.arm.roller.RollerEject;
@@ -78,16 +78,17 @@ public class OI {
     public OI() {
         driverRightBumper.whenPressed(new ShiftHigh());
         driverLeftBumper.whenPressed(new ShiftLow());
-        driverA.whenPressed(new TeleopShoot());
+        driverY.whenPressed(new PuncherShoot());
+        driverB.whenPressed(new PuncherPutPinIn());
+
 
         operatorDPadLeft.whileHeld(new RollerIntake());
         operatorDPadRight.whileHeld(new RollerEject());
         operatorX.whenPressed(new JawOpen());
-        operatorY.whenPressed(new PuncherShoot());
-        operatorB.whenPressed(new PuncherPutPinIn());
+        operatorY.whenPressed(new TeleopShoot());
         operatorA.whenPressed(new JawClose());
-        //operatorRightBumper.whenPressed(new GoToLimit());
-        //operatorLeftBumper.whenPressed(new SetShoulderToPickup());
+        operatorRightBumper.whenPressed(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
+        operatorLeftBumper.whenPressed(new SetShoulderToPickup());
     }
 
     public double getOperatorLeftY() {

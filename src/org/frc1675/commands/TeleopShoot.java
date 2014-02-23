@@ -7,6 +7,7 @@ package org.frc1675.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.RobotMap;
+import org.frc1675.UPS2014;
 import org.frc1675.commands.arm.jaw.JawClose;
 import org.frc1675.commands.arm.jaw.JawOpen;
 import org.frc1675.commands.arm.puncher.PuncherPutPinIn;
@@ -23,18 +24,13 @@ import org.frc1675.commands.arm.roller.RollerStop;
 public class TeleopShoot extends CommandGroup {
 
     public TeleopShoot() {
-        addParallel(new RollerStop());
-        addSequential(new JawOpen());
-        addSequential(new PuncherShoot());
-        addSequential(new Wait(1.0));
-        addSequential(new PuncherPutPinIn());
-        addSequential(new JawClose());
-        addSequential(new SetWinch(RobotMap.WINCH_ENERGY));
+        addSequential(new Shoot());
+        addSequential(new PostShoot());
+
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
-
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());

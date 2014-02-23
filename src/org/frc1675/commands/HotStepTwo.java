@@ -19,7 +19,7 @@ import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 public class HotStepTwo extends CommandGroup {
 
     public HotStepTwo() {
-        addParallel(new SetShoulder(RobotMap.FORWARD_SHOOT_ANGLE));
+        addParallel(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
         addSequential(new Shoot());
         addParallel(new PostShoot());
         addParallel(new DriveForDistance(-(RobotMap.DISTANCE_TO_SHOT + RobotMap.DISTANCE_EXTRA_TO_DRIVE_BACK)));

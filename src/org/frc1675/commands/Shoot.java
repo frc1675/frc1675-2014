@@ -7,6 +7,7 @@ package org.frc1675.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.RobotMap;
+import org.frc1675.UPS2014;
 import org.frc1675.commands.arm.jaw.JawClose;
 import org.frc1675.commands.arm.jaw.JawOpen;
 import org.frc1675.commands.arm.puncher.PuncherPutPinIn;
@@ -24,10 +25,9 @@ import org.frc1675.commands.arm.roller.RollerStop;
  */
 public class Shoot extends CommandGroup {
 
-    private static final double SHOOT_TIME = .5;
+    private static final double SHOOT_TIME = 1;
 
     public Shoot() {
-        addParallel(new RollerStop());
         addSequential(new JawOpen());
         addSequential(new PuncherShoot());
         addSequential(new Wait(SHOOT_TIME));

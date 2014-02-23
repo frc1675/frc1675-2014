@@ -50,11 +50,10 @@ public class DriveBase extends Subsystem {
             power = power * (leftTimer.get() / RobotMap.DriveConstants.RAMP_TIME);
         }
         //Acceleration code scales power with timer for left side.
-        
-            leftFrontMotor.set(-power);
-            leftBackMotor.set(-power);
-        }
-    
+
+        leftFrontMotor.set(-power);
+        leftBackMotor.set(-power);
+    }
 
     public void setRightMotors(double power) {
         power = adjustForDeadZone(power);
@@ -84,17 +83,21 @@ public class DriveBase extends Subsystem {
 
         return power;
     }
-    public void driveStraightTo(double inches){
+
+    public void driveStraightTo(double inches) {
         leftEncoder.goToSetpoint(inches);
         rightEncoder.goToSetpoint(inches);
     }
-    public boolean rightIsOnTarget(){
+
+    public boolean rightIsOnTarget() {
         return rightEncoder.onTarget();
     }
-    public boolean leftIsOnTarget(){
+
+    public boolean leftIsOnTarget() {
         return leftEncoder.onTarget();
     }
-    public void disablePid(){
+
+    public void disablePid() {
         leftEncoder.disablePid();
         rightEncoder.disablePid();
     }
@@ -104,15 +107,16 @@ public class DriveBase extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
         //setDefaultCommand(new ArcadeDriveCommand());
         setDefaultCommand(new TankDriveCommand());
+        //setDefaultCommand(new CheesyDriveCommand());
     }
 
     public class SideEncoder extends PIDSubsystem {
 
         public static final boolean LEFT = true;
         public static final boolean RIGHT = false;
-        
+
         private static final double ABSOLUTE_TOLERANCE = 2; //inches
-        
+
         Encoder encoder;
         boolean isLeft;
 
@@ -127,14 +131,13 @@ public class DriveBase extends Subsystem {
         protected double returnPIDInput() {
             return encoder.get();
         }
-        
-        
+
         private void goToSetpoint(double setpoint) {
             this.setSetpoint(setpoint);
             this.enable();
         }
 
-        private void disablePid(){
+        private void disablePid() {
             this.disable();
             this.getPIDController().reset();
             if (isLeft) {

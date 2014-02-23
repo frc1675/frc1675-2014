@@ -8,6 +8,7 @@ package org.frc1675.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.RobotMap;
 import org.frc1675.commands.arm.jaw.JawClose;
+import org.frc1675.commands.arm.puncher.PuncherGoToLimit;
 import org.frc1675.commands.arm.puncher.PuncherPutPinIn;
 import org.frc1675.commands.arm.puncher.SetWinch;
 
@@ -23,7 +24,7 @@ public class PostShoot extends CommandGroup {
     public PostShoot() {
         addSequential(new PuncherPutPinIn());
         addSequential(new JawClose());
-        addSequential(new SetWinch(RobotMap.WINCH_ENERGY));
+        addSequential(new PuncherGoToLimit());
 
         // Add Commands here:
         // e.g. addSequential(new Command1());

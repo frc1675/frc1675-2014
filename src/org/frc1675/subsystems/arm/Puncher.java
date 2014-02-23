@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.frc1675.RobotMap;
 import org.frc1675.commands.arm.puncher.WindWinchWithJoysticks;
@@ -23,13 +24,17 @@ import org.frc1675.commands.arm.puncher.WindWinchWithJoysticks;
  */
 public class Puncher extends Subsystem {
 
-    private static final double WINCH_POWER = .3;
+    private static final double WINCH_HIGH_POWER = .75;
+    private static final double WINCH_LOW_POWER = .2;
+    private static final double LOW_TIME = 2;
+    private static final double STOP_TIME = 0;        
     private Solenoid extend;
+    public Timer limitTimer;
     private Solenoid retract;
     private DigitalInput limitSwitch;
     private SpeedController winchMotor;
     private SpeedController winchMotorTwo;
-    private Encoder encoder;
+    public Encoder encoder;
 
     public Puncher() {
         extend = new Solenoid(RobotMap.SHOOTER_EXTEND);
@@ -39,6 +44,7 @@ public class Puncher extends Subsystem {
         limitSwitch = new DigitalInput(RobotMap.WINCH_LIMIT);
         encoder = new Encoder(RobotMap.WINCH_ENCODER_CHANNEL_A, RobotMap.WINCH_ENCODER_CHANNEL_B);
         encoder.start();
+        limitTimer = new Timer();
     }
 
     public void initDefaultCommand() {
@@ -58,7 +64,8 @@ public class Puncher extends Subsystem {
     }
 
     public void rawRunWinch(double joystickValue) {
-        if (joystickValue > (RobotMap.CONTROLLER_DEAD_ZONE) + .2) {
+
+        if (joystickValue > (RobotMap.CONTROLLER_DEAD_ZONE)) {
             winchMotor.set(joystickValue);
             winchMotorTwo.set(joystickValue);
         } else {
@@ -70,8 +77,16 @@ public class Puncher extends Subsystem {
 
     public boolean goToLimit() {
         if (limitSwitch.get()) {
-            winchMotor.set(WINCH_POWER);
-            winchMotorTwo.set(WINCH_POWER);
+            if(limitTimer.get()<=LOW_TIME){
+                winchMotor.set(WINCH_LOW_POWER);
+                winchMotorTwo.set(WINCH_LOW_POWER);
+            }else if(limitTimer.get()<(LOW_TIME + STOP_TIME)){
+                winchMotor.set(0);
+                winchMotorTwo.set(0);
+            }else{
+                winchMotor.set(WINCH_HIGH_POWER);
+                winchMotorTwo.set(WINCH_HIGH_POWER);
+            }
             return false;
         } else {
             winchMotor.set(0);
@@ -79,7 +94,10 @@ public class Puncher extends Subsystem {
             return true;
         }
     }
-
+    public void setMotors(double power){
+        winchMotor.set(power);
+        winchMotorTwo.set(power);
+    }
     public void resetAndRestartEncoder() {
         encoder.reset();
         encoder.start();
@@ -88,8 +106,8 @@ public class Puncher extends Subsystem {
     public boolean goToSetpoint(int setpoint) {    //returns true if its at setpoint
         //System.out.println("WINCH " + encoder.get());
         if (encoder.get() < setpoint) {
-            winchMotor.set(WINCH_POWER);
-            winchMotorTwo.set(WINCH_POWER);
+            winchMotor.set(WINCH_HIGH_POWER);
+            winchMotorTwo.set(WINCH_HIGH_POWER);
             return false;
         } else {
             winchMotor.set(0);

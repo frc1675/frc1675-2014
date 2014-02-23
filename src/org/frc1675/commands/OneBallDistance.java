@@ -21,13 +21,14 @@ public class OneBallDistance extends CommandGroup {
 
     public OneBallDistance() {
         addParallel(new ShiftLow());
-        addParallel(new SetShoulder(RobotMap.FORWARD_SHOOT_ANGLE));
+        addParallel(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
         addSequential(new DriveForDistance(RobotMap.DISTANCE_TO_SHOT));
         addSequential(new Shoot());
         addParallel(new PostShoot());
         addParallel(new DriveForDistance(-(RobotMap.DISTANCE_TO_SHOT + RobotMap.DISTANCE_EXTRA_TO_DRIVE_BACK)));
         addParallel(new SetShoulderToPickup());
         addParallel(new RollerIntake());
+        
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

@@ -10,19 +10,17 @@ import org.frc1675.RobotMap;
 import org.frc1675.commands.CommandBase;
 
 /**
- * This will wind the winch until the Vex button is pressed. The encoder doesn't
+ * This will wind the winch until the Vex button is pressed. The encoder didn't
  * work too well.
  *
  * @author Tony
  */
-public class GoToLimit extends CommandBase {
+public class PuncherGoToLimit extends CommandBase {
 
-    private Timer timer;
-    private int setpoint;
     private boolean isAtSetpoint;
 
-    public GoToLimit() {
-        timer = new Timer();
+    public PuncherGoToLimit() {
+
         requires(puncher);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -31,6 +29,7 @@ public class GoToLimit extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         isAtSetpoint = puncher.goToLimit();
+        puncher.limitTimer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -46,8 +45,8 @@ public class GoToLimit extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
         puncher.stop();
-        timer.stop();
-        timer.reset();
+        puncher.limitTimer.stop();
+        puncher.limitTimer.reset();
     }
 
     // Called when another command which requires one or more of the same

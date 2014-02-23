@@ -24,7 +24,7 @@ public class OneBallTime extends CommandGroup {
 
     public OneBallTime() {
         addParallel(new ShiftLow());
-        addSequential(new SetShoulder(RobotMap.FORWARD_SHOOT_ANGLE));
+        addSequential(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
         addSequential(new DriveForTime(TIME_TO_REACH_SHOOT, 1.0));
         addSequential(new Shoot());
         addParallel(new SetShoulderToPickup());
