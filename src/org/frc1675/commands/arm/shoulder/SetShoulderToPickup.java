@@ -33,8 +33,8 @@ public class SetShoulderToPickup extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println("SetShoulderToPickup: " + shoulder.shoulderPot.get());
-        UPS2014.table.putNumber("ShoulderPotValue", shoulder.shoulderPot.get());
+        System.out.println("SetShoulderToPickup: " + shoulder.pot.get());
+        UPS2014.table.putNumber("ShoulderPotValue", shoulder.pot.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()
