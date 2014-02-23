@@ -5,6 +5,7 @@
  */
 package org.frc1675.commands.arm.shoulder;
 
+import org.frc1675.UPS2014;
 import org.frc1675.commands.CommandBase;
 
 /**
@@ -29,6 +30,7 @@ public class ShoulderMoveWithJoysticks extends CommandBase {
     protected void execute() {
         shoulder.rawMoveShoulder(oi.getOperatorLeftY());
         System.out.println("ShoulderWithJoysticks " + shoulder.shoulderPot.get());
+        UPS2014.table.putNumber("ShoulderPotValue", shoulder.shoulderPot.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()

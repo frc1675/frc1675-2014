@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.frc1675.RobotMap;
+import org.frc1675.UPS2014;
 import org.frc1675.commands.arm.puncher.WindWinchWithJoysticks;
 
 /**
@@ -64,7 +65,7 @@ public class Puncher extends Subsystem {
     }
 
     public void rawRunWinch(double joystickValue) {
-
+        UPS2014.table.putBoolean("ShooterSwitch", limitSwitch.get());
         if (joystickValue > (RobotMap.CONTROLLER_DEAD_ZONE)) {
             winchMotor.set(joystickValue);
             winchMotorTwo.set(joystickValue);
@@ -76,7 +77,9 @@ public class Puncher extends Subsystem {
     }
 
     public boolean goToLimit() {
-        if (limitSwitch.get()) {
+        boolean limit = limitSwitch.get();
+        UPS2014.table.putBoolean("ShooterSwitch", limit);
+        if (limit) {
             if(limitTimer.get()<=LOW_TIME){
                 winchMotor.set(WINCH_LOW_POWER);
                 winchMotorTwo.set(WINCH_LOW_POWER);

@@ -7,6 +7,7 @@ package org.frc1675.commands.arm.shoulder;
 
 import edu.wpi.first.wpilibj.Timer;
 import org.frc1675.RobotMap;
+import org.frc1675.UPS2014;
 import org.frc1675.commands.CommandBase;
 
 /**
@@ -33,6 +34,7 @@ public class SetShoulderToPickup extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         System.out.println("SetShoulderToPickup: " + shoulder.shoulderPot.get());
+        UPS2014.table.putNumber("ShoulderPotValue", shoulder.shoulderPot.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()

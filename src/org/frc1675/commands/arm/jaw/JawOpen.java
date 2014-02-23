@@ -34,7 +34,7 @@ public class JawOpen extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         jaw.open();
-        UPS2014.table.putString("fire", "fire!");
+        UPS2014.table.putBoolean("JawOpen", true);
     }
 
     // Make this return true when this Command no longer needs to run execute()
