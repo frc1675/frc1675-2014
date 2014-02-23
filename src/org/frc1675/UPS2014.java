@@ -10,13 +10,14 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import org.frc1675.commands.BabbysFirstAuton;
 import org.frc1675.commands.CommandBase;
 import org.frc1675.commands.MakeCompressorWork;
 import org.frc1675.commands.OneBallDistance;
 import org.frc1675.commands.OneBallTime;
 import org.frc1675.commands.TwoBall;
-import org.frc1675.commands.arm.puncher.GoToLimit;
+import org.frc1675.commands.arm.puncher.PuncherGoToLimit;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,23 +27,26 @@ import org.frc1675.commands.arm.puncher.GoToLimit;
  * directory.
  */
 public class UPS2014 extends IterativeRobot {
-    
+
 //    Command autonomousCommand;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     Command autonomousCommand;
+    public static NetworkTable table;
+
     public void robotInit() {
+        table = NetworkTable.getTable("dataTable");
+
         autonomousCommand = new BabbysFirstAuton();
         //autonomousCommand = new OneBallTime();
         //autonomousCommand = new OneBallDistance();
         //autonomousCommand = new TwoBall();
-        
+
                 //For Hot
         // instantiate the command used for the autonomous period
 //        autonomousCommand = new ExampleCommand();
-
         // Initialize all subsystems
         CommandBase.init();
     }
@@ -67,8 +71,7 @@ public class UPS2014 extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         autonomousCommand.cancel();
-        
-        
+
     }
 
     /**
@@ -84,7 +87,8 @@ public class UPS2014 extends IterativeRobot {
     public void testPeriodic() {
         LiveWindow.run();
     }
-    public void disabledInit(){
+
+    public void disabledInit() {
         Scheduler.getInstance().removeAll();
     }
 }

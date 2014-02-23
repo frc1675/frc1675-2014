@@ -7,6 +7,7 @@ package org.frc1675.commands.arm.jaw;
 
 import edu.wpi.first.wpilibj.Timer;
 import org.frc1675.RobotMap;
+import org.frc1675.UPS2014;
 import org.frc1675.commands.CommandBase;
 
 /**
@@ -33,6 +34,7 @@ public class JawOpen extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         jaw.open();
+        UPS2014.table.putString("fire", "fire!");
     }
 
     // Make this return true when this Command no longer needs to run execute()
