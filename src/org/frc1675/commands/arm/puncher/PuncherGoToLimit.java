@@ -3,45 +3,50 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands.arm.shoulder;
+package org.frc1675.commands.arm.puncher;
 
+import edu.wpi.first.wpilibj.Timer;
+import org.frc1675.RobotMap;
 import org.frc1675.commands.CommandBase;
 
 /**
- * Use this to set the shoulder to any angle other than the floor. It will
- * maintain this angle.
+ * This will wind the winch until the Vex button is pressed. The encoder didn't
+ * work too well.
  *
  * @author Tony
  */
-public class SetShoulder extends CommandBase {
+public class PuncherGoToLimit extends CommandBase {
 
-    private int setpoint;
+    private boolean isAtSetpoint;
 
-    public SetShoulder(int angle) {
-        requires(shoulder);
-        setpoint = angle;
+    public PuncherGoToLimit() {
+
+        requires(puncher);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        shoulder.setPIDSetpoint(setpoint);
+        isAtSetpoint = puncher.goToLimit();
+        puncher.limitTimer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println("SetShoulder: " + shoulder.shoulderPot.get());
+        isAtSetpoint = puncher.goToLimit();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isAtSetpoint;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        shoulder.stopAndReset();
+        puncher.stop();
+        puncher.limitTimer.stop();
+        puncher.limitTimer.reset();
     }
 
     // Called when another command which requires one or more of the same

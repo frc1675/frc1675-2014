@@ -9,7 +9,8 @@ import org.frc1675.commands.CommandBase;
 
 /**
  * Set as initDefaultCommand. Will poll operator right y periodically and set
- * shoulder motor to that value. It cannot be backdriven.
+ * shoulder motor to that value. It cannot be backdriven. I was told that was
+ * really bad.
  *
  * @author Tony
  */

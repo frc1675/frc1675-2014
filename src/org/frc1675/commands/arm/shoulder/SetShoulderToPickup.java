@@ -32,7 +32,7 @@ public class SetShoulderToPickup extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-
+        System.out.println("SetShoulderToPickup: " + shoulder.shoulderPot.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -42,7 +42,7 @@ public class SetShoulderToPickup extends CommandBase {
         } else if (timer.get() > 0 && !(shoulder.getPIDController().onTarget())) {
             timer.stop();
             timer.reset();
-        } else if (timer.get() > RobotMap.PID_TARGET_TIME) {
+        } else if (timer.get() > RobotMap.SHOULDER_PID_TARGET_TIME) {
             return true;
         }
         return false;

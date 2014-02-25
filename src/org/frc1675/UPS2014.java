@@ -10,8 +10,12 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import org.frc1675.commands.BabbysFirstAuton;
 import org.frc1675.commands.CommandBase;
 import org.frc1675.commands.MakeCompressorWork;
+import org.frc1675.commands.OneBallDistance;
+import org.frc1675.commands.OneBallTime;
+import org.frc1675.commands.TwoBall;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,7 +33,12 @@ public class UPS2014 extends IterativeRobot {
      */
     Command autonomousCommand;
     public void robotInit() {
-        autonomousCommand = new MakeCompressorWork();
+        autonomousCommand = new BabbysFirstAuton();
+        //autonomousCommand = new OneBallTime();
+        //autonomousCommand = new OneBallDistance();
+        //autonomousCommand = new TwoBall();
+        
+                //For Hot
         // instantiate the command used for the autonomous period
 //        autonomousCommand = new ExampleCommand();
 
@@ -38,6 +47,7 @@ public class UPS2014 extends IterativeRobot {
     }
 
     public void autonomousInit() {
+        autonomousCommand.start();
 //        autonomousCommand.start();
         // schedule the autonomous command (example)
 //        autonomousCommand.start();
@@ -55,7 +65,7 @@ public class UPS2014 extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-//        autonomousCommand.cancel();
+        autonomousCommand.cancel();
         
         
     }
@@ -67,10 +77,17 @@ public class UPS2014 extends IterativeRobot {
         Scheduler.getInstance().run();
     }
 
+    public void testInit() {
+        
+    }
+    
     /**
      * This function is called periodically during test mode
      */
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    public void disabledInit(){
+        Scheduler.getInstance().removeAll();
     }
 }

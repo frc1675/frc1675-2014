@@ -3,45 +3,53 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands.arm.shoulder;
+package org.frc1675.commands;
 
-import org.frc1675.commands.CommandBase;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
- * Use this to set the shoulder to any angle other than the floor. It will
- * maintain this angle.
+ * Tells drive motors to move for a given time and power(kind of, because it
+ * gets scaled for acceleration and stuff). Use for autonomous
  *
  * @author Tony
  */
-public class SetShoulder extends CommandBase {
+public class DriveForTime extends CommandBase {
 
-    private int setpoint;
+    Timer timer;
+    double time;
+    double power;
 
-    public SetShoulder(int angle) {
-        requires(shoulder);
-        setpoint = angle;
+    public DriveForTime(double seconds, double kindOfLikePower) {
+        requires(driveBase);
+        timer = new Timer();
+        time = seconds;
+        power = kindOfLikePower;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        shoulder.setPIDSetpoint(setpoint);
+        driveBase.setLeftMotors(0);
+        driveBase.setRightMotors(0);
+        timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println("SetShoulder: " + shoulder.shoulderPot.get());
+        driveBase.setLeftMotors(power);
+        driveBase.setRightMotors(power);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return (timer.get() > time);
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        shoulder.stopAndReset();
+        driveBase.setLeftMotors(0);
+        driveBase.setRightMotors(0);
     }
 
     // Called when another command which requires one or more of the same
