@@ -3,6 +3,7 @@ package org.frc1675.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.frc1675.OI.OI;
+import org.frc1675.OI.TestOI;
 import org.frc1675.RobotMap;
 import org.frc1675.subsystems.arm.Jaw;
 import org.frc1675.subsystems.arm.Puncher;
@@ -47,6 +48,10 @@ public abstract class CommandBase extends Command {
     
     public static void createCompetitionOI() {
         oi = new OI();
+    }
+    
+    public static void createTestOI() {
+        oi = new TestOI(); 
     }
 
     public CommandBase(String name) {

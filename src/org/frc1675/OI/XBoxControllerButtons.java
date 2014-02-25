@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.frc1675.DPadButton;
+import org.frc1675.OI.buttons.RebindableJoystickButton;
 import org.frc1675.RobotMap;
 import org.frc1675.XBoxControllerMap;
 
@@ -16,29 +17,31 @@ import org.frc1675.XBoxControllerMap;
  * @author Elise
  */
 public class XBoxControllerButtons {
-    
-    public static Joystick driverController = new Joystick(RobotMap.DRIVER_CONTROLLER);
-    public static Button driverB = new JoystickButton(driverController, XBoxControllerMap.B_BUTTON);
-    public static Button driverX = new JoystickButton(driverController, XBoxControllerMap.X_BUTTON);
-    public static Button driverY = new JoystickButton(driverController, XBoxControllerMap.Y_BUTTON);
-    public static Button driverA = new JoystickButton(driverController, XBoxControllerMap.A_BUTTON);
-    public static Button driverRightBumper = new JoystickButton(driverController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
-    public static Button driverLeftBumper = new JoystickButton(driverController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
-    public static Button driverLeftJoystickButton = new JoystickButton(driverController, XBoxControllerMap.RIGHT_JOYSTICK_BUTTON);
-    public static Button driverRightJoystickButton = new JoystickButton(driverController, XBoxControllerMap.LEFT_JOYSTICK_BUTTON);
-    public static Button driverDPadRight = new DPadButton(driverController, DPadButton.RIGHT);
-    public static Button driverDPadLeft = new DPadButton(driverController, DPadButton.LEFT);
 
-    public static Joystick operatorController = new Joystick(RobotMap.OPERATOR_CONTROLLER);
-    public static Button operatorB = new JoystickButton(operatorController, XBoxControllerMap.B_BUTTON);
-    public static Button operatorX = new JoystickButton(operatorController, XBoxControllerMap.X_BUTTON);
-    public static Button operatorY = new JoystickButton(operatorController, XBoxControllerMap.Y_BUTTON);
-    public static Button operatorA = new JoystickButton(operatorController, XBoxControllerMap.A_BUTTON);
-    public static Button operatorRightBumper = new JoystickButton(operatorController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
-    public static Button operatorLeftBumper = new JoystickButton(operatorController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
-    public static Button operatorLeftJoystickButton = new JoystickButton(operatorController, XBoxControllerMap.RIGHT_JOYSTICK_BUTTON);
-    public static Button operatorRightJoystickButton = new JoystickButton(operatorController, XBoxControllerMap.LEFT_JOYSTICK_BUTTON);
-    public static Button operatorDPadRight = new DPadButton(operatorController, DPadButton.RIGHT);
-    public static Button operatorDPadLeft = new DPadButton(operatorController, DPadButton.LEFT);
+    public static final Joystick driverController = new Joystick(RobotMap.DRIVER_CONTROLLER);
+    public static final RebindableJoystickButton driverA = new RebindableJoystickButton(driverController, XBoxControllerMap.A_BUTTON);
+    public static final RebindableJoystickButton driverB = new RebindableJoystickButton(driverController, XBoxControllerMap.B_BUTTON);
+    public static final RebindableJoystickButton driverX = new RebindableJoystickButton(driverController, XBoxControllerMap.X_BUTTON);
+    public static final RebindableJoystickButton driverY = new RebindableJoystickButton(driverController, XBoxControllerMap.Y_BUTTON);
+    public static final RebindableJoystickButton driverRightBumper = new RebindableJoystickButton(driverController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
+    public static final RebindableJoystickButton driverLeftBumper = new RebindableJoystickButton(driverController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
+    public static final RebindableJoystickButton driverLeftJoystickButton = new RebindableJoystickButton(driverController, XBoxControllerMap.RIGHT_JOYSTICK_BUTTON);
+    public static final RebindableJoystickButton driverRightJoystickButton = new RebindableJoystickButton(driverController, XBoxControllerMap.LEFT_JOYSTICK_BUTTON);
+    public static final DPadButton driverDPadRight = new DPadButton(driverController, DPadButton.RIGHT);
+    public static final DPadButton driverDPadLeft = new DPadButton(driverController, DPadButton.LEFT);
     
+    public static final Joystick operatorController = new Joystick(RobotMap.OPERATOR_CONTROLLER);
+    public static final RebindableJoystickButton operatorA = new RebindableJoystickButton(operatorController, XBoxControllerMap.A_BUTTON);
+    public static final RebindableJoystickButton operatorB = new RebindableJoystickButton(operatorController, XBoxControllerMap.B_BUTTON);
+    public static final RebindableJoystickButton operatorX = new RebindableJoystickButton(operatorController, XBoxControllerMap.X_BUTTON);
+    public static final RebindableJoystickButton operatorY = new RebindableJoystickButton(operatorController, XBoxControllerMap.Y_BUTTON);
+    public static final RebindableJoystickButton operatorRightBumper = new RebindableJoystickButton(operatorController, XBoxControllerMap.RIGHT_BUMPER_BUTTON);
+    public static final RebindableJoystickButton operatorLeftBumper = new RebindableJoystickButton(operatorController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
+    public static final RebindableJoystickButton operatorLeftJoystickButton = new RebindableJoystickButton(operatorController, XBoxControllerMap.RIGHT_JOYSTICK_BUTTON);
+    public static final RebindableJoystickButton operatorRightJoystickButton = new RebindableJoystickButton(operatorController, XBoxControllerMap.LEFT_JOYSTICK_BUTTON);
+    public static final DPadButton operatorDPadRight = new DPadButton(operatorController, DPadButton.RIGHT);
+    public static final DPadButton operatorDPadLeft = new DPadButton(operatorController, DPadButton.LEFT);
+
+    public static void init() {
+    }
 }

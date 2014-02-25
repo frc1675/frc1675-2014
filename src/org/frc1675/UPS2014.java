@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import org.frc1675.OI.XBoxControllerButtons;
 import org.frc1675.commands.BabbysFirstAuton;
 import org.frc1675.commands.CommandBase;
 import org.frc1675.commands.MakeCompressorWork;
@@ -43,6 +44,7 @@ public class UPS2014 extends IterativeRobot {
 //        autonomousCommand = new ExampleCommand();
 
         // Initialize all subsystems
+        XBoxControllerButtons.init();
         CommandBase.init();
     }
 
@@ -66,7 +68,7 @@ public class UPS2014 extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         autonomousCommand.cancel();
-        
+        CommandBase.createCompetitionOI();
         
     }
 
@@ -78,7 +80,7 @@ public class UPS2014 extends IterativeRobot {
     }
 
     public void testInit() {
-        
+        CommandBase.createTestOI();
     }
     
     /**
