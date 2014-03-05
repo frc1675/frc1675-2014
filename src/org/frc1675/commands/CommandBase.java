@@ -55,10 +55,6 @@ public abstract class CommandBase extends Command {
     public static void createTestOI() {
         oi = new TestOI(); 
     }
-    
-    public static void createTestOI() {
-        oi = new TestOI(); 
-    }
 
     public CommandBase(String name) {
         super(name);
