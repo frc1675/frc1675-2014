@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import org.frc1675.OI.XBoxControllerButtons;
 import org.frc1675.commands.BabbysFirstAuton;
 import org.frc1675.commands.CommandBase;
 import org.frc1675.commands.GoalColdAtFirstAuton;
@@ -18,8 +19,7 @@ import org.frc1675.commands.NetworkHotAuton;
 import org.frc1675.commands.MakeCompressorWork;
 import org.frc1675.commands.OneBallDistance;
 import org.frc1675.commands.OneBallTime;
-import org.frc1675.commands.TwoBallForTime;
-import org.frc1675.commands.arm.puncher.PuncherGoToLimit;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -44,10 +44,14 @@ public class UPS2014 extends IterativeRobot {
         //autonomousCommand = new BabbysFirstAuton();
         //autonomousCommand = new OneBallTime();
         //autonomousCommand = new OneBallDistance();
-        //autonomousCommand = new TwoBallForTime();
-        //autonomousCommand = new NetworkHotAuton();
-        autonomousCommand = new BabbysFirstAuton();
-        //For Hot
+        //autonomousCommand = new TwoBall();
+        
+                //For Hot
+        // instantiate the command used for the autonomous period
+//        autonomousCommand = new ExampleCommand();
+
+        // Initialize all subsystems
+        XBoxControllerButtons.init();
         CommandBase.init();
 
     }
@@ -82,7 +86,8 @@ public class UPS2014 extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         autonomousCommand.cancel();
-
+        CommandBase.createCompetitionOI();
+        
     }
 
     /**
@@ -92,6 +97,10 @@ public class UPS2014 extends IterativeRobot {
         Scheduler.getInstance().run();
     }
 
+    public void testInit() {
+        CommandBase.createTestOI();
+    }
+    
     /**
      * This function is called periodically during test mode
      */
