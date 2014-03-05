@@ -8,14 +8,12 @@ package org.frc1675.commands;
 import edu.wpi.first.wpilibj.Timer;
 import org.frc1675.RobotMap;
 
-
 /**
  *
- * @author Tony
- * This shifts to the high gear, solenoid specified in robotMap
+ * @author Tony This shifts to the high gear, solenoid specified in robotMap
  */
 public class ShiftHigh extends CommandBase {
-    
+
     private Timer timer;
 
     public ShiftHigh() {

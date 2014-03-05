@@ -9,34 +9,29 @@ import org.frc1675.UPS2014;
 import org.frc1675.commands.CommandBase;
 
 /**
- * Set as initDefaultCommand. Will poll operator left y periodically and set
- * shoulder motor to that value.
+ * When this is called, the shoulder will hold position.
  *
  * @author Tony
  */
-public class ShoulderMoveWithJoysticks extends CommandBase {
+public class SetShoulderToCurrentPosition extends CommandBase {
 
-    private double speed;
-    private double potval;
+    private int setpoint;
 
-    public ShoulderMoveWithJoysticks() {
+    public SetShoulderToCurrentPosition() {
         requires(shoulder);
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        potval = shoulder.pot.get();
+        shoulder.setPIDSetpoint(shoulder.pot.get());
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        shoulder.rawMoveShoulder(oi.getOperatorLeftY());
-        if (shoulder.pot.get() < potval - 10.0 || shoulder.pot.get() > potval + 10.0) {
-            potval = shoulder.pot.get();
-            UPS2014.table.putNumber("ShoulderPotValue", shoulder.pot.get());
-        }
-        //System.out.println("ShoulderWithJoysticks " + shoulder.pot.get());
-
+        System.out.println("SetShoulder: " + shoulder.pot.get());
+        UPS2014.table.putNumber("ShoulderPotValue", shoulder.pot.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -46,7 +41,7 @@ public class ShoulderMoveWithJoysticks extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        shoulder.rawMoveShoulder(0);
+        shoulder.stopAndReset();
     }
 
     // Called when another command which requires one or more of the same

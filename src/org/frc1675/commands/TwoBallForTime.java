@@ -8,28 +8,43 @@ package org.frc1675.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.RobotMap;
 import org.frc1675.commands.arm.roller.RollerIntake;
+import org.frc1675.commands.arm.roller.RollerStop;
 import org.frc1675.commands.arm.shoulder.SetShoulder;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 
 /**
- * Run this after 5 seconds in auton if you want to shoot hot.
+ * This auton mode should be used for shooting two balls into a goal when we
+ * don't have encoders. We need encoders. This ain't gonna work.
  *
  * @author Tony
  */
-public class HotStepTwo extends CommandGroup {
+public class TwoBallForTime extends CommandGroup {
 
-    public HotStepTwo() {
-        addParallel(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
+    TwoBallForTime() {
+        addParallel(new ShiftLow());
+        addParallel(new SetShoulder(RobotMap.BACKWARD_SHOOT_ANGLE));
+        addParallel(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_FORWARD, -1.0));
+        addSequential(new Wait(RobotMap.TIME_TO_REACH_SHOOT));
         addSequential(new Shoot());
         addParallel(new PostShoot());
-        addParallel(new DriveForDistance(-(RobotMap.DISTANCE_TO_SHOT + RobotMap.DISTANCE_EXTRA_TO_DRIVE_BACK)));
+        addParallel(new RollerIntake());
+        addParallel(new SetShoulderToPickup());
+        addSequential(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_FORWARD, 1.0));
+        addSequential(new Wait(RobotMap.TIME_TO_PICK_UP_BALL));
+        addParallel(new RollerStop());
+        addParallel(new SetShoulder(RobotMap.BACKWARD_SHOOT_ANGLE));
+        addParallel(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_FORWARD, -1.0));
+        addSequential(new Wait(RobotMap.TIME_TO_REACH_SHOOT));
+        addSequential(new Shoot());
+        addParallel(new PostShoot());
         addParallel(new SetShoulderToPickup());
         addParallel(new RollerIntake());
-
+        addSequential(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_BACK, 1.0));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
+
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());

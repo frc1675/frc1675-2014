@@ -37,8 +37,8 @@ public class DriveForTime extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        driveBase.setLeftMotors(power);
-        driveBase.setRightMotors(power);
+        driveBase.setLeftMotors(-power);
+        driveBase.setRightMotors(-power);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -50,7 +50,7 @@ public class DriveForDistance extends CommandBase {
             return true;
         }
         return false;
-
+        //All this logic simply returns true when both have been on target for a given time
     }
 
     // Called once after isFinished returns true

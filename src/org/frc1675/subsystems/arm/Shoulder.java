@@ -24,6 +24,7 @@ public class Shoulder extends PIDSubsystem {
     private static final int POT_SCALE = 50;
     public AnalogPotentiometer pot;
     private SpeedController motor;
+    double setpoint = 0;
 
     public Shoulder(double p, double i, double d) {
         super(p, i, d);
@@ -35,6 +36,7 @@ public class Shoulder extends PIDSubsystem {
 
     public void initDefaultCommand() {
         setDefaultCommand(new ShoulderMoveWithJoysticks());
+        //setDefaultCommand(new IncreaseShoulderSetpoint());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
@@ -48,22 +50,12 @@ public class Shoulder extends PIDSubsystem {
     }
 
     protected void usePIDOutput(double d) {
-        motor.set((d)*.75);
+        motor.set((d) * .75);
     }
-
 
     public void setPIDSetpoint(double angle) {
         this.setSetpoint(angle);
         this.enable();
-    }
-    public void rawSetAngle(double angle){
-        if (pot.get()>angle){
-            motor.set(.5);
-        }
-        else{
-            motor.set(.0);
-        }
-
     }
 
     public void stopAndReset() {

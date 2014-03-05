@@ -8,38 +8,32 @@ package org.frc1675.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.RobotMap;
 import org.frc1675.commands.arm.roller.RollerIntake;
-import org.frc1675.commands.arm.roller.RollerStop;
 import org.frc1675.commands.arm.shoulder.SetShoulder;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 
 /**
- * This auton mode should be used for shooting two balls into a goal.
+ * The shooter will wait for the target to be seen to shoot.  
  *
  * @author Tony
  */
-public class TwoBall extends CommandGroup {
+public class NetworkHotAuton extends CommandGroup {
 
-    public TwoBall() {
-        addParallel(new ShiftLow());
-        addParallel(new SetShoulder(RobotMap.BACKWARD_SHOOT_ANGLE));
-        addSequential(new DriveForDistance(-RobotMap.DISTANCE_TO_SHOT));
+    public NetworkHotAuton() {
+        addSequential(new ShiftLow());
+        addSequential(new Wait(.25));
+        addParallel(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
+        addParallel(new DriveForDistance(RobotMap.DISTANCE_TO_SHOT));
+        addSequential(new NetworkCheckForTarget());
         addSequential(new Shoot());
         addParallel(new PostShoot());
+        addParallel(new DriveForDistance(-(RobotMap.DISTANCE_TO_SHOT + RobotMap.DISTANCE_EXTRA_TO_DRIVE_BACK)));
+        addParallel(new SetShoulderToPickup());
         addParallel(new RollerIntake());
-        addParallel(new SetShoulderToPickup());
-        addSequential(new DriveForDistance((RobotMap.DISTANCE_EXTRA_TO_DRIVE_BACK + RobotMap.DISTANCE_TO_SHOT)));
-        addSequential(new Wait(RobotMap.TIME_TO_PICK_UP_BALL));
-        addParallel(new RollerStop());
-        addSequential(new DriveForDistance(-(RobotMap.DISTANCE_EXTRA_TO_DRIVE_BACK + RobotMap.DISTANCE_TO_SHOT)));
-        addSequential(new Shoot());
-        addParallel(new PostShoot());
-        addParallel(new SetShoulderToPickup());
-        addSequential(new DriveForDistance(RobotMap.DISTANCE_TO_SHOT + RobotMap.DISTANCE_EXTRA_TO_DRIVE_BACK));
+
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
-
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());

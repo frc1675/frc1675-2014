@@ -5,10 +5,12 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.frc1675.commands.BabbysFirstAuton;
+import org.frc1675.commands.NetworkCheckForTarget;
 import org.frc1675.commands.ShiftHigh;
 import org.frc1675.commands.ShiftLow;
 import org.frc1675.commands.Shoot;
 import org.frc1675.commands.TeleopShoot;
+import org.frc1675.commands.VisionTest;
 import org.frc1675.commands.arm.jaw.JawClose;
 import org.frc1675.commands.arm.jaw.JawOpen;
 import org.frc1675.commands.arm.puncher.PuncherGoToLimit;
@@ -18,6 +20,7 @@ import org.frc1675.commands.arm.roller.RollerEject;
 import org.frc1675.commands.arm.roller.RollerIntake;
 import org.frc1675.commands.arm.roller.RollerStop;
 import org.frc1675.commands.arm.shoulder.SetShoulder;
+import org.frc1675.commands.arm.shoulder.SetShoulderToCurrentPosition;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 
 /**
@@ -77,15 +80,16 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
     public OI() {
         driverRightBumper.whenPressed(new ShiftHigh());
-        driverLeftBumper.whenPressed(new ShiftLow());
+        driverRightBumper.whenReleased(new ShiftLow());
         driverY.whenPressed(new PuncherShoot());
         driverB.whenPressed(new PuncherPutPinIn());
-
+        driverA.whenPressed(new VisionTest());
 
         operatorDPadLeft.whileHeld(new RollerIntake());
         operatorDPadRight.whileHeld(new RollerEject());
         operatorX.whenPressed(new JawOpen());
         operatorY.whenPressed(new TeleopShoot());
+        operatorB.whenPressed(new SetShoulderToCurrentPosition());
         operatorA.whenPressed(new JawClose());
         operatorRightBumper.whenPressed(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
         operatorLeftBumper.whenPressed(new SetShoulderToPickup());

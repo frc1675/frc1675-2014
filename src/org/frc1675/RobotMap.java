@@ -32,7 +32,7 @@ public class RobotMap {
     public static final int JAW_RETRACT = 8;
     public static final int SHIFTER_HIGH = 4;
     public static final int SHIFTER_LOW = 3;
-    public static final double PNEUMATIC_FIRE_TIME = .25;
+    public static final double PNEUMATIC_FIRE_TIME = .1;
 
     //digital sensors
     public static final int PRESSURE_SWITCH = 1;
@@ -89,4 +89,8 @@ public class RobotMap {
     public static final double DISTANCE_EXTRA_TO_DRIVE_BACK = 15; //inches
     public static final double EXTRA_DISTANCE_BACK_TO_BALL = 5; //inches
     public static final double TIME_TO_PICK_UP_BALL = .7; //seconds
+
+    public static final double TIME_TO_REACH_SHOOT = 2;
+    public static final double EXTRA_TIME_TO_DRIVE_FORWARD = .25;
+    public static final double EXTRA_TIME_TO_DRIVE_BACK = -.5;
 }
