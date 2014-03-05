@@ -34,11 +34,11 @@ public abstract class CommandBase extends Command {
     public static Roller rollerClaw = new Roller();
     public static Shoulder shoulder = new Shoulder(RobotMap.SHOULDER_P, RobotMap.SHOULDER_I, RobotMap.SHOULDER_D);
     public static CompressorSystem compressor = new CompressorSystem();
-    public static NetworkTracking network = new NetworkTracking();
-    public static VisionTracking vision = new VisionTracking();
-    public static DriveBase driveBase = new DriveBase(RobotMap.DRIVE_ENCODER_P, RobotMap.DRIVE_ENCODER_I, RobotMap.DRIVE_ENCODER_D);
+    public static DriveBase driveBase = new DriveBase(RobotMap.DRIVE_ENCODER_P, RobotMap.DRIVE_ENCODER_I, RobotMap.DRIVE_ENCODER_D); 
     public static Shifter shifter = new Shifter();
-
+    
+    public static VisionTracking vision = new VisionTracking();
+    public static NetworkTracking network = new NetworkTracking();
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from
@@ -63,5 +63,5 @@ public abstract class CommandBase extends Command {
     public CommandBase() {
         super();
     }
-
+    
 }
