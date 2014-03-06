@@ -3,42 +3,53 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands.arm.puncher;
+package org.frc1675.commands;
 
-import org.frc1675.commands.CommandBase;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
- * Set as initDefaultCommand. Will poll operator right y periodically and set
- * shoulder motor to that value. It cannot be backdriven. I was told that was
- * really bad.
+ * Tells drive motors to move for a given time and power(kind of, because it
+ * gets scaled for acceleration and stuff). Use for autonomous
  *
  * @author Tony
  */
-public class WindWinchWithJoysticks extends CommandBase {
+public class DriveForTime extends CommandBase {
 
-    public WindWinchWithJoysticks() {
-        requires(puncher);
+    Timer timer;
+    double time;
+    double power;
+
+    public DriveForTime(double seconds, double kindOfLikePower) {
+        requires(driveBase);
+        timer = new Timer();
+        time = seconds;
+        power = kindOfLikePower;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        driveBase.setLeftMotors(0);
+        driveBase.setRightMotors(0);
+        timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        puncher.rawRunWinch(oi.getOperatorRightY());
+        driveBase.setLeftMotors(-power);
+        driveBase.setRightMotors(-power);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return (timer.get() > time);
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        puncher.rawRunWinch(0);
+        driveBase.setLeftMotors(0);
+        driveBase.setRightMotors(0);
     }
 
     // Called when another command which requires one or more of the same

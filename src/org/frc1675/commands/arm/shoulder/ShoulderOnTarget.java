@@ -5,53 +5,53 @@
  */
 package org.frc1675.commands.arm.shoulder;
 
-import org.frc1675.UPS2014;
+import edu.wpi.first.wpilibj.Timer;
+import org.frc1675.RobotMap;
 import org.frc1675.commands.CommandBase;
 
 /**
- * Set as initDefaultCommand. Will poll operator left y periodically and set
- * shoulder motor to that value.
+ * Checks if the shoulder has reached its target. May be necessary for auton.
  *
  * @author Tony
  */
-public class ShoulderMoveWithJoysticks extends CommandBase {
+public class ShoulderOnTarget extends CommandBase {
 
-    private double speed;
-    private double potval;
+    Timer timer;
 
-    public ShoulderMoveWithJoysticks() {
-        requires(shoulder);
+    public ShoulderOnTarget() {
+        timer = new Timer();
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        potval = shoulder.pot.get();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        shoulder.rawMoveShoulder(oi.getOperatorLeftY());
-        if (shoulder.pot.get() < potval - 10.0 || shoulder.pot.get() > potval + 10.0) {
-            potval = shoulder.pot.get();
-            UPS2014.table.putNumber("ShoulderPotValue", shoulder.pot.get());
-        }
-        //System.out.println("ShoulderWithJoysticks " + shoulder.pot.get());
-
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+        if ((shoulder.getPIDController().onTarget()) && (timer.get() == 0)) {
+            timer.start();
+        } else if (timer.get() > 0 && !(shoulder.getPIDController().onTarget())) {
+            timer.stop();
+            timer.reset();
+        } else if (timer.get() > RobotMap.SHOULDER_PID_TARGET_TIME) {
+            return true;
+        }
         return false;
     }
 
+
     // Called once after isFinished returns true
     protected void end() {
-        shoulder.rawMoveShoulder(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        end();
     }
 }

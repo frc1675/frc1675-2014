@@ -20,21 +20,23 @@ import org.frc1675.commands.arm.shoulder.ShoulderMoveWithJoysticks;
  */
 public class Shoulder extends PIDSubsystem {
 
-    private static final int ABSOLUTE_TOLERANCE = 5;  //degrees
+    private static final int ABSOLUTE_TOLERANCE = 10;  //degrees
     private static final int POT_SCALE = 50;
-    private AnalogPotentiometer pot;
+    public AnalogPotentiometer pot;
     private SpeedController motor;
+    double setpoint = 0;
 
     public Shoulder(double p, double i, double d) {
         super(p, i, d);
         this.pot = new AnalogPotentiometer(RobotMap.SHOULDER_POT, POT_SCALE);
         this.motor = new Talon(RobotMap.SHOULDER_MOTOR);
-        this.setInputRange(-1, 251);
+        this.setInputRange(-1, 256);
         this.setAbsoluteTolerance(ABSOLUTE_TOLERANCE);
     }
 
     public void initDefaultCommand() {
         setDefaultCommand(new ShoulderMoveWithJoysticks());
+        //setDefaultCommand(new IncreaseShoulderSetpoint());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
@@ -44,33 +46,22 @@ public class Shoulder extends PIDSubsystem {
     }
 
     protected double returnPIDInput() {
-        return pot.get();        
+        return pot.get();
     }
 
     protected void usePIDOutput(double d) {
-        motor.set((-d)/2);
-        System.out.println("Sent Value" + d);
+        motor.set((d) * .75);
     }
 
     public void setPIDSetpoint(double angle) {
         this.setSetpoint(angle);
         this.enable();
     }
-    public void rawSetAngle(double angle){
-        if (pot.get()>angle){
-            motor.set(0);
-        }
-        else{
-            motor.set(.5);
-        }
-    }
 
     public void stopAndReset() {
         this.disable();
+        this.getPIDController().reset();
         motor.set(0);
-    }
-    public double getPot(){
-        return pot.get();
     }
 
 }

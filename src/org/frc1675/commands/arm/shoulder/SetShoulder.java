@@ -5,6 +5,7 @@
  */
 package org.frc1675.commands.arm.shoulder;
 
+import org.frc1675.UPS2014;
 import org.frc1675.commands.CommandBase;
 
 /**
@@ -14,8 +15,9 @@ import org.frc1675.commands.CommandBase;
  * @author Tony
  */
 public class SetShoulder extends CommandBase {
+    private double potval;
     private int setpoint;
-    
+
     public SetShoulder(int angle) {
         requires(shoulder);
         setpoint = angle;
@@ -30,7 +32,11 @@ public class SetShoulder extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println("SetShoulder: " + shoulder.getPot());
+        System.out.println("SetShoulder: " + shoulder.pot.get());
+         if(shoulder.pot.get() < potval-10.0 || shoulder.pot.get() > potval+ 10.0){
+            potval = shoulder.pot.get();
+            UPS2014.table.putNumber("ShoulderPotValue", shoulder.pot.get());
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()

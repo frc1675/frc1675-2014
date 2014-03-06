@@ -3,42 +3,43 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands.arm.roller;
+package org.frc1675.commands;
 
-import org.frc1675.commands.CommandBase;
+import org.frc1675.UPS2014;
 
 /**
- * Sets the roller claw to eject an does that until further notice
+ * This command ends when a network target is seen.
  *
  * @author Tony
  */
-public class RollerEject extends CommandBase {
+public class NetworkCheckForTarget extends CommandBase {
 
-    public RollerEject() {
-        requires(rollerClaw);
+    public NetworkCheckForTarget() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+        requires(network);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        rollerClaw.eject();
+
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        rollerClaw.eject();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return UPS2014.table.getBoolean("isHot");
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        rollerClaw.stop();
     }
 
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
     protected void interrupted() {
-        end();
     }
 }
