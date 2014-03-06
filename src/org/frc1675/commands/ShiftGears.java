@@ -42,11 +42,6 @@ public class ShiftGears extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         if (timer.get() > RobotMap.PNEUMATIC_FIRE_TIME) {
-            if(shifter.isInHighGear()){
-                shifter.setLowGear();
-            }else{
-                shifter.setHighGear();
-            }
             return true;
         } else {
             return false;

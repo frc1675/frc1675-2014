@@ -32,15 +32,15 @@ public class CheesyDriveCommand extends CommandBase {
         double left;
         double right;
 
-        left = forward - turn;
-        right = forward + turn;
+        left = forward + turn;
+        right = forward - turn;
         double surplus = 0;
 
         if (quickTurn == true) {
             if (left > 1) {
                 surplus = left - 1;
                 right = right - surplus;
-            } else if (right > 1) {
+            } else if (right > -1) {
                 surplus = right - 1;
                 left = left - surplus;
             } else if (left < -1) {

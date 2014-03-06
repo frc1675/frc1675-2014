@@ -23,33 +23,22 @@ public class Shifter extends Subsystem {
     public Shifter(){
         high = new Solenoid(RobotMap.SHIFTER_HIGH);
         low = new Solenoid(RobotMap.SHIFTER_LOW);
-        if(high.get()){
-            setHighGear();
-        }else{
-            setLowGear();
-        }
     }
     public void shiftToHighGear(){
         high.set(true);
-        low.set(false);        
+        low.set(false);
+        onHighGear = true;
         SmartDashboard.putString("Current Gear", "High");
     }
     public void shiftToLowGear(){
         high.set(false);
-        low.set(true);        
+        low.set(true);
+        onHighGear = false;
         SmartDashboard.putString("Current Gear", "Low");
     }
     
     public boolean isInHighGear(){
         return onHighGear;
-    }
-    
-    public void setHighGear(){
-        onHighGear = true;
-    }
-    
-    public void setLowGear(){
-        onHighGear = false;
     }
     
     public void initDefaultCommand() {
