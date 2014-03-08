@@ -106,8 +106,8 @@ public class DriveBase extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
         //setDefaultCommand(new ArcadeDriveCommand());
-        //setDefaultCommand(new TankDriveCommand());
-        setDefaultCommand(new CheesyDriveCommand());
+        setDefaultCommand(new TankDriveCommand());
+//        setDefaultCommand(new CheesyDriveCommand());
     }
 
     public class SideEncoder extends PIDSubsystem {

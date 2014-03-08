@@ -25,7 +25,7 @@ import org.frc1675.commands.arm.roller.RollerStop;
  */
 public class Shoot extends CommandGroup {
 
-    private static final double SHOOT_TIME = 1;
+    private static final double SHOOT_TIME = .25;
 
     public Shoot() {
         addSequential(new JawOpen());

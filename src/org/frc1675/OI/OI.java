@@ -21,6 +21,7 @@ import org.frc1675.commands.arm.roller.RollerEject;
 import org.frc1675.commands.arm.roller.RollerIntake;
 import org.frc1675.commands.arm.roller.RollerStop;
 import org.frc1675.commands.arm.shoulder.SetShoulder;
+import org.frc1675.commands.arm.shoulder.SetShoulderToCurrentPosition;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 
 /**
@@ -56,7 +57,7 @@ public class OI {
     // button.whenReleased(new ExampleCommand());
     public OI() {
         XBoxControllerButtons.driverRightBumper.whenPressed(new ShiftHigh());
-        XBoxControllerButtons.driverLeftBumper.whenPressed(new ShiftLow());
+        XBoxControllerButtons.driverRightBumper.whenReleased(new ShiftLow());
         XBoxControllerButtons.driverY.whenPressed(new PuncherShoot());
         XBoxControllerButtons.driverB.whenPressed(new PuncherPutPinIn());
 
@@ -64,6 +65,7 @@ public class OI {
         XBoxControllerButtons.operatorDPadLeft.whileHeld(new RollerIntake());
         XBoxControllerButtons.operatorDPadRight.whileHeld(new RollerEject());
         XBoxControllerButtons.operatorX.whenPressed(new JawOpen());
+        XBoxControllerButtons.operatorB.whenPressed(new SetShoulderToCurrentPosition());
         XBoxControllerButtons.operatorY.whenPressed(new TeleopShoot());
         XBoxControllerButtons.operatorA.whenPressed(new JawClose());
         XBoxControllerButtons.operatorRightBumper.whenPressed(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));

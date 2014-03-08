@@ -23,12 +23,12 @@ import org.frc1675.UPS2014;
  */
 public class VisionTracking extends Subsystem {
 
-    private final int RED_LOW = 140;            // Should not have to change but if you do need to change follow steps below
+    private final int RED_LOW = 225;            // Should not have to change but if you do need to change follow steps below
     private final int RED_HIGH = 257;           // 1) Run code.
-    private final int GREEN_LOW = 105;          // 2) Use FTP to get picture called ("Vtracking1.jpg)
-    private final int GREEN_HIGH = 250;         // 3) Open picture with Paint and select color of rectangle
-    private final int BLUE_LOW = 0;            // 4) Go to "More colors" in paint and click on selected colors
-    private final int BLUE_HIGH = 117;           // 5) Change these values to match values in Paint
+    private final int GREEN_LOW = 209;          // 2) Use FTP to get picture called ("Vtracking1.jpg)
+    private final int GREEN_HIGH = 256;         // 3) Open picture with Paint and select color of rectangle
+    private final int BLUE_LOW = 128;            // 4) Go to "More colors" in paint and click on selected colors
+    private final int BLUE_HIGH = 178;           // 5) Change these values to match values in Paint
     private final int AREA_MINIMUM = 100;          // Filters out rectangles with smaller area
     private final int MAX_PARTICLES = 8;         // Dont change this!! (if you do, make it smaller).
     private final double VISION_TOLERANCE = .5;  //Change this to allow different shapes (ie. Not Perfect Rectanges)
