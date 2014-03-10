@@ -23,6 +23,7 @@ import org.frc1675.commands.arm.roller.RollerStop;
 import org.frc1675.commands.arm.shoulder.SetShoulder;
 import org.frc1675.commands.arm.shoulder.SetShoulderToCurrentPosition;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
+import org.frc1675.commands.arm.shoulder.StopShoulder;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -70,6 +71,9 @@ public class OI {
         XBoxControllerButtons.operatorA.whenPressed(new JawClose());
         XBoxControllerButtons.operatorRightBumper.whenPressed(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
         XBoxControllerButtons.operatorLeftBumper.whenPressed(new SetShoulderToPickup());
+        XBoxControllerButtons.operatorStart.whenPressed(new SetShoulder(RobotMap.BACKWARD_SHOOT_ANGLE));
+        XBoxControllerButtons.operatorBack.whenPressed(new StopShoulder());
+
     }
 
     public double getOperatorLeftY() {

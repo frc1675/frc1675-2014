@@ -39,6 +39,8 @@ public class XBoxControllerButtons {
     public static final RebindableJoystickButton operatorLeftBumper = new RebindableJoystickButton(operatorController, XBoxControllerMap.LEFT_BUMPER_BUTTON);
     public static final RebindableJoystickButton operatorLeftJoystickButton = new RebindableJoystickButton(operatorController, XBoxControllerMap.RIGHT_JOYSTICK_BUTTON);
     public static final RebindableJoystickButton operatorRightJoystickButton = new RebindableJoystickButton(operatorController, XBoxControllerMap.LEFT_JOYSTICK_BUTTON);
+    public static final RebindableJoystickButton operatorBack = new RebindableJoystickButton(operatorController, XBoxControllerMap.BACK_BUTTON);
+    public static final RebindableJoystickButton operatorStart = new RebindableJoystickButton(operatorController, XBoxControllerMap.START_BUTTON);
     public static final DPadButton operatorDPadRight = new DPadButton(operatorController, DPadButton.RIGHT);
     public static final DPadButton operatorDPadLeft = new DPadButton(operatorController, DPadButton.LEFT);
 

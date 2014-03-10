@@ -25,6 +25,8 @@ public class Shoulder extends PIDSubsystem {
     public AnalogPotentiometer pot;
     private SpeedController motor;
     double setpoint = 0;
+    boolean potWasBad = false;
+    boolean potWasWasBad = false;
 
     public Shoulder(double p, double i, double d) {
         super(p, i, d);
@@ -63,5 +65,15 @@ public class Shoulder extends PIDSubsystem {
         this.getPIDController().reset();
         motor.set(0);
     }
-
+    public boolean potIsBad(){
+        boolean potIsBad = pot.get()<5;
+        if(potIsBad && potWasBad && potWasWasBad){
+            return true;
+        }
+        potWasWasBad = potWasBad;
+        potWasBad = potIsBad;
+        return false;
+        
+    }
 }
+

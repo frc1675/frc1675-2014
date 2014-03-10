@@ -45,6 +45,9 @@ public class XBoxControllerMap {
     //Bumpers (shoulders)
     public static final int LEFT_BUMPER_BUTTON = 5;
     public static final int RIGHT_BUMPER_BUTTON = 6;
+    
+    public static final int BACK_BUTTON = 7;
+    public static final int START_BUTTON = 8;
 
     //Joystick buttons (clicking in stick)
     public static final int LEFT_JOYSTICK_BUTTON = 9;

@@ -39,6 +39,9 @@ public class SetShoulderToPickup extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+        if(shoulder.potIsBad()){
+            return true;
+        } 
         if ((shoulder.getPIDController().onTarget()) && (timer.get() == 0)) {
             timer.start();
         } else if (timer.get() > 0 && !(shoulder.getPIDController().onTarget())) {

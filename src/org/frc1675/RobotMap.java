@@ -65,10 +65,11 @@ public class RobotMap {
     }
 
     //PID
-    public static final double SHOULDER_P = .02;
-    public static final double SHOULDER_I = 0;
+    public static final double SHOULDER_P = .045;
+    public static final double SHOULDER_I = .0001;
     public static final double SHOULDER_D = 0;
     public static final double SHOULDER_PID_TARGET_TIME = .5;
+
 
     public static final double DRIVE_ENCODER_P = 1;
     public static final double DRIVE_ENCODER_I = 0;
