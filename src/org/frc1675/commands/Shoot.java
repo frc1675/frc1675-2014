@@ -10,8 +10,8 @@ import org.frc1675.RobotMap;
 import org.frc1675.UPS2014;
 import org.frc1675.commands.arm.jaw.JawClose;
 import org.frc1675.commands.arm.jaw.JawOpen;
-import org.frc1675.commands.arm.puncher.PuncherPutPinIn;
-import org.frc1675.commands.arm.puncher.PuncherShoot;
+import org.frc1675.commands.arm.puncher.PuncherEngage;
+import org.frc1675.commands.arm.puncher.PuncherDisengage;
 import org.frc1675.commands.arm.puncher.SetWinch;
 import org.frc1675.commands.arm.roller.RollerStop;
 
@@ -25,12 +25,10 @@ import org.frc1675.commands.arm.roller.RollerStop;
  */
 public class Shoot extends CommandGroup {
 
-    private static final double SHOOT_TIME = .25;
-
     public Shoot() {
         addSequential(new JawOpen());
-        addSequential(new PuncherShoot());
-        addSequential(new Wait(SHOOT_TIME));
+        addSequential(new PuncherDisengage());
+        addSequential(new Wait(RobotMap.SHOOT_TIME));
 
         // Add Commands here:
         // e.g. addSequential(new Command1());

@@ -14,11 +14,11 @@ import org.frc1675.commands.CommandBase;
  *
  * @author Tony
  */
-public class PuncherPutPinIn extends CommandBase {
+public class PuncherEngage extends CommandBase {
 
     private Timer timer;
 
-    public PuncherPutPinIn() {
+    public PuncherEngage() {
         requires(puncher);
         timer = new Timer();
     }

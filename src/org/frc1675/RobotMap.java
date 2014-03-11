@@ -83,7 +83,7 @@ public class RobotMap {
     public static final int BACKWARD_SHOOT_ANGLE = 120;
     public static final int STARTING_ANGLE = 144;
 
-    public static final int WINCH_ENERGY = 750;  //encoder ticks
+    public static final double SHOOT_TIME = .25;
 
 //auton stuff
     public static final double DISTANCE_TO_SHOT = 48; //inches

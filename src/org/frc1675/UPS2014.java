@@ -20,7 +20,6 @@ import org.frc1675.commands.MakeCompressorWork;
 import org.frc1675.commands.OneBallDistance;
 import org.frc1675.commands.OneBallTime;
 
-
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -42,15 +41,10 @@ public class UPS2014 extends IterativeRobot {
         table = NetworkTable.getTable("dataTable");
 
         //autonomousCommand = new BabbysFirstAuton();
-        //autonomousCommand = new OneBallTime();
+        autonomousCommand = new OneBallTime();
         //autonomousCommand = new OneBallDistance();
         //autonomousCommand = new TwoBall();
-        
-                //For Hot
-        // instantiate the command used for the autonomous period
-//        autonomousCommand = new ExampleCommand();
 
-        // Initialize all subsystems
         XBoxControllerButtons.init();
         CommandBase.init();
 
@@ -60,7 +54,6 @@ public class UPS2014 extends IterativeRobot {
         //For hot
         if (CommandBase.vision.isHorizontalTarget()) {
             System.out.println("HOT");
-            autonomousCommand = new OneBallTime();
         } else {
             autonomousCommand = new GoalColdAtFirstAuton();
             System.out.println("COLD");
@@ -85,9 +78,7 @@ public class UPS2014 extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        if (autonomousCommand != null){
-            autonomousCommand.cancel();    
-        }
+        autonomousCommand.cancel();
     }
 
     /**
@@ -100,7 +91,7 @@ public class UPS2014 extends IterativeRobot {
     public void testInit() {
         CommandBase.createTestOI();
     }
-    
+
     /**
      * This function is called periodically during test mode
      */

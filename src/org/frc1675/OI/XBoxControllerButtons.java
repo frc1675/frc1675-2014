@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.frc1675.DPadButton;
 import org.frc1675.OI.buttons.RebindableJoystickButton;
+import org.frc1675.OI.buttons.TriggerButton;
 import org.frc1675.RobotMap;
 import org.frc1675.XBoxControllerMap;
 
@@ -29,6 +30,9 @@ public class XBoxControllerButtons {
     public static final RebindableJoystickButton driverRightJoystickButton = new RebindableJoystickButton(driverController, XBoxControllerMap.LEFT_JOYSTICK_BUTTON);
     public static final DPadButton driverDPadRight = new DPadButton(driverController, DPadButton.RIGHT);
     public static final DPadButton driverDPadLeft = new DPadButton(driverController, DPadButton.LEFT);
+    public static final TriggerButton driverLeftTrigger = new TriggerButton(driverController, TriggerButton.LEFT);
+    public static final TriggerButton driverRightTrigger = new TriggerButton(driverController, TriggerButton.RIGHT);
+
     
     public static final Joystick operatorController = new Joystick(RobotMap.OPERATOR_CONTROLLER);
     public static final RebindableJoystickButton operatorA = new RebindableJoystickButton(operatorController, XBoxControllerMap.A_BUTTON);
@@ -43,7 +47,9 @@ public class XBoxControllerButtons {
     public static final RebindableJoystickButton operatorStart = new RebindableJoystickButton(operatorController, XBoxControllerMap.START_BUTTON);
     public static final DPadButton operatorDPadRight = new DPadButton(operatorController, DPadButton.RIGHT);
     public static final DPadButton operatorDPadLeft = new DPadButton(operatorController, DPadButton.LEFT);
-
+    public static final TriggerButton operatorLeftTrigger = new TriggerButton(operatorController, TriggerButton.LEFT);
+    public static final TriggerButton operatorRightTrigger = new TriggerButton(operatorController, TriggerButton.RIGHT);
+    
     public static void init() {
     }
 }
