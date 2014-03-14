@@ -32,6 +32,7 @@ public class RobotMap {
     public static final int JAW_RETRACT = 8;
     public static final int SHIFTER_HIGH = 4;
     public static final int SHIFTER_LOW = 3;
+    public static final int LIGHTS = 1;
     public static final double PNEUMATIC_FIRE_TIME = .1;
 
     //digital sensors
@@ -84,6 +85,7 @@ public class RobotMap {
     public static final int STARTING_ANGLE = 144;
 
     public static final double SHOOT_TIME = .25;
+    public static final double SPIT_TIME = .15;
 
 //auton stuff
     public static final double DISTANCE_TO_SHOT = 48; //inches

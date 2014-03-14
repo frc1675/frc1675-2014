@@ -7,6 +7,7 @@
 package org.frc1675;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -36,8 +37,10 @@ public class UPS2014 extends IterativeRobot {
      */
     Command autonomousCommand;
     public static NetworkTable table;
+    Solenoid lights = new Solenoid(RobotMap.LIGHTS);
 
     public void robotInit() {
+        lights.set(true);
         table = NetworkTable.getTable("dataTable");
 
         //autonomousCommand = new BabbysFirstAuton();

@@ -19,6 +19,7 @@ import org.frc1675.commands.arm.jaw.JawOpen;
 import org.frc1675.commands.arm.puncher.PuncherGoToLimit;
 import org.frc1675.commands.arm.puncher.PuncherEngage;
 import org.frc1675.commands.arm.puncher.PuncherDisengage;
+import org.frc1675.commands.arm.roller.RollForTime;
 import org.frc1675.commands.arm.roller.RollerEject;
 import org.frc1675.commands.arm.roller.RollerIntake;
 import org.frc1675.commands.arm.roller.RollerStop;
@@ -37,6 +38,7 @@ public class OI {
     EscapeJoystickButton operatorLeftTriggerAndB;
     EscapeJoystickButton operatorLeftTriggerAndY;
     EscapeJoystickButton operatorLeftTriggerAndRightBumper;
+    EscapeJoystickButton operatorRightTriggerAndB;
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
@@ -67,10 +69,9 @@ public class OI {
         operatorLeftTriggerAndA = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorA);
         operatorLeftTriggerAndX = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorX);
         operatorLeftTriggerAndB = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorB);
-        operatorLeftTriggerAndY = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorB);
-
+        operatorLeftTriggerAndY = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorY);
         operatorLeftTriggerAndRightBumper = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorRightBumper);
-        
+        operatorRightTriggerAndB = new EscapeJoystickButton(XBoxControllerButtons.operatorRightTrigger, XBoxControllerButtons.operatorB);
         
         XBoxControllerButtons.driverRightBumper.whenPressed(new ShiftHigh());
         XBoxControllerButtons.driverRightBumper.whenReleased(new ShiftLow());
@@ -80,7 +81,6 @@ public class OI {
         
         XBoxControllerButtons.operatorDPadLeft.whileHeld(new RollerIntake());
         XBoxControllerButtons.operatorDPadRight.whileHeld(new RollerEject());
-        XBoxControllerButtons.operatorY.whenPressed(new TeleopShoot());
         XBoxControllerButtons.operatorLeftBumper.whenPressed(new SetShoulderToPickup());
         XBoxControllerButtons.operatorStart.whenPressed(new SetShoulder(RobotMap.BACKWARD_SHOOT_ANGLE));
         XBoxControllerButtons.operatorBack.whenPressed(new StopShoulder());
@@ -93,6 +93,8 @@ public class OI {
         
         operatorLeftTriggerAndB.setDefaultButtonBindings(new SetShoulderToCurrentPosition(), null, null);
         operatorLeftTriggerAndB.setEscapeButtonBindings(new StopShoulder(), null, null);
+        operatorRightTriggerAndB.setDefaultButtonBindings(new SetShoulderToCurrentPosition(), null, null);
+        operatorRightTriggerAndB.setEscapeButtonBindings(new RollForTime(RobotMap.SPIT_TIME, false), null, null);
         
         operatorLeftTriggerAndY.setDefaultButtonBindings(new TeleopShoot(), null, null);
         operatorLeftTriggerAndY.setEscapeButtonBindings(new JawClosedTeleopShoot(), null, null);

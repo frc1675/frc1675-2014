@@ -31,6 +31,7 @@ public class ShoulderMoveWithJoysticks extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         shoulder.rawMoveShoulder(oi.getOperatorLeftY());
+        System.out.println("ShoulderPotValue" +  shoulder.pot.get());
         if (shoulder.pot.get() < potval - 10.0 || shoulder.pot.get() > potval + 10.0) {
             potval = shoulder.pot.get();
             UPS2014.table.putNumber("ShoulderPotValue", shoulder.pot.get());
