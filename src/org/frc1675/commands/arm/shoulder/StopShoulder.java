@@ -3,58 +3,45 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands;
+package org.frc1675.commands.arm.shoulder;
 
-import edu.wpi.first.wpilibj.Timer;
+import org.frc1675.commands.CommandBase;
 
 /**
- * Tells drive motors to move for a given time and power(kind of, because it
- * gets scaled for acceleration and stuff). Use for autonomous
  *
- * @author Tony
+ * This command should return the arm to operator control.
+ *
+ * @author Tony.
  */
-public class DriveForTime extends CommandBase {
+public class StopShoulder extends CommandBase {
 
-    Timer timer;
-    double time;
-    double power;
-
-    public DriveForTime(double seconds, double kindOfLikePower) {
-        requires(driveBase);
-        timer = new Timer();
-        time = seconds;
-        power = kindOfLikePower;
+    public StopShoulder() {
+        requires(shoulder);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        driveBase.setLeftMotors(0);
-        driveBase.setRightMotors(0);
-        timer.start();
+        shoulder.rawMoveShoulder(0);
+        shoulder.stopAndReset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        driveBase.setLeftMotors(-power);
-        driveBase.setRightMotors(-power);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (timer.get() > time);
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        driveBase.setLeftMotors(0);
-        driveBase.setRightMotors(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        end();
     }
 }

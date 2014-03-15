@@ -32,7 +32,8 @@ public class RobotMap {
     public static final int JAW_RETRACT = 8;
     public static final int SHIFTER_HIGH = 4;
     public static final int SHIFTER_LOW = 3;
-    public static final double PNEUMATIC_FIRE_TIME = .25;
+    public static final int LIGHTS = 1;
+    public static final double PNEUMATIC_FIRE_TIME = .1;
 
     //digital sensors
     public static final int PRESSURE_SWITCH = 1;
@@ -65,10 +66,11 @@ public class RobotMap {
     }
 
     //PID
-    public static final double SHOULDER_P = .02;
-    public static final double SHOULDER_I = 0;
+    public static final double SHOULDER_P = .045;
+    public static final double SHOULDER_I = .0001;
     public static final double SHOULDER_D = 0;
     public static final double SHOULDER_PID_TARGET_TIME = .5;
+
 
     public static final double DRIVE_ENCODER_P = 1;
     public static final double DRIVE_ENCODER_I = 0;
@@ -82,11 +84,16 @@ public class RobotMap {
     public static final int BACKWARD_SHOOT_ANGLE = 120;
     public static final int STARTING_ANGLE = 144;
 
-    public static final int WINCH_ENERGY = 750;  //encoder ticks
+    public static final double SHOOT_TIME = .25;
+    public static final double SPIT_TIME = .15;
 
 //auton stuff
     public static final double DISTANCE_TO_SHOT = 48; //inches
     public static final double DISTANCE_EXTRA_TO_DRIVE_BACK = 15; //inches
     public static final double EXTRA_DISTANCE_BACK_TO_BALL = 5; //inches
     public static final double TIME_TO_PICK_UP_BALL = .7; //seconds
+
+    public static final double TIME_TO_REACH_SHOOT = 2;
+    public static final double EXTRA_TIME_TO_DRIVE_FORWARD = .25;
+    public static final double EXTRA_TIME_TO_DRIVE_BACK = -.5;
 }

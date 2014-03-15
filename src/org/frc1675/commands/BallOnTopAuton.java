@@ -6,31 +6,25 @@
 package org.frc1675.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.frc1675.RobotMap;
-import org.frc1675.UPS2014;
-import org.frc1675.commands.arm.jaw.JawClose;
-import org.frc1675.commands.arm.jaw.JawOpen;
-import org.frc1675.commands.arm.puncher.PuncherEngage;
-import org.frc1675.commands.arm.puncher.PuncherDisengage;
-import org.frc1675.commands.arm.puncher.SetWinch;
-import org.frc1675.commands.arm.roller.RollerStop;
+import org.frc1675.commands.arm.roller.RollForTime;
 
 /**
- * This command group combines the Shoot and PostShoot commands for teleop
- * control.
  *
  * @author Tony
  */
-public class TeleopShoot extends CommandGroup {
+public class BallOnTopAuton extends CommandGroup {
 
-    public TeleopShoot() {
-        addSequential(new Shoot());
+    private static final double RollTime = 1;
+
+    public BallOnTopAuton() {
         addSequential(new PostShoot());
-
+        addSequential(new RollForTime(RollTime, true));
+        addSequential(new OneBallTime());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
+
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());

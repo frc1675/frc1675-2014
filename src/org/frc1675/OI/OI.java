@@ -5,9 +5,11 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.frc1675.DPadButton;
+import org.frc1675.OI.buttons.EscapeJoystickButton;
 import org.frc1675.RobotMap;
 import org.frc1675.XBoxControllerMap;
 import org.frc1675.commands.BabbysFirstAuton;
+import org.frc1675.commands.JawClosedTeleopShoot;
 import org.frc1675.commands.ShiftHigh;
 import org.frc1675.commands.ShiftLow;
 import org.frc1675.commands.Shoot;
@@ -15,19 +17,28 @@ import org.frc1675.commands.TeleopShoot;
 import org.frc1675.commands.arm.jaw.JawClose;
 import org.frc1675.commands.arm.jaw.JawOpen;
 import org.frc1675.commands.arm.puncher.PuncherGoToLimit;
-import org.frc1675.commands.arm.puncher.PuncherPutPinIn;
-import org.frc1675.commands.arm.puncher.PuncherShoot;
+import org.frc1675.commands.arm.puncher.PuncherEngage;
+import org.frc1675.commands.arm.puncher.PuncherDisengage;
+import org.frc1675.commands.arm.roller.RollForTime;
 import org.frc1675.commands.arm.roller.RollerEject;
 import org.frc1675.commands.arm.roller.RollerIntake;
 import org.frc1675.commands.arm.roller.RollerStop;
 import org.frc1675.commands.arm.shoulder.SetShoulder;
+import org.frc1675.commands.arm.shoulder.SetShoulderToCurrentPosition;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
+import org.frc1675.commands.arm.shoulder.StopShoulder;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+    EscapeJoystickButton operatorLeftTriggerAndA;
+    EscapeJoystickButton operatorLeftTriggerAndX;
+    EscapeJoystickButton operatorLeftTriggerAndB;
+    EscapeJoystickButton operatorLeftTriggerAndY;
+    EscapeJoystickButton operatorLeftTriggerAndRightBumper;
+    EscapeJoystickButton operatorRightTriggerAndB;
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
@@ -55,19 +66,45 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
     public OI() {
+        operatorLeftTriggerAndA = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorA);
+        operatorLeftTriggerAndX = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorX);
+        operatorLeftTriggerAndB = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorB);
+        operatorLeftTriggerAndY = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorY);
+        operatorLeftTriggerAndRightBumper = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorRightBumper);
+        operatorRightTriggerAndB = new EscapeJoystickButton(XBoxControllerButtons.operatorRightTrigger, XBoxControllerButtons.operatorB);
+        
         XBoxControllerButtons.driverRightBumper.whenPressed(new ShiftHigh());
-        XBoxControllerButtons.driverLeftBumper.whenPressed(new ShiftLow());
-        XBoxControllerButtons.driverY.whenPressed(new PuncherShoot());
-        XBoxControllerButtons.driverB.whenPressed(new PuncherPutPinIn());
+        XBoxControllerButtons.driverRightBumper.whenReleased(new ShiftLow());
+        XBoxControllerButtons.driverY.whenPressed(new PuncherDisengage());
+        XBoxControllerButtons.driverB.whenPressed(new PuncherEngage());
 
         
         XBoxControllerButtons.operatorDPadLeft.whileHeld(new RollerIntake());
         XBoxControllerButtons.operatorDPadRight.whileHeld(new RollerEject());
-        XBoxControllerButtons.operatorX.whenPressed(new JawOpen());
-        XBoxControllerButtons.operatorY.whenPressed(new TeleopShoot());
-        XBoxControllerButtons.operatorA.whenPressed(new JawClose());
-        XBoxControllerButtons.operatorRightBumper.whenPressed(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
         XBoxControllerButtons.operatorLeftBumper.whenPressed(new SetShoulderToPickup());
+        XBoxControllerButtons.operatorStart.whenPressed(new SetShoulder(RobotMap.BACKWARD_SHOOT_ANGLE));
+        XBoxControllerButtons.operatorBack.whenPressed(new StopShoulder());
+        
+        operatorLeftTriggerAndX.setDefaultButtonBindings(new JawOpen(), null, null);
+        operatorLeftTriggerAndX.setEscapeButtonBindings(new PuncherDisengage(), null, null);
+        
+        operatorLeftTriggerAndA.setDefaultButtonBindings(new JawClose(), null, null);
+        operatorLeftTriggerAndA.setEscapeButtonBindings(new PuncherEngage(), null, null);
+        
+        operatorLeftTriggerAndB.setDefaultButtonBindings(new SetShoulderToCurrentPosition(), null, null);
+        operatorLeftTriggerAndB.setEscapeButtonBindings(new StopShoulder(), null, null);
+        operatorRightTriggerAndB.setDefaultButtonBindings(new SetShoulderToCurrentPosition(), null, null);
+        operatorRightTriggerAndB.setEscapeButtonBindings(new RollForTime(RobotMap.SPIT_TIME, false), null, null);
+        
+        operatorLeftTriggerAndY.setDefaultButtonBindings(new TeleopShoot(), null, null);
+        operatorLeftTriggerAndY.setEscapeButtonBindings(new JawClosedTeleopShoot(), null, null);
+        
+        operatorLeftTriggerAndRightBumper.setDefaultButtonBindings(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE), null, null);
+        operatorLeftTriggerAndRightBumper.setEscapeButtonBindings(new SetShoulder(RobotMap.BACKWARD_SHOOT_ANGLE), null, null);
+   
+        
+
+
     }
 
     public double getOperatorLeftY() {

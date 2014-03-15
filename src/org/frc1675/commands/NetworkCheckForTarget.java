@@ -5,21 +5,24 @@
  */
 package org.frc1675.commands;
 
+import org.frc1675.UPS2014;
+
 /**
- * This command ends when a vision target is seen.
+ * This command ends when a network target is seen.
  *
  * @author Tony
  */
-public class CheckForTarget extends CommandBase {
+public class NetworkCheckForTarget extends CommandBase {
 
-    public CheckForTarget() {
+    public NetworkCheckForTarget() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        requires(network);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        
+
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,8 +31,7 @@ public class CheckForTarget extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        //return vision.isHorizontalTarget();
-        return true;
+        return UPS2014.table.getBoolean("isHot");
     }
 
     // Called once after isFinished returns true

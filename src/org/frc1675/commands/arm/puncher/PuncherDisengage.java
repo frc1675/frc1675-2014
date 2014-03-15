@@ -14,7 +14,7 @@ import org.frc1675.commands.CommandBase;
  *
  * @author Tony
  */
-public class PuncherShoot extends CommandBase {
+public class PuncherDisengage extends CommandBase {
 
     private static final double START_POWER = .2;
     private static final double TIME_TO_SPIN_MOTORS = .25;
@@ -25,7 +25,7 @@ public class PuncherShoot extends CommandBase {
     private double rampIncrement;
     private double motorPower = START_POWER;
 
-    public PuncherShoot() {
+    public PuncherDisengage() {
         requires(puncher);
         timer = new Timer();
 

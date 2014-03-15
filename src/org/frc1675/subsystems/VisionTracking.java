@@ -15,26 +15,27 @@ import edu.wpi.first.wpilibj.image.NIVision.MeasurementType;
 import edu.wpi.first.wpilibj.image.NIVisionException;
 import edu.wpi.first.wpilibj.image.ParticleAnalysisReport;
 import edu.wpi.first.wpilibj.image.RGBImage;
+import org.frc1675.UPS2014;
 
 /**
  *
- * @author John
+ * @author Alex
  */
 public class VisionTracking extends Subsystem {
 
-    private final int RED_LOW = 220;            // Should not have to change but if you do need to change follow steps below
-    private final int RED_HIGH = 256;           // 1) Run code.
-    private final int GREEN_LOW = 140;          // 2) Use FTP to get picture called ("Vtracking1.jpg)
-    private final int GREEN_HIGH = 220;         // 3) Open picture with Paint and select color of rectangle
-    private final int BLUE_LOW = 10;            // 4) Go to "More colors" in paint and click on selected colors
-    private final int BLUE_HIGH = 75;           // 5) Change these values to match values in Paint
-    private final int AREA_MINIMUM = 150;          // Filters out rectangles with smaller area
+    private final int RED_LOW = 225;            // Should not have to change but if you do need to change follow steps below
+    private final int RED_HIGH = 257;           // 1) Run code.
+    private final int GREEN_LOW = 209;          // 2) Use FTP to get picture called ("Vtracking1.jpg)
+    private final int GREEN_HIGH = 256;         // 3) Open picture with Paint and select color of rectangle
+    private final int BLUE_LOW = 128;            // 4) Go to "More colors" in paint and click on selected colors
+    private final int BLUE_HIGH = 178;           // 5) Change these values to match values in Paint
+    private final int AREA_MINIMUM = 100;          // Filters out rectangles with smaller area
     private final int MAX_PARTICLES = 8;         // Dont change this!! (if you do, make it smaller).
     private final double VISION_TOLERANCE = .5;  //Change this to allow different shapes (ie. Not Perfect Rectanges)
     private CriteriaCollection cc;
 
     private final double VIEW_ANGLE = 49;		//Axis M1013  // Dont change
-    private final int RECTANGULARITY_CONSTANT = 75;  // this is the percentage of how close to a rectange.
+    private final int RECTANGULARITY_CONSTANT = 50;  // this is the percentage of how close to a rectange.
     private final double IDEAL_HORIZONTAL_RATIO = (4.0 / 23.5);// DONT change this.
     private final double IDEAL_VERTICAL_RATIO = (32.0 / 4.0);
 
@@ -56,6 +57,7 @@ public class VisionTracking extends Subsystem {
         cc = new CriteriaCollection();      // create the criteria for the particle filter
         cc.addCriteria(MeasurementType.IMAQ_MT_AREA, AREA_MINIMUM, 65535, false);
         try {
+            UPS2014.table.putString("Picture Analysis", "We tried!");
             System.out.println("Picture Analasys");
             targetFound = pictureAnalysis();
         } catch (AxisCameraException ex) {
@@ -93,16 +95,20 @@ public class VisionTracking extends Subsystem {
             BinaryImage filteredImage = thresholdImage.particleFilter(cc);
             thresholdImage.write("/threshold.bmp");
             filteredImage.write("/filterImage.bmp");
-            System.out.println("Particles Numbers" + filteredImage.getNumberParticles());
-            double rectangularity[] = new double[filteredImage.getNumberParticles()];
+            int numberOfParticles;
+            numberOfParticles = filteredImage.getNumberParticles();
+            filteredImage.getNumberParticles();
+            System.out.println("Particles Numbers" + numberOfParticles);
+            UPS2014.table.putNumber("Number of Particles", numberOfParticles);
+            double rectangularity[] = new double[numberOfParticles];
 
             if (filteredImage.getNumberParticles() > 0) {
 
                 for (int i = 0; i < MAX_PARTICLES && i < filteredImage.getNumberParticles(); i++) {
                     ParticleAnalysisReport report = filteredImage.getParticleAnalysisReport(i);
                     rectangularity[i] = scoreRectangularity(report);
-                    System.out.println("rectangularity " + i + " " + scoreRectangularity(report));
-                    System.out.println("");
+                    System.out.println("rectangularity " + i + " : " + rectangularity[i]);
+                    UPS2014.table.putString("Rectangularity: ", "rectangularity " + i + " : " + rectangularity[i]);
                 }
                 for (int i = 0; i < MAX_PARTICLES && i < filteredImage.getNumberParticles(); i++) {
                     if (rectangularity[i] > RECTANGULARITY_CONSTANT) {

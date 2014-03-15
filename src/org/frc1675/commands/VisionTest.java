@@ -7,36 +7,32 @@ package org.frc1675.commands;
 
 /**
  *
- * Use a whileHeld command to trigger this so the robot is seldom in
- * battery-eating high gear.
- *
- * @author Tony
+ * @author This can be used for vision diagnostics.  
  */
-public class WhileHeldShiftHigh extends CommandBase {
+public class VisionTest extends CommandBase {
 
-    public WhileHeldShiftHigh() {
+    public VisionTest() {
+        requires(vision);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        shifter.shiftToHighGear();
+        System.out.println("The target has been found is a " + vision.isHorizontalTarget() + " statement");
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        shifter.shiftToHighGear();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        new ShiftLow();
     }
 
     // Called when another command which requires one or more of the same

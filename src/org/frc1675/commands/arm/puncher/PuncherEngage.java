@@ -3,62 +3,52 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands.arm.shoulder;
+package org.frc1675.commands.arm.puncher;
 
 import edu.wpi.first.wpilibj.Timer;
 import org.frc1675.RobotMap;
-import org.frc1675.UPS2014;
 import org.frc1675.commands.CommandBase;
 
 /**
- * This will set the shoulder to the pickup angle set in RobotMap
+ * Puts pin back in the puncher so you can shoot later.
  *
  * @author Tony
  */
-public class SetShoulderToPickup extends CommandBase {
+public class PuncherEngage extends CommandBase {
 
     private Timer timer;
 
-    public SetShoulderToPickup() {
-        requires(shoulder);
+    public PuncherEngage() {
+        requires(puncher);
         timer = new Timer();
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        shoulder.setPIDSetpoint(RobotMap.FLOOR_ANGLE);
+        timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println("SetShoulderToPickup: " + shoulder.pot.get());
-        UPS2014.table.putNumber("ShoulderPotValue", shoulder.pot.get());
+        puncher.putPinIn();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(shoulder.potIsBad()){
+        if (timer.get() > RobotMap.PNEUMATIC_FIRE_TIME) {
             return true;
-        } 
-        if ((shoulder.getPIDController().onTarget()) && (timer.get() == 0)) {
-            timer.start();
-        } else if (timer.get() > 0 && !(shoulder.getPIDController().onTarget())) {
-            timer.stop();
-            timer.reset();
-        } else if (timer.get() > RobotMap.SHOULDER_PID_TARGET_TIME) {
-            return true;
+        }else{
+            return false;
         }
-        return false;
+
     }
+
+    
 
     // Called once after isFinished returns true
     protected void end() {
-        shoulder.stopAndReset();
         timer.stop();
         timer.reset();
-
     }
 
     // Called when another command which requires one or more of the same

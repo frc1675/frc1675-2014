@@ -3,50 +3,52 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands.arm.puncher;
+package org.frc1675.commands.arm.roller;
 
 import edu.wpi.first.wpilibj.Timer;
-import org.frc1675.RobotMap;
 import org.frc1675.commands.CommandBase;
 
 /**
- * Puts pin back in the puncher so you can shoot later.
+ * This will eject the ball from the roller claw for the specified amount of
+ * time.
  *
  * @author Tony
  */
-public class PuncherPutPinIn extends CommandBase {
+public class RollForTime extends CommandBase {
 
-    private Timer timer;
+    Timer timer;
+    double time;
+    boolean isIntake = false;
 
-    public PuncherPutPinIn() {
-        requires(puncher);
+    public RollForTime(double time, boolean isIntake) {
         timer = new Timer();
+        requires(rollerClaw);
+        this.time = time;
+        this.isIntake = isIntake;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
         timer.start();
+        if(isIntake){
+            rollerClaw.intake();
+        }else{
+            rollerClaw.eject();
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        puncher.putPinIn();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (timer.get() > RobotMap.PNEUMATIC_FIRE_TIME) {
-            return true;
-        }else{
-            return false;
-        }
-
+        return timer.get() > time;
     }
-
-    
 
     // Called once after isFinished returns true
     protected void end() {
+        rollerClaw.stop();
         timer.stop();
         timer.reset();
     }

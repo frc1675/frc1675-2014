@@ -22,12 +22,15 @@ public class Shoulder extends PIDSubsystem {
 
     private static final int ABSOLUTE_TOLERANCE = 10;  //degrees
     private static final int POT_SCALE = 50;
-    public AnalogPotentiometer shoulderPot;
+    public AnalogPotentiometer pot;
     private SpeedController motor;
+    double setpoint = 0;
+    boolean potWasBad = false;
+    boolean potWasWasBad = false;
 
     public Shoulder(double p, double i, double d) {
         super(p, i, d);
-        this.shoulderPot = new AnalogPotentiometer(RobotMap.SHOULDER_POT, POT_SCALE);
+        this.pot = new AnalogPotentiometer(RobotMap.SHOULDER_POT, POT_SCALE);
         this.motor = new Talon(RobotMap.SHOULDER_MOTOR);
         this.setInputRange(-1, 256);
         this.setAbsoluteTolerance(ABSOLUTE_TOLERANCE);
@@ -35,6 +38,7 @@ public class Shoulder extends PIDSubsystem {
 
     public void initDefaultCommand() {
         setDefaultCommand(new ShoulderMoveWithJoysticks());
+        //setDefaultCommand(new IncreaseShoulderSetpoint());
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
@@ -44,26 +48,16 @@ public class Shoulder extends PIDSubsystem {
     }
 
     protected double returnPIDInput() {
-        return shoulderPot.get();
+        return pot.get();
     }
 
     protected void usePIDOutput(double d) {
-        motor.set((d)*.75);
+        motor.set((d) * .75);
     }
-
 
     public void setPIDSetpoint(double angle) {
         this.setSetpoint(angle);
         this.enable();
-    }
-    public void rawSetAngle(double angle){
-        if (shoulderPot.get()>angle){
-            motor.set(.5);
-        }
-        else{
-            motor.set(.0);
-        }
-
     }
 
     public void stopAndReset() {
@@ -71,5 +65,15 @@ public class Shoulder extends PIDSubsystem {
         this.getPIDController().reset();
         motor.set(0);
     }
-
+    public boolean potIsBad(){
+        boolean potIsBad = pot.get()<5;
+        if(potIsBad && potWasBad && potWasWasBad){
+            return true;
+        }
+        potWasWasBad = potWasBad;
+        potWasBad = potIsBad;
+        return false;
+        
+    }
 }
+

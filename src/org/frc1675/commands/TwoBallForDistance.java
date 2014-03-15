@@ -8,32 +8,37 @@ package org.frc1675.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.RobotMap;
 import org.frc1675.commands.arm.roller.RollerIntake;
+import org.frc1675.commands.arm.roller.RollerStop;
 import org.frc1675.commands.arm.shoulder.SetShoulder;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 
 /**
- * This autonomous mode uses timers to shoot one ball and drive back to the
- * middle zone.
  *
- * @author Tony
+ * @author Use this for a two ball autonomous.  No guarantees!
  */
-public class OneBallTime extends CommandGroup {
+public class TwoBallForDistance extends CommandGroup {
 
-    public OneBallTime() {
+    public TwoBallForDistance() {
         addParallel(new ShiftLow());
-        addParallel(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
-        addParallel(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_FORWARD, 1.0));
-        addSequential(new Wait(RobotMap.TIME_TO_REACH_SHOOT));
+        addParallel(new SetShoulder(RobotMap.BACKWARD_SHOOT_ANGLE));
+        addSequential(new DriveForDistance(-RobotMap.DISTANCE_TO_SHOT));
         addSequential(new Shoot());
-        addParallel(new SetShoulderToPickup());
-        addParallel(new RollerIntake());
         addParallel(new PostShoot());
-        addParallel(new DriveForTime((RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_BACK), -1.0));
-
+        addParallel(new RollerIntake());
+        addParallel(new SetShoulderToPickup());
+        addSequential(new DriveForDistance((RobotMap.DISTANCE_EXTRA_TO_DRIVE_BACK + RobotMap.DISTANCE_TO_SHOT)));
+        addSequential(new Wait(RobotMap.TIME_TO_PICK_UP_BALL));
+        addParallel(new RollerStop());
+        addSequential(new DriveForDistance(-(RobotMap.DISTANCE_EXTRA_TO_DRIVE_BACK + RobotMap.DISTANCE_TO_SHOT)));
+        addSequential(new Shoot());
+        addParallel(new PostShoot());
+        addParallel(new SetShoulderToPickup());
+        addSequential(new DriveForDistance(RobotMap.DISTANCE_TO_SHOT + RobotMap.DISTANCE_EXTRA_TO_DRIVE_BACK));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
+
         // To run multiple commands at the same time,
         // use addParallel()
         // e.g. addParallel(new Command1());

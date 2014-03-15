@@ -106,8 +106,8 @@ public class DriveBase extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
         //setDefaultCommand(new ArcadeDriveCommand());
-        setDefaultCommand(new TankDriveCommand());
-        //setDefaultCommand(new CheesyDriveCommand());
+        //setDefaultCommand(new TankDriveCommand());
+        setDefaultCommand(new CheesyDriveCommand());
     }
 
     public class SideEncoder extends PIDSubsystem {
@@ -124,7 +124,7 @@ public class DriveBase extends Subsystem {
             super(p, i, d);
             isLeft = LEFT_OR_RIGHT;
             encoder = new Encoder(encoderChannelA, encoderChannelB);
-            encoder.setDistancePerPulse(4 * Math.PI / RobotMap.DRIVE_ENCODER_TICKS);
+            encoder.setDistancePerPulse(4 * Math.PI / RobotMap.DRIVE_ENCODER_TICKS);//This math converts the encoder pulses to inches (?d)
             this.setAbsoluteTolerance(ABSOLUTE_TOLERANCE);
         }
 
@@ -137,7 +137,7 @@ public class DriveBase extends Subsystem {
             this.enable();
         }
 
-        private void disablePid() {
+        private void disablePid() { //This disables the PID so it fails safely. 
             this.disable();
             this.getPIDController().reset();
             if (isLeft) {
@@ -147,7 +147,7 @@ public class DriveBase extends Subsystem {
             }
         }
 
-        protected void usePIDOutput(double d) {
+        protected void usePIDOutput(double d) { //This method is called by the PID controller
             if (isLeft) {
                 setLeftMotors(d);
             } else {

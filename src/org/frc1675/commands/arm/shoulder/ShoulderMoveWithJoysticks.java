@@ -5,6 +5,7 @@
  */
 package org.frc1675.commands.arm.shoulder;
 
+import org.frc1675.UPS2014;
 import org.frc1675.commands.CommandBase;
 
 /**
@@ -16,6 +17,7 @@ import org.frc1675.commands.CommandBase;
 public class ShoulderMoveWithJoysticks extends CommandBase {
 
     private double speed;
+    private double potval;
 
     public ShoulderMoveWithJoysticks() {
         requires(shoulder);
@@ -23,12 +25,19 @@ public class ShoulderMoveWithJoysticks extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        potval = shoulder.pot.get();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         shoulder.rawMoveShoulder(oi.getOperatorLeftY());
-        System.out.println("ShoulderWithJoysticks " + shoulder.shoulderPot.get());
+        System.out.println("ShoulderPotValue" +  shoulder.pot.get());
+        if (shoulder.pot.get() < potval - 10.0 || shoulder.pot.get() > potval + 10.0) {
+            potval = shoulder.pot.get();
+            UPS2014.table.putNumber("ShoulderPotValue", shoulder.pot.get());
+        }
+        //System.out.println("ShoulderWithJoysticks " + shoulder.pot.get());
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
