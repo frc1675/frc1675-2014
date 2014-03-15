@@ -20,6 +20,7 @@ import org.frc1675.commands.NetworkHotAuton;
 import org.frc1675.commands.MakeCompressorWork;
 import org.frc1675.commands.OneBallDistance;
 import org.frc1675.commands.OneBallTime;
+import org.frc1675.commands.ShootFromStoppedAuton;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -44,7 +45,8 @@ public class UPS2014 extends IterativeRobot {
         table = NetworkTable.getTable("dataTable");
 
         //autonomousCommand = new BabbysFirstAuton();
-        autonomousCommand = new OneBallTime();
+        autonomousCommand = new ShootFromStoppedAuton();
+        //autonomousCommand = new OneBallTime();
         //autonomousCommand = new OneBallDistance();
         //autonomousCommand = new TwoBall();
 
@@ -55,12 +57,12 @@ public class UPS2014 extends IterativeRobot {
 
     public void autonomousInit() {
         //For hot
-        if (CommandBase.vision.isHorizontalTarget()) {
-            System.out.println("HOT");
-        } else {
-            autonomousCommand = new GoalColdAtFirstAuton();
-            System.out.println("COLD");
-        }
+//        if (CommandBase.vision.isHorizontalTarget()) {
+//            System.out.println("HOT");
+//        } else {
+//            autonomousCommand = new GoalColdAtFirstAuton();
+//            System.out.println("COLD");
+//        }
 
         autonomousCommand.start();
 //        autonomousCommand.start();
