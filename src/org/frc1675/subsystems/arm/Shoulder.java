@@ -6,6 +6,7 @@
 package org.frc1675.subsystems.arm;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -19,12 +20,12 @@ import org.frc1675.commands.arm.shoulder.ShoulderMoveWithJoysticks;
  * @author josh
  */
 public class Shoulder extends PIDSubsystem {
-
+    private static final double BUMP = 10;
     private static final int ABSOLUTE_TOLERANCE = 10;  //degrees
     private static final int POT_SCALE = 50;
     public AnalogPotentiometer pot;
     private SpeedController motor;
-    double setpoint = 0;
+    double setpoint = 250;
     boolean potWasBad = false;
     boolean potWasWasBad = false;
 
@@ -59,7 +60,13 @@ public class Shoulder extends PIDSubsystem {
         this.setSetpoint(angle);
         this.enable();
     }
-
+    public void bumpUp(){
+        this.setSetpoint((this.getSetpoint())-BUMP);
+    }
+    public void bumpDown(){
+        this.setSetpoint((this.getSetpoint())+BUMP);
+    }
+    
     public void stopAndReset() {
         this.disable();
         this.getPIDController().reset();
@@ -72,8 +79,9 @@ public class Shoulder extends PIDSubsystem {
         }
         potWasWasBad = potWasBad;
         potWasBad = potIsBad;
-        return false;
-        
+        return false;        
     }
+  
+
 }
 
