@@ -13,14 +13,14 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import org.frc1675.OI.XBoxControllerButtons;
-import org.frc1675.commands.BabbysFirstAuton;
+import org.frc1675.commands.autonomous.BabbysFirstAuton;
 import org.frc1675.commands.CommandBase;
-import org.frc1675.commands.GoalColdAtFirstAuton;
-import org.frc1675.commands.NetworkHotAuton;
+import org.frc1675.commands.autonomous.GoalColdAtFirstAuton;
+import org.frc1675.commands.autonomous.NetworkHotAuton;
 import org.frc1675.commands.MakeCompressorWork;
-import org.frc1675.commands.OneBallDistance;
-import org.frc1675.commands.OneBallTime;
-import org.frc1675.commands.ShootFromStoppedAuton;
+import org.frc1675.commands.autonomous.OneBallDistance;
+import org.frc1675.commands.autonomous.OneBallTime;
+import org.frc1675.commands.autonomous.ShootFromStoppedAuton;
 
 /**
  * The VM is configured to automatically run this class, and to call the

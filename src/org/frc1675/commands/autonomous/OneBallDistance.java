@@ -3,10 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands;
+package org.frc1675.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.RobotMap;
+import org.frc1675.commands.DriveForDistance;
+import org.frc1675.commands.PostShoot;
+import org.frc1675.commands.ShiftLow;
+import org.frc1675.commands.Shoot;
 import org.frc1675.commands.arm.roller.RollerIntake;
 import org.frc1675.commands.arm.shoulder.SetShoulder;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;

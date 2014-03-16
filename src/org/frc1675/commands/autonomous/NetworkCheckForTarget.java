@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands;
+package org.frc1675.commands.autonomous;
 
 import org.frc1675.UPS2014;
+import org.frc1675.commands.CommandBase;
 
 /**
  * This command ends when a network target is seen.

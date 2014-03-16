@@ -8,7 +8,7 @@ import org.frc1675.OI.buttons.DPadButton;
 import org.frc1675.OI.buttons.EscapeJoystickButton;
 import org.frc1675.RobotMap;
 import org.frc1675.XBoxControllerMap;
-import org.frc1675.commands.BabbysFirstAuton;
+import org.frc1675.commands.autonomous.BabbysFirstAuton;
 import org.frc1675.commands.JawClosedTeleopShoot;
 import org.frc1675.commands.ShiftHigh;
 import org.frc1675.commands.ShiftLow;

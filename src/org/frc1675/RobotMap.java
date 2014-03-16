@@ -92,10 +92,13 @@ public class RobotMap {
     public static final double DISTANCE_TO_SHOT = 48; //inches
     public static final double DISTANCE_EXTRA_TO_DRIVE_BACK = 15; //inches
     public static final double EXTRA_DISTANCE_BACK_TO_BALL = 5; //inches
+    
     public static final double TIME_TO_PICK_UP_BALL = .7; //seconds
     public static final double SUCK_TIME_FOR_BALL_ON_TOP = .8;
 
     public static final double TIME_TO_REACH_SHOOT = 2;
     public static final double EXTRA_TIME_TO_DRIVE_FORWARD = .25;
     public static final double EXTRA_TIME_TO_DRIVE_BACK = -.5;
+    
+    public static final double TIME_TO_REACH_COLORED_ZONE = 1.3;
 }

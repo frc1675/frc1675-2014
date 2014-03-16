@@ -3,10 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands;
+package org.frc1675.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.RobotMap;
+import org.frc1675.commands.DriveForTime;
+import org.frc1675.commands.PostShoot;
+import org.frc1675.commands.ShiftLow;
+import org.frc1675.commands.Shoot;
+import org.frc1675.commands.Wait;
+import org.frc1675.commands.arm.roller.RollForTime;
 import org.frc1675.commands.arm.roller.RollerIntake;
 import org.frc1675.commands.arm.roller.RollerStop;
 import org.frc1675.commands.arm.shoulder.SetShoulder;
@@ -14,26 +20,31 @@ import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 
 /**
  *
- * @author Use this for a two ball autonomous.  No guarantees!
+ * @author Tony
  */
-public class TwoBallForDistance extends CommandGroup {
-
-    public TwoBallForDistance() {
+public class TwoBallHighTensionAuton extends CommandGroup {
+    private static final double TIME_FROM_START_TO_SHOOTING_ANGLE = .5;
+    private static final double TIME_FROM_HOME_TO_SHOOTING_ANGLE = .7;
+    public TwoBallHighTensionAuton() {
         addParallel(new ShiftLow());
-        addParallel(new SetShoulder(RobotMap.BACKWARD_SHOOT_ANGLE));
-        addSequential(new DriveForDistance(-RobotMap.DISTANCE_TO_SHOT));
+        addSequential(new PostShoot());
+        addSequential(new RollForTime(RobotMap.SUCK_TIME_FOR_BALL_ON_TOP, true));
+        addParallel(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
+        addSequential(new Wait(TIME_FROM_START_TO_SHOOTING_ANGLE));
         addSequential(new Shoot());
         addParallel(new PostShoot());
+        addSequential(new Wait(.4));
         addParallel(new RollerIntake());
-        addParallel(new SetShoulderToPickup());
-        addSequential(new DriveForDistance((RobotMap.DISTANCE_EXTRA_TO_DRIVE_BACK + RobotMap.DISTANCE_TO_SHOT)));
+        addSequential(new SetShoulderToPickup());
         addSequential(new Wait(RobotMap.TIME_TO_PICK_UP_BALL));
         addParallel(new RollerStop());
-        addSequential(new DriveForDistance(-(RobotMap.DISTANCE_EXTRA_TO_DRIVE_BACK + RobotMap.DISTANCE_TO_SHOT)));
+        addParallel(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
+        addSequential(new Wait(TIME_FROM_HOME_TO_SHOOTING_ANGLE));
         addSequential(new Shoot());
         addParallel(new PostShoot());
-        addParallel(new SetShoulderToPickup());
-        addSequential(new DriveForDistance(RobotMap.DISTANCE_TO_SHOT + RobotMap.DISTANCE_EXTRA_TO_DRIVE_BACK));
+        addSequential(new DriveForTime(RobotMap.TIME_TO_REACH_COLORED_ZONE , 1.0));
+        addSequential(new DriveForTime((RobotMap.TIME_TO_REACH_COLORED_ZONE + RobotMap.EXTRA_TIME_TO_DRIVE_BACK), -1.0));
+
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
