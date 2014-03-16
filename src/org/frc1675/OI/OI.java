@@ -13,6 +13,7 @@ import org.frc1675.commands.JawClosedTeleopShoot;
 import org.frc1675.commands.ShiftHigh;
 import org.frc1675.commands.ShiftLow;
 import org.frc1675.commands.Shoot;
+import org.frc1675.commands.SlamDunkShoot;
 import org.frc1675.commands.TeleopShoot;
 import org.frc1675.commands.arm.jaw.JawClose;
 import org.frc1675.commands.arm.jaw.JawOpen;
@@ -33,19 +34,31 @@ import org.frc1675.commands.arm.shoulder.StopShoulder;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-    EscapeJoystickButton operatorLeftTriggerAndA;
+
     EscapeJoystickButton operatorLeftTriggerAndX;
-    EscapeJoystickButton operatorLeftTriggerAndB;
+    EscapeJoystickButton operatorRightTriggerAndX;
+
     EscapeJoystickButton operatorLeftTriggerAndY;
-    EscapeJoystickButton operatorLeftTriggerAndRightBumper;
+    EscapeJoystickButton operatorRightTriggerAndY;
+
+    EscapeJoystickButton operatorLeftTriggerAndB;
     EscapeJoystickButton operatorRightTriggerAndB;
+
+    EscapeJoystickButton operatorLeftTriggerAndA;
+    EscapeJoystickButton operatorRightTriggerAndA;
+
+    EscapeJoystickButton operatorLeftTriggerAndRightBumper;
+    EscapeJoystickButton operatorRightTriggerAndRightBumper;
+
+    EscapeJoystickButton operatorLeftTriggerAndLeftBumper;
+    EscapeJoystickButton operatorRightTriggerAndLeftBumper;
+
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
     // You create one by telling it which joystick it's on and which button
     // number it is.
     // Joystick stick = new Joystick(port);
     // Button button = new JoystickButton(stick, buttonNumber);
-
     // Another type of button you can create is a DigitalIOButton, which is
     // a button or switch hooked up to the cypress module. These are useful if
     // you want to build a customized operator interface.
@@ -66,45 +79,67 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
     public OI() {
-        operatorLeftTriggerAndA = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorA);
+
         operatorLeftTriggerAndX = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorX);
-        operatorLeftTriggerAndB = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorB);
+        operatorRightTriggerAndX = new EscapeJoystickButton(XBoxControllerButtons.operatorRightTrigger, XBoxControllerButtons.operatorX);
+
         operatorLeftTriggerAndY = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorY);
-        operatorLeftTriggerAndRightBumper = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorRightBumper);
+        operatorRightTriggerAndY = new EscapeJoystickButton(XBoxControllerButtons.operatorRightTrigger, XBoxControllerButtons.operatorY);
+
+        operatorLeftTriggerAndB = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorB);
         operatorRightTriggerAndB = new EscapeJoystickButton(XBoxControllerButtons.operatorRightTrigger, XBoxControllerButtons.operatorB);
+
+        operatorLeftTriggerAndA = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorA);
+        operatorRightTriggerAndA = new EscapeJoystickButton(XBoxControllerButtons.operatorRightTrigger, XBoxControllerButtons.operatorA);
+
+        operatorLeftTriggerAndLeftBumper = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorLeftBumper);
+        operatorRightTriggerAndLeftBumper = new EscapeJoystickButton(XBoxControllerButtons.operatorRightTrigger, XBoxControllerButtons.operatorLeftBumper);
+        
+        operatorLeftTriggerAndRightBumper = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorRightBumper);
+        operatorRightTriggerAndRightBumper = new EscapeJoystickButton(XBoxControllerButtons.operatorRightTrigger, XBoxControllerButtons.operatorRightBumper);
+
         
         XBoxControllerButtons.driverRightBumper.whenPressed(new ShiftHigh());
         XBoxControllerButtons.driverRightBumper.whenReleased(new ShiftLow());
         XBoxControllerButtons.driverY.whenPressed(new PuncherDisengage());
         XBoxControllerButtons.driverB.whenPressed(new PuncherEngage());
 
-        
         XBoxControllerButtons.operatorDPadLeft.whileHeld(new RollerIntake());
         XBoxControllerButtons.operatorDPadRight.whileHeld(new RollerEject());
-        XBoxControllerButtons.operatorLeftBumper.whenPressed(new SetShoulderToPickup());
         XBoxControllerButtons.operatorStart.whenPressed(new SetShoulder(RobotMap.BACKWARD_SHOOT_ANGLE));
         XBoxControllerButtons.operatorBack.whenPressed(new StopShoulder());
-        
+
         operatorLeftTriggerAndX.setDefaultButtonBindings(new JawOpen(), null, null);
         operatorLeftTriggerAndX.setEscapeButtonBindings(new PuncherDisengage(), null, null);
+        operatorRightTriggerAndX.setDefaultButtonBindings(new JawOpen(), null, null);
+        operatorRightTriggerAndX.setEscapeButtonBindings(null, null, null);
         
-        operatorLeftTriggerAndA.setDefaultButtonBindings(new JawClose(), null, null);
-        operatorLeftTriggerAndA.setEscapeButtonBindings(new PuncherEngage(), null, null);
-        
+        operatorLeftTriggerAndY.setDefaultButtonBindings(new TeleopShoot(), null, null);
+        operatorLeftTriggerAndY.setEscapeButtonBindings(new SlamDunkShoot(), null, null);
+        operatorRightTriggerAndY.setDefaultButtonBindings(new TeleopShoot(), null, null);
+        operatorRightTriggerAndY.setEscapeButtonBindings(new JawClosedTeleopShoot(), null, null);
+
         operatorLeftTriggerAndB.setDefaultButtonBindings(new SetShoulderToCurrentPosition(), null, null);
         operatorLeftTriggerAndB.setEscapeButtonBindings(new StopShoulder(), null, null);
         operatorRightTriggerAndB.setDefaultButtonBindings(new SetShoulderToCurrentPosition(), null, null);
-        operatorRightTriggerAndB.setEscapeButtonBindings(new RollForTime(RobotMap.SPIT_TIME, false), null, null);
+        operatorRightTriggerAndB.setEscapeButtonBindings(new SetShoulderToCurrentPosition(), null, null);
         
-        operatorLeftTriggerAndY.setDefaultButtonBindings(new TeleopShoot(), null, null);
-        operatorLeftTriggerAndY.setEscapeButtonBindings(new JawClosedTeleopShoot(), null, null);
-        
+        operatorLeftTriggerAndA.setDefaultButtonBindings(new JawClose(), null, null);
+        operatorLeftTriggerAndA.setEscapeButtonBindings(new PuncherEngage(), null, null);
+        operatorRightTriggerAndA.setDefaultButtonBindings(new JawClose(), null, null);
+        operatorRightTriggerAndA.setEscapeButtonBindings(new JawClose(), null, null);
+
+        operatorLeftTriggerAndLeftBumper.setDefaultButtonBindings(new SetShoulderToPickup(), null, null);
+        operatorLeftTriggerAndLeftBumper.setEscapeButtonBindings(new SetShoulderToPickup(), null, null);
+        operatorRightTriggerAndLeftBumper.setDefaultButtonBindings(new SetShoulderToPickup(), null, null);
+        operatorRightTriggerAndLeftBumper.setEscapeButtonBindings(new SetShoulderToPickup(), null, null);
+
         operatorLeftTriggerAndRightBumper.setDefaultButtonBindings(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE), null, null);
         operatorLeftTriggerAndRightBumper.setEscapeButtonBindings(new SetShoulder(RobotMap.BACKWARD_SHOOT_ANGLE), null, null);
-   
+        operatorRightTriggerAndRightBumper.setDefaultButtonBindings(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE), null, null);
+        operatorRightTriggerAndRightBumper.setEscapeButtonBindings(null, null, null);
+
         
-
-
     }
 
     public double getOperatorLeftY() {

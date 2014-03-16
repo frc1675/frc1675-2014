@@ -17,7 +17,7 @@ import org.frc1675.commands.TankDriveCommand;
 
 /**
  *
- * @author Daniel & Elise & Tony
+ * @author Daniel &   Elise    Tony
  */
 public class DriveBase extends Subsystem {
 

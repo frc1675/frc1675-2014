@@ -7,19 +7,17 @@ package org.frc1675.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.RobotMap;
-import org.frc1675.commands.arm.puncher.PuncherGoToLimit;
 import org.frc1675.commands.arm.roller.RollForTime;
 
 /**
- *
+ *This shot can be used when we're pushed up against the low goal.  
  * @author Tony
  */
-public class BallOnTopAuton extends CommandGroup {
-
-    public BallOnTopAuton() {
-        addSequential(new PostShoot());
-        addSequential(new RollForTime(RobotMap.SUCK_TIME_FOR_BALL_ON_TOP, true));
-        addSequential(new OneBallTime());
+public class SlamDunkShoot extends CommandGroup {
+    
+    public SlamDunkShoot() {
+        addSequential(new RollForTime(RobotMap.SPIT_TIME_FOR_SLAM_DUNK, false));
+        addSequential(new JawClosedTeleopShoot());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
