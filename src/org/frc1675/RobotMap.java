@@ -80,12 +80,13 @@ public class RobotMap {
 //setpoints
     public static final int FLOOR_ANGLE = 252;  //degrees
     public static final int RUNNING_FORWARD_SHOOT_ANGLE = 183;
-    public static final int STATIC_FORWARD_SHOT_ANGLE = 195;
-    public static final int BACKWARD_SHOOT_ANGLE = 120;
+    public static final int STATIC_FORWARD_SHOT_ANGLE = 183; //High Tension
+    //public static final int STATIC_FORWARD_SHOT_ANGLE = 164; //Low Tension
+    public static final int BACKWARD_SHOOT_ANGLE = 68;
     public static final int STARTING_ANGLE = 144;
 
-    public static final double SHOOT_TIME = .25;
-    public static final double SPIT_TIME_FOR_SLAM_DUNK = .25;
+    public static final double SHOOT_TIME = .4;
+    public static final double SPIT_TIME_FOR_SLAM_DUNK = .1;
 
 
 //auton stuff
@@ -94,9 +95,9 @@ public class RobotMap {
     public static final double EXTRA_DISTANCE_BACK_TO_BALL = 5; //inches
     
     public static final double TIME_TO_PICK_UP_BALL = .7; //seconds
-    public static final double SUCK_TIME_FOR_BALL_ON_TOP = .8;
+    public static final double SUCK_TIME_FOR_BALL_ON_TOP = .7;
 
-    public static final double TIME_TO_REACH_SHOOT = 2;
+    public static final double TIME_TO_REACH_SHOOT = 1.2;
     public static final double EXTRA_TIME_TO_DRIVE_FORWARD = .25;
     public static final double EXTRA_TIME_TO_DRIVE_BACK = -.5;
     

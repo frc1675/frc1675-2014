@@ -45,8 +45,8 @@ public class UPS2014 extends IterativeRobot {
         table = NetworkTable.getTable("dataTable");
 
         //autonomousCommand = new BabbysFirstAuton();
-        autonomousCommand = new ShootFromStoppedAuton();
-        //autonomousCommand = new OneBallTime();
+        //autonomousCommand = new ShootFromStoppedAuton();
+        autonomousCommand = new OneBallTime();
         //autonomousCommand = new OneBallDistance();
         //autonomousCommand = new TwoBall();
 

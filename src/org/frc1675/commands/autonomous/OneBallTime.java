@@ -12,6 +12,7 @@ import org.frc1675.commands.PostShoot;
 import org.frc1675.commands.ShiftLow;
 import org.frc1675.commands.Shoot;
 import org.frc1675.commands.Wait;
+import org.frc1675.commands.arm.roller.RollForTime;
 import org.frc1675.commands.arm.roller.RollerIntake;
 import org.frc1675.commands.arm.shoulder.SetShoulder;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
@@ -25,6 +26,9 @@ import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 public class OneBallTime extends CommandGroup {
 
     public OneBallTime() {
+        //addParallel(new DriveForTime(10000, 0));
+        addSequential(new PostShoot());
+        addSequential(new RollForTime(RobotMap.SUCK_TIME_FOR_BALL_ON_TOP, true));
         addParallel(new ShiftLow());
         addParallel(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
         addParallel(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_FORWARD, 1.0));
