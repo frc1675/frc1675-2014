@@ -37,7 +37,7 @@ public abstract class CommandBase extends Command {
     public static DriveBase driveBase = new DriveBase(RobotMap.DRIVE_ENCODER_P, RobotMap.DRIVE_ENCODER_I, RobotMap.DRIVE_ENCODER_D); 
     public static Shifter shifter = new Shifter();
     
-    public static VisionTracking vision = new VisionTracking();
+    //public static VisionTracking vision = new VisionTracking();
     public static NetworkTracking network = new NetworkTracking();
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely

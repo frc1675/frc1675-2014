@@ -27,6 +27,8 @@ import org.frc1675.commands.arm.roller.RollerStop;
 import org.frc1675.commands.arm.shoulder.SetShoulder;
 import org.frc1675.commands.arm.shoulder.SetShoulderToCurrentPosition;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
+import org.frc1675.commands.arm.shoulder.ShoulderBumpDown;
+import org.frc1675.commands.arm.shoulder.ShoulderBumpUp;
 import org.frc1675.commands.arm.shoulder.StopShoulder;
 
 /**
@@ -52,6 +54,12 @@ public class OI {
 
     EscapeJoystickButton operatorLeftTriggerAndLeftBumper;
     EscapeJoystickButton operatorRightTriggerAndLeftBumper;
+
+//    EscapeJoystickButton operatorLeftTriggerAndRightDPad;
+//    EscapeJoystickButton operatorRightTriggerAndRightDPad;
+//    
+//    EscapeJoystickButton operatorLeftTriggerAndLeftDPad;
+//    EscapeJoystickButton operatorRightTriggerAndLeftDPad;
 
     //// CREATING BUTTONS
     // One type of button is a joystick button which is any button on a joystick.
@@ -94,9 +102,15 @@ public class OI {
 
         operatorLeftTriggerAndLeftBumper = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorLeftBumper);
         operatorRightTriggerAndLeftBumper = new EscapeJoystickButton(XBoxControllerButtons.operatorRightTrigger, XBoxControllerButtons.operatorLeftBumper);
-        
+
         operatorLeftTriggerAndRightBumper = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorRightBumper);
         operatorRightTriggerAndRightBumper = new EscapeJoystickButton(XBoxControllerButtons.operatorRightTrigger, XBoxControllerButtons.operatorRightBumper);
+
+//        operatorLeftTriggerAndLeftDPad = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorDPadLeft);
+//        operatorRightTriggerAndLeftDPad = new EscapeJoystickButton(XBoxControllerButtons.operatorRightTrigger, XBoxControllerButtons.operatorDPadLeft);
+//
+//        operatorLeftTriggerAndRightDPad = new EscapeJoystickButton(XBoxControllerButtons.operatorLeftTrigger, XBoxControllerButtons.operatorDPadRight);
+//        operatorRightTriggerAndRightDPad = new EscapeJoystickButton(XBoxControllerButtons.operatorRightTrigger, XBoxControllerButtons.operatorDPadRight);
 
         
         XBoxControllerButtons.driverRightBumper.whenPressed(new ShiftHigh());
@@ -113,7 +127,7 @@ public class OI {
         operatorLeftTriggerAndX.setEscapeButtonBindings(new PuncherDisengage(), null, null);
         operatorRightTriggerAndX.setDefaultButtonBindings(new JawOpen(), null, null);
         operatorRightTriggerAndX.setEscapeButtonBindings(null, null, null);
-        
+
         operatorLeftTriggerAndY.setDefaultButtonBindings(new TeleopShoot(), null, null);
         operatorLeftTriggerAndY.setEscapeButtonBindings(new SlamDunkShoot(), null, null);
         operatorRightTriggerAndY.setDefaultButtonBindings(new TeleopShoot(), null, null);
@@ -123,7 +137,7 @@ public class OI {
         operatorLeftTriggerAndB.setEscapeButtonBindings(new StopShoulder(), null, null);
         operatorRightTriggerAndB.setDefaultButtonBindings(new SetShoulderToCurrentPosition(), null, null);
         operatorRightTriggerAndB.setEscapeButtonBindings(new SetShoulderToCurrentPosition(), null, null);
-        
+
         operatorLeftTriggerAndA.setDefaultButtonBindings(new JawClose(), null, null);
         operatorLeftTriggerAndA.setEscapeButtonBindings(new PuncherEngage(), null, null);
         operatorRightTriggerAndA.setDefaultButtonBindings(new JawClose(), null, null);
@@ -135,11 +149,20 @@ public class OI {
         operatorRightTriggerAndLeftBumper.setEscapeButtonBindings(new SetShoulderToPickup(), null, null);
 
         operatorLeftTriggerAndRightBumper.setDefaultButtonBindings(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE), null, null);
-        operatorLeftTriggerAndRightBumper.setEscapeButtonBindings(new SetShoulder(RobotMap.BACKWARD_SHOOT_ANGLE), null, null);
+        operatorLeftTriggerAndRightBumper.setEscapeButtonBindings(new SetShoulder(RobotMap.BACKWARD_TRUSS_ANGLE), null, null);
         operatorRightTriggerAndRightBumper.setDefaultButtonBindings(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE), null, null);
-        operatorRightTriggerAndRightBumper.setEscapeButtonBindings(null, null, null);
+        operatorRightTriggerAndRightBumper.setEscapeButtonBindings(new SetShoulder(RobotMap.TRUSS_ANGLE), null, null);
 
-        
+//        operatorLeftTriggerAndRightDPad.setDefaultButtonBindings(null, new RollerEject(), null);
+//        operatorLeftTriggerAndRightDPad.setEscapeButtonBindings(null, null, null);
+//        operatorRightTriggerAndRightDPad.setDefaultButtonBindings(null, new RollerEject(), null);
+//        operatorRightTriggerAndRightDPad.setEscapeButtonBindings(null, null, null);
+//        
+//        operatorLeftTriggerAndLeftDPad.setDefaultButtonBindings(null, new RollerIntake(), null);
+//        operatorLeftTriggerAndLeftDPad.setEscapeButtonBindings(null, null, null);
+//        operatorRightTriggerAndLeftDPad.setDefaultButtonBindings(null, new RollerIntake(), null);
+//        operatorRightTriggerAndLeftDPad.setEscapeButtonBindings(null, null, null);
+
     }
 
     public double getOperatorLeftY() {

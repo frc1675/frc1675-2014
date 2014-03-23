@@ -27,8 +27,8 @@ import org.frc1675.commands.arm.puncher.WindWinchWithJoysticks;
 public class Puncher extends Subsystem {
 
     private static final double WINCH_HIGH_POWER = 1;
-    private static final double WINCH_LOW_POWER = .2;
-    private static final double LOW_TIME = .75;
+    private static final double WINCH_LOW_POWER = .25;
+    private static final double LOW_TIME = .35;
     private static final double STOP_TIME = 0;
     private static final double TIME_OUT_TIME = 5;
     private Solenoid extend;

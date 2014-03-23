@@ -6,21 +6,28 @@
 package org.frc1675.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.frc1675.RobotMap;
 import org.frc1675.commands.DriveForTime;
+import org.frc1675.commands.ShiftLow;
 import org.frc1675.commands.Wait;
+import org.frc1675.commands.arm.roller.RollForTime;
+import org.frc1675.commands.arm.shoulder.SetShoulder;
+import org.frc1675.commands.arm.shoulder.StopShoulder;
 
 /**
  *
  * @author Tony
- *
- * This auton drives forward and backwards. It works!
  */
-public class BabbysFirstAuton extends CommandGroup {
-
-    public BabbysFirstAuton() {
-        addSequential(new DriveForTime(2, 1.0));
+public class LowGoalTime extends CommandGroup {
+    
+    public LowGoalTime() {
+        addParallel(new ShiftLow());
+        addParallel(new SetShoulder((RobotMap.STARTING_ANGLE + RobotMap.STATIC_FORWARD_SHOT_ANGLE)/2));
+        addSequential(new DriveForTime(4,1));
+        addParallel(new StopShoulder());
         addSequential(new Wait(2));
-        addSequential(new DriveForTime(2, -1.0));
+        addSequential(new RollForTime(2, false));
+        addSequential(new DriveForTime(4, -1));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

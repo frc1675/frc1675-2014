@@ -7,20 +7,17 @@ package org.frc1675.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.commands.DriveForTime;
-import org.frc1675.commands.Wait;
+import org.frc1675.commands.PostShoot;
 
 /**
- *
+ *Our shooter was working very poorly at Milwaukee.  We wrote this so our partner could do a two ball and we could get mobility.
  * @author Tony
- *
- * This auton drives forward and backwards. It works!
  */
-public class BabbysFirstAuton extends CommandGroup {
-
-    public BabbysFirstAuton() {
-        addSequential(new DriveForTime(2, 1.0));
-        addSequential(new Wait(2));
-        addSequential(new DriveForTime(2, -1.0));
+public class ZeroBallAuton extends CommandGroup {
+    
+    public ZeroBallAuton() {
+        addSequential(new DriveForTime(2,1));
+        addSequential(new PostShoot());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

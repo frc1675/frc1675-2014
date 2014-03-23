@@ -26,11 +26,11 @@ import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 public class OneBallTime extends CommandGroup {
 
     public OneBallTime() {
-        //addParallel(new DriveForTime(10000, 0));
+        addParallel(new DriveForTime(10000, 0));  //this gets cancelled, so I just made it really long time
         addSequential(new PostShoot());
         addSequential(new RollForTime(RobotMap.SUCK_TIME_FOR_BALL_ON_TOP, true));
         addParallel(new ShiftLow());
-        addParallel(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
+        addParallel(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE-10));
         addParallel(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_FORWARD, 1.0));
         addSequential(new Wait(RobotMap.TIME_TO_REACH_SHOOT));
         addSequential(new Shoot());

@@ -18,9 +18,11 @@ import org.frc1675.commands.CommandBase;
 import org.frc1675.commands.autonomous.GoalColdAtFirstAuton;
 import org.frc1675.commands.autonomous.NetworkHotAuton;
 import org.frc1675.commands.MakeCompressorWork;
+import org.frc1675.commands.autonomous.LowGoalTime;
 import org.frc1675.commands.autonomous.OneBallDistance;
 import org.frc1675.commands.autonomous.OneBallTime;
 import org.frc1675.commands.autonomous.ShootFromStoppedAuton;
+import org.frc1675.commands.autonomous.ZeroBallAuton;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -45,9 +47,10 @@ public class UPS2014 extends IterativeRobot {
         table = NetworkTable.getTable("dataTable");
 
         //autonomousCommand = new BabbysFirstAuton();
+        autonomousCommand = new ZeroBallAuton();
         //autonomousCommand = new ShootFromStoppedAuton();
-        autonomousCommand = new OneBallTime();
-        //autonomousCommand = new OneBallDistance();
+        //autonomousCommand = new OneBallTime();
+        //autonomousCommand = new LowGoalTime();
         //autonomousCommand = new TwoBall();
 
         XBoxControllerButtons.init();
