@@ -1,7 +1,7 @@
 frc1675-2014
 ============
 
-FRC 1675's Code for their 2014 and 10th robot, Charles Xavier (practice) / Professor X (competition)
+FRC 1675's codebase for their 2014 and 10th robot, Charles Xavier (practice) / Professor X (competition)
 
 How to Use
 ----------
