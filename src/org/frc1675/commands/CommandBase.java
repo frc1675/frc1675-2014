@@ -2,8 +2,8 @@ package org.frc1675.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.frc1675.OI.OI;
-import org.frc1675.OI.TestOI;
+import org.frc1675.oi.OI;
+import org.frc1675.oi.TestOI;
 import org.frc1675.RobotMap;
 import org.frc1675.subsystems.arm.Jaw;
 import org.frc1675.subsystems.arm.Puncher;

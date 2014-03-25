@@ -1,4 +1,4 @@
-package org.frc1675.OI.buttons;
+package org.frc1675.oi.buttons;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
-import org.frc1675.OI.buttons.RebindableJoystickButton;
 
 /**
  * This is a button combo. Pass it a button and a rebindable button, run

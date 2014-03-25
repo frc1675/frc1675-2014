@@ -1,4 +1,4 @@
-package org.frc1675.OI.buttons;
+package org.frc1675.oi.buttons;
 
 /*
  * To change this template, choose Tools | Templates

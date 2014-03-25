@@ -1,11 +1,11 @@
-package org.frc1675.OI;
+package org.frc1675.oi;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.frc1675.OI.buttons.DPadButton;
-import org.frc1675.OI.buttons.EscapeJoystickButton;
+import org.frc1675.oi.buttons.DPadButton;
+import org.frc1675.oi.buttons.EscapeJoystickButton;
 import org.frc1675.RobotMap;
 import org.frc1675.XBoxControllerMap;
 import org.frc1675.commands.autonomous.BabbysFirstAuton;

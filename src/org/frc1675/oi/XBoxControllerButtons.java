@@ -2,14 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.OI;
+package org.frc1675.oi;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.frc1675.OI.buttons.DPadButton;
-import org.frc1675.OI.buttons.RebindableJoystickButton;
-import org.frc1675.OI.buttons.TriggerButton;
+import org.frc1675.oi.buttons.DPadButton;
+import org.frc1675.oi.buttons.RebindableJoystickButton;
+import org.frc1675.oi.buttons.TriggerButton;
 import org.frc1675.RobotMap;
 import org.frc1675.XBoxControllerMap;
 
