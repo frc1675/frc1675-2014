@@ -3,6 +3,8 @@ frc1675-2014
 
 FRC 1675's codebase for their 2014 and 10th robot, Charles Xavier (practice) / Professor X (competition)
 
+This code is currently under construction. We usually lead a cleanup effort post-season, so you may see extraneous or undocumented code in the repository at its current state.
+
 How to Use
 ----------
 
