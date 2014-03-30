@@ -17,33 +17,41 @@ import org.frc1675.commands.arm.roller.RollerIntake;
 import org.frc1675.commands.arm.roller.RollerStop;
 import org.frc1675.commands.arm.shoulder.SetShoulder;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
+import org.frc1675.commands.arm.shoulder.ShoulderOnTarget;
 
 /**
  *
  * @author Tony
  */
 public class TwoBallHighTensionAuton extends CommandGroup {
-    private static final double TIME_FROM_START_TO_SHOOTING_ANGLE = .5;
-    private static final double TIME_FROM_HOME_TO_SHOOTING_ANGLE = .7;
+    private static final double TIME_FROM_START_TO_SHOOTING_ANGLE = .7;
+    private static final double TIME_FROM_HOME_TO_SHOOTING_ANGLE = 2;
+    private static final double TIME_TO_DRIVE_TO_PICKUP = .6;
+    private static final double PICKUP_DRIVE_POWER = .4;
     public TwoBallHighTensionAuton() {
         addParallel(new ShiftLow());
         addSequential(new PostShoot());
         addSequential(new RollForTime(RobotMap.SUCK_TIME_FOR_BALL_ON_TOP, true));
-        addParallel(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
+        addParallel(new SetShoulder(RobotMap.BACKWARD_TWO_BALL_ANGLE));
         addSequential(new Wait(TIME_FROM_START_TO_SHOOTING_ANGLE));
         addSequential(new Shoot());
         addParallel(new PostShoot());
-        addSequential(new Wait(.4));
+        addSequential(new Wait(.2));
         addParallel(new RollerIntake());
         addSequential(new SetShoulderToPickup());
+        addSequential(new DriveForTime(TIME_TO_DRIVE_TO_PICKUP, PICKUP_DRIVE_POWER));
         addSequential(new Wait(RobotMap.TIME_TO_PICK_UP_BALL));
         addParallel(new RollerStop());
-        addParallel(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
+        addSequential(new DriveForTime(TIME_TO_DRIVE_TO_PICKUP, -PICKUP_DRIVE_POWER));
+        addParallel(new SetShoulder(RobotMap.BACKWARD_TWO_BALL_ANGLE));
+        //addSequential(new ShoulderOnTarget());
         addSequential(new Wait(TIME_FROM_HOME_TO_SHOOTING_ANGLE));
         addSequential(new Shoot());
         addParallel(new PostShoot());
-        addSequential(new DriveForTime(RobotMap.TIME_TO_REACH_COLORED_ZONE , 1.0));
-        addSequential(new DriveForTime((RobotMap.TIME_TO_REACH_COLORED_ZONE + RobotMap.EXTRA_TIME_TO_DRIVE_BACK), -1.0));
+        addParallel(new SetShoulderToPickup());
+        addParallel(new RollerIntake());
+        addSequential(new DriveForTime(RobotMap.TIME_TO_REACH_COLORED_ZONE , -1.0));
+        addSequential(new DriveForTime((RobotMap.TIME_TO_REACH_COLORED_ZONE + RobotMap.EXTRA_TIME_TO_DRIVE_BACK), 1.0));
 
         // Add Commands here:
         // e.g. addSequential(new Command1());

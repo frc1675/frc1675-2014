@@ -69,7 +69,7 @@ public class RobotMap {
     public static final double SHOULDER_P = .045;
     public static final double SHOULDER_I = .0001;
     public static final double SHOULDER_D = 0;
-    public static final double SHOULDER_PID_TARGET_TIME = .5;
+    public static final double SHOULDER_PID_TARGET_TIME = .3;
 
 
     public static final double DRIVE_ENCODER_P = 1;
@@ -80,14 +80,15 @@ public class RobotMap {
 //setpoints
     public static final int FLOOR_ANGLE = 252;  //degrees
     public static final int RUNNING_FORWARD_SHOOT_ANGLE = 179;
-    public static final int STATIC_FORWARD_SHOT_ANGLE = 179; //High Tension
+    public static final int STATIC_FORWARD_SHOT_ANGLE = 184; //High Tension
     //public static final int STATIC_FORWARD_SHOT_ANGLE = 164; //Low Tension
-    public static final int BACKWARD_SHOOT_ANGLE = 70;
+    public static final int BACKWARD_SHOOT_ANGLE = 67;
+    public static final int BACKWARD_TWO_BALL_ANGLE = 73;
     public static final int STARTING_ANGLE = 137;
     public static final int TRUSS_ANGLE = (STARTING_ANGLE+STATIC_FORWARD_SHOT_ANGLE)/2;
     public static final int BACKWARD_TRUSS_ANGLE = ((BACKWARD_SHOOT_ANGLE + STARTING_ANGLE)/2) - 6;
 
-    public static final double SHOOT_TIME = 1;
+    public static final double SHOOT_TIME = .5;
     public static final double SPIT_TIME_FOR_SLAM_DUNK = .1;
 
 
@@ -99,9 +100,9 @@ public class RobotMap {
     public static final double TIME_TO_PICK_UP_BALL = .7; //seconds
     public static final double SUCK_TIME_FOR_BALL_ON_TOP = .7;
 
-    public static final double TIME_TO_REACH_SHOOT = 1.2;
-    public static final double EXTRA_TIME_TO_DRIVE_FORWARD = .8;
-    public static final double EXTRA_TIME_TO_DRIVE_BACK = -.5;
+    public static final double TIME_TO_REACH_SHOOT = 1.70;   //2
+    public static final double EXTRA_TIME_TO_DRIVE_FORWARD = .5;
+    public static final double EXTRA_TIME_TO_DRIVE_BACK = 0;
     
     public static final double TIME_TO_REACH_COLORED_ZONE = 1.3;
 }

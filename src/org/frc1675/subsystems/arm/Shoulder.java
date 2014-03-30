@@ -53,7 +53,7 @@ public class Shoulder extends PIDSubsystem {
     }
 
     protected void usePIDOutput(double d) {
-        motor.set((d) * .75);
+        motor.set((d*.75));
     }
 
     public void setPIDSetpoint(double angle) {

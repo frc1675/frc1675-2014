@@ -26,12 +26,12 @@ public class ShootFromStoppedAuton extends CommandGroup {
         addParallel(new ShiftLow());
         addSequential(new PostShoot());
         addSequential(new RollForTime(RobotMap.SUCK_TIME_FOR_BALL_ON_TOP, true));
-        addParallel(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
+        addParallel(new SetShoulder(RobotMap.BACKWARD_TWO_BALL_ANGLE));
         addSequential(new Wait(1.0));
         addSequential(new Shoot());
         addParallel(new PostShoot());
-        addSequential(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT , 1.0));
-        addSequential(new DriveForTime((RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_BACK), -1.0));
+        addSequential(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT , -1.0));
+        addSequential(new DriveForTime((RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_BACK), 1.0));
 
 
 

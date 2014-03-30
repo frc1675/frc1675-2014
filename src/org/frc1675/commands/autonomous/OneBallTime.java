@@ -26,7 +26,7 @@ import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 public class OneBallTime extends CommandGroup {
 
     public OneBallTime() {
-        addParallel(new DriveForTime(10000, 0));  //this gets cancelled, so I just made it really long time
+        addParallel(new DriveForTime(10000, 0));  //This is so it cancels any weird drift from previous controller values.  It gets cancelled, so I just made it really long time
         addSequential(new PostShoot());
         addSequential(new RollForTime(RobotMap.SUCK_TIME_FOR_BALL_ON_TOP, true));
         addParallel(new ShiftLow());

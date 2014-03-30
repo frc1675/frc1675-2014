@@ -22,6 +22,7 @@ import org.frc1675.commands.autonomous.LowGoalTime;
 import org.frc1675.commands.autonomous.OneBallDistance;
 import org.frc1675.commands.autonomous.OneBallTime;
 import org.frc1675.commands.autonomous.ShootFromStoppedAuton;
+import org.frc1675.commands.autonomous.TwoBallHighTensionAuton;
 import org.frc1675.commands.autonomous.ZeroBallAuton;
 
 /**
@@ -47,11 +48,12 @@ public class UPS2014 extends IterativeRobot {
         table = NetworkTable.getTable("dataTable");
 
         //autonomousCommand = new BabbysFirstAuton();
-        autonomousCommand = new ZeroBallAuton();
+        //autonomousCommand = new ZeroBallAuton();
         //autonomousCommand = new ShootFromStoppedAuton();
-        //autonomousCommand = new OneBallTime();
+        autonomousCommand = new OneBallTime();
         //autonomousCommand = new LowGoalTime();
         //autonomousCommand = new TwoBall();
+        //autonomousCommand = new TwoBallHighTensionAuton();
 
         XBoxControllerButtons.init();
         CommandBase.init();
@@ -98,6 +100,7 @@ public class UPS2014 extends IterativeRobot {
 
     public void testInit() {
         CommandBase.createTestOI();
+        
     }
 
     /**
