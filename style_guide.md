@@ -8,6 +8,12 @@
 - Don't use acronyms or nicknames that the team hasn't decided upon (ex. don't decide some part of the robot is named the "whammy bar" if the team hasn't come to a concensus). Keeping a somewhat common nomenclature is important.
 - Try to be as succinct as possible while still relating an entire idea (ex. turnLeft, not turnTheRobotLeft).
 
+### Packages
+- Package names should always be in all lower case.
+ - Good: org.frc1675.commands
+ - Bad: org.frc1675.OI
+- Our root package is org.frc1675 . Classes should be logically organized in subpackages of org.frc1675 .
+
 ### Classes
 - Class names should always be in Pascal case.
  - Good: DriveMotor
