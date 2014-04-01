@@ -66,9 +66,9 @@ public class RobotMap {
     }
 
     //PID
-    public static final double SHOULDER_P = .045;
+    public static final double SHOULDER_P = .035;
     public static final double SHOULDER_I = .0001;
-    public static final double SHOULDER_D = 0;
+    public static final double SHOULDER_D = .038;
     public static final double SHOULDER_PID_TARGET_TIME = .3;
 
 
@@ -83,7 +83,7 @@ public class RobotMap {
     public static final int STATIC_FORWARD_SHOT_ANGLE = 184; //High Tension
     //public static final int STATIC_FORWARD_SHOT_ANGLE = 164; //Low Tension
     public static final int BACKWARD_SHOOT_ANGLE = 67;
-    public static final int BACKWARD_TWO_BALL_ANGLE = 73;
+    public static final int BACKWARD_TWO_BALL_ANGLE = 68;
     public static final int STARTING_ANGLE = 137;
     public static final int TRUSS_ANGLE = (STARTING_ANGLE+STATIC_FORWARD_SHOT_ANGLE)/2;
     public static final int BACKWARD_TRUSS_ANGLE = ((BACKWARD_SHOOT_ANGLE + STARTING_ANGLE)/2) - 6;

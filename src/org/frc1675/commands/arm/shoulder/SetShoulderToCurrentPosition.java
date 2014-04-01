@@ -25,6 +25,7 @@ public class SetShoulderToCurrentPosition extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        shoulder.setPower(setpoint);
         shoulder.setPIDSetpoint(shoulder.pot.get());
     }
 

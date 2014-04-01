@@ -24,6 +24,7 @@ public class Shoulder extends PIDSubsystem {
     private static final int ABSOLUTE_TOLERANCE = 10;  //degrees
     private static final int POT_SCALE = 50;
     public AnalogPotentiometer pot;
+    public double power = 1;
     private SpeedController motor;
     double setpoint = 250;
     boolean potWasBad = false;
@@ -37,6 +38,16 @@ public class Shoulder extends PIDSubsystem {
         this.setAbsoluteTolerance(ABSOLUTE_TOLERANCE);
     }
 
+    public void setPower(double setpoint){
+        if(Math.abs(setpoint - pot.get())>40){
+            power = 1.0;
+            System.out.println("1******************************&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        }else{
+            power = .5;
+            System.out.println(".5!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        }
+    }
+    
     public void initDefaultCommand() {
         setDefaultCommand(new ShoulderMoveWithJoysticks());
         //setDefaultCommand(new IncreaseShoulderSetpoint());
@@ -53,7 +64,7 @@ public class Shoulder extends PIDSubsystem {
     }
 
     protected void usePIDOutput(double d) {
-        motor.set((d*.75));
+        motor.set(d*power);
     }
 
     public void setPIDSetpoint(double angle) {

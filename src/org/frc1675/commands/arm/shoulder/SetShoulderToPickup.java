@@ -29,6 +29,7 @@ public class SetShoulderToPickup extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         shoulder.setPIDSetpoint(RobotMap.FLOOR_ANGLE);
+        shoulder.setPower(RobotMap.FLOOR_ANGLE);
     }
 
     // Called repeatedly when this Command is scheduled to run

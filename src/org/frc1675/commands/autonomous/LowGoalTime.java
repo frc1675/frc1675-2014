@@ -23,11 +23,11 @@ public class LowGoalTime extends CommandGroup {
     public LowGoalTime() {
         addParallel(new ShiftLow());
         addParallel(new SetShoulder((RobotMap.STARTING_ANGLE + RobotMap.STATIC_FORWARD_SHOT_ANGLE)/2));
-        addSequential(new DriveForTime(4,1));
+        addSequential(new DriveForTime(3,1));
         addParallel(new StopShoulder());
         addSequential(new Wait(2));
         addSequential(new RollForTime(2, false));
-        addSequential(new DriveForTime(4, -1));
+        addSequential(new DriveForTime(3, -1));
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

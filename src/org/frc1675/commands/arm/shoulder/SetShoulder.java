@@ -27,6 +27,7 @@ public class SetShoulder extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        shoulder.setPower(setpoint);
         shoulder.setPIDSetpoint(setpoint);
     }
 
