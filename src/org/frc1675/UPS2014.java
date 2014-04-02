@@ -51,9 +51,9 @@ public class UPS2014 extends IterativeRobot {
         //autonomousCommand = new ZeroBallAuton();
         //autonomousCommand = new ShootFromStoppedAuton();
         //autonomousCommand = new OneBallTime();
-        autonomousCommand = new LowGoalTime();
+        //autonomousCommand = new LowGoalTime();
         //autonomousCommand = new TwoBall();
-        //autonomousCommand = new TwoBallHighTensionAuton();
+        autonomousCommand = new TwoBallHighTensionAuton();
 
         XBoxControllerButtons.init();
         CommandBase.init();
