@@ -12,6 +12,7 @@ import org.frc1675.commands.ShiftLow;
 import org.frc1675.commands.Wait;
 import org.frc1675.commands.arm.roller.RollForTime;
 import org.frc1675.commands.arm.shoulder.SetShoulder;
+import org.frc1675.commands.arm.shoulder.SetShoulderAuton;
 import org.frc1675.commands.arm.shoulder.StopShoulder;
 
 /**
@@ -22,7 +23,7 @@ public class LowGoalTime extends CommandGroup {
     
     public LowGoalTime() {
         addParallel(new ShiftLow());
-        addParallel(new SetShoulder((RobotMap.STARTING_ANGLE + RobotMap.STATIC_FORWARD_SHOT_ANGLE)/2));
+        addParallel(new SetShoulderAuton((RobotMap.STARTING_ANGLE + RobotMap.STATIC_FORWARD_SHOT_ANGLE)/2));
         addSequential(new DriveForTime(3,1));
         addParallel(new StopShoulder());
         addSequential(new Wait(2));

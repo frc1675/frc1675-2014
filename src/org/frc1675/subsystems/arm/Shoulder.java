@@ -41,10 +41,8 @@ public class Shoulder extends PIDSubsystem {
     public void setPower(double setpoint){
         if(Math.abs(setpoint - pot.get())>40){
             power = 1.0;
-            System.out.println("1******************************&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         }else{
-            power = .5;
-            System.out.println(".5!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            power = .60;
         }
     }
     
@@ -69,8 +67,19 @@ public class Shoulder extends PIDSubsystem {
 
     public void setPIDSetpoint(double angle) {
         setpoint = angle;
+        setPower(setpoint);
         this.setSetpoint(angle);
         this.enable();
+    }
+    public int isGoingOverWeightShift(){
+        if (setpoint <= RobotMap.STRAIGHT_UP_ANGLE && pot.get()>= RobotMap.STRAIGHT_UP_ANGLE){
+            return -1;  //going to backwards
+        }else if(setpoint >= RobotMap.STRAIGHT_UP_ANGLE && pot.get()<= RobotMap.STRAIGHT_UP_ANGLE){
+            return 1; //going to forwards
+        }else{
+            return 0; //staying same side
+        }
+        
     }
     public void bumpUp(){
         setpoint += BUMP;
@@ -97,7 +106,7 @@ public class Shoulder extends PIDSubsystem {
         potWasBad = potIsBad;
         return false;        
     }
-  
+
 
 }
 

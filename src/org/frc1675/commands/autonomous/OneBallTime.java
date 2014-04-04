@@ -16,6 +16,7 @@ import org.frc1675.commands.arm.roller.RollForTime;
 import org.frc1675.commands.arm.roller.RollerIntake;
 import org.frc1675.commands.arm.roller.RollerStop;
 import org.frc1675.commands.arm.shoulder.SetShoulder;
+import org.frc1675.commands.arm.shoulder.SetShoulderAuton;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 
 /**
@@ -34,13 +35,13 @@ public class OneBallTime extends CommandGroup {
         addParallel(new ShiftLow());
         addParallel(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_FORWARD, 1.0));
         addParallel(new Wait(TIME_BEFORE_SHOULDER));
-        addParallel(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
+        addParallel(new SetShoulderAuton(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
         addSequential(new Wait(RobotMap.TIME_TO_REACH_SHOOT-TIME_BEFORE_SHOULDER));
         addParallel(new RollerStop());
         addSequential(new Shoot());
         addParallel(new SetShoulderToPickup());
         addParallel(new RollerIntake());
-        //addParallel(new PostShoot());
+        addParallel(new PostShoot());
         addParallel(new DriveForTime((RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_BACK), -1.0));
 
         // Add Commands here:

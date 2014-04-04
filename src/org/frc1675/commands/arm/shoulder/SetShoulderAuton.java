@@ -5,33 +5,28 @@
  */
 package org.frc1675.commands.arm.shoulder;
 
-import org.frc1675.UPS2014;
 import org.frc1675.commands.CommandBase;
 
 /**
- * When this is called, the shoulder will hold position.
  *
  * @author Tony
  */
-public class SetShoulderToCurrentPosition extends CommandBase {
-
-    private int setpoint;
-
-    public SetShoulderToCurrentPosition() {
-        requires(shoulder);
+public class SetShoulderAuton extends CommandBase {
+    double setpoint;
+    public SetShoulderAuton(double angle) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        requires(shoulder);
+        setpoint = angle;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        shoulder.setPIDSetpoint(shoulder.pot.get());
+        shoulder.setPIDSetpoint(setpoint);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println("SetShoulder: " + shoulder.pot.get());
-        UPS2014.table.putNumber("ShoulderPotValue", shoulder.pot.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -47,6 +42,6 @@ public class SetShoulderToCurrentPosition extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        end();
+        end();        
     }
 }

@@ -16,6 +16,7 @@ import org.frc1675.commands.arm.roller.RollForTime;
 import org.frc1675.commands.arm.roller.RollerIntake;
 import org.frc1675.commands.arm.roller.RollerStop;
 import org.frc1675.commands.arm.shoulder.SetShoulder;
+import org.frc1675.commands.arm.shoulder.SetShoulderAuton;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 import org.frc1675.commands.arm.shoulder.ShoulderOnTarget;
 
@@ -34,7 +35,7 @@ public class TwoBallHighTensionAuton extends CommandGroup {
         addParallel(new RollerIntake());
         addParallel(new PostShoot());
         addSequential(new Wait(TIME_TO_SUCK_BALL_FROM_TOP));
-        addParallel(new SetShoulder(RobotMap.BACKWARD_TWO_BALL_ANGLE));
+        addParallel(new SetShoulderAuton(RobotMap.BACKWARD_TWO_BALL_ANGLE + 7));
         addSequential(new Wait(TIME_FROM_START_TO_SHOOTING_ANGLE));
         addParallel(new RollerStop());
         addSequential(new Shoot());
@@ -44,7 +45,7 @@ public class TwoBallHighTensionAuton extends CommandGroup {
         addSequential(new DriveForTime(TIME_TO_DRIVE_TO_PICKUP, PICKUP_DRIVE_POWER));
         addSequential(new Wait(RobotMap.TIME_TO_PICK_UP_BALL));
         addParallel(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_FORWARD + 1, -.6));
-        addParallel(new SetShoulder(RobotMap.BACKWARD_TWO_BALL_ANGLE+4));
+        addParallel(new SetShoulderAuton(RobotMap.BACKWARD_TWO_BALL_ANGLE+4));
         addSequential(new Wait(TIME_FROM_HOME_TO_SHOOTING_ANGLE));
         addParallel(new RollerStop());
         addSequential(new Shoot());
