@@ -22,7 +22,7 @@ public class SetShoulder extends CommandBase {
     private int setpoint;
     private int isGoingOverWeightShift;
     Timer timer;
-    private static final double STOP_TIME = 0;
+    private static final double STOP_TIME = .01;
     private static final double FORWARD_STOP_ANGLE = 145;
     private static final double BACKWARD_STOP_ANGLE = 105;
     private static final double STOP_TOLERANCE = 5;
@@ -59,7 +59,7 @@ public class SetShoulder extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        //System.out.println("SetShoulder: " + shoulder.pot.get());
+        System.out.println("SetShoulder: " + shoulder.pot.get());
         if (isGoingOverWeightShift == 0) {
 
         } else if (isGoingOverWeightShift == 1) {
@@ -67,7 +67,8 @@ public class SetShoulder extends CommandBase {
                 if (timer.get() == 0.0) {
                     timer.start();
                     shoulder.power = NEW_POWER;
-                    shoulder.stopAndReset();
+                    //shoulder.stopAndReset();
+                    System.out.println("CHANGED POWER");
                 }
             }
         } else {     //isGoingOverWeightShift == -1
@@ -75,14 +76,15 @@ public class SetShoulder extends CommandBase {
                 if (timer.get() == 0.0) {
                     timer.start();
                     shoulder.power = NEW_POWER;
-                    shoulder.stopAndReset();
+                    //shoulder.stopAndReset();
+                    System.out.println("CHANGED POWER");
                 }
             }
         }
         if (timer.get() >= STOP_TIME) {
             isGoingOverWeightShift = 0;
             shoulder.setPIDSetpoint(setpoint);
-            System.out.println("Doing the thing");            
+            System.out.println("resetting!");
             timer.reset();
         }
     }
