@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import org.frc1675.RobotMap;
 import org.frc1675.commands.CheesyDriveCommand;
 import org.frc1675.commands.TankDriveCommand;
+import org.frc1675.commands.UltimateCheezyDriveCommand;
 
 /**
  *
@@ -108,6 +109,7 @@ public class DriveBase extends Subsystem {
         //setDefaultCommand(new ArcadeDriveCommand());
         //setDefaultCommand(new TankDriveCommand());
         setDefaultCommand(new CheesyDriveCommand());
+        //setDefaultCommand(new UltimateCheezyDriveCommand(.5, 4));
     }
 
     public class SideEncoder extends PIDSubsystem {
