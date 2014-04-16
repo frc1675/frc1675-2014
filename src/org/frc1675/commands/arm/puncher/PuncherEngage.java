@@ -37,13 +37,11 @@ public class PuncherEngage extends CommandBase {
     protected boolean isFinished() {
         if (timer.get() > RobotMap.PNEUMATIC_FIRE_TIME) {
             return true;
-        }else{
+        } else {
             return false;
         }
 
     }
-
-    
 
     // Called once after isFinished returns true
     protected void end() {

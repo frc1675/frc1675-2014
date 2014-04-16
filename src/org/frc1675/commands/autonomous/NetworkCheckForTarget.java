@@ -9,7 +9,7 @@ import org.frc1675.UPS2014;
 import org.frc1675.commands.CommandBase;
 
 /**
- * This command ends when a network target is seen.
+ * This command ends when the network table says the target is seen.
  *
  * @author Tony
  */

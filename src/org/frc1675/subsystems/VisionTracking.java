@@ -18,6 +18,8 @@ import edu.wpi.first.wpilibj.image.RGBImage;
 import org.frc1675.UPS2014;
 
 /**
+ * This is a mess of on-robot axis camera hot-tracking. Doesn't work very well.
+ * Too sensitive.
  *
  * @author Alex
  */
@@ -48,8 +50,6 @@ public class VisionTracking extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     }
 
     public boolean isHorizontalTarget() {

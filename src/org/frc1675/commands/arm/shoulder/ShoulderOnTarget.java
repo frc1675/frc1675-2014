@@ -11,6 +11,7 @@ import org.frc1675.commands.CommandBase;
 
 /**
  * Checks if the shoulder has reached its target. May be necessary for auton.
+ * Does not work.
  *
  * @author Tony
  */
@@ -20,8 +21,6 @@ public class ShoulderOnTarget extends CommandBase {
 
     public ShoulderOnTarget() {
         timer = new Timer();
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -44,7 +43,6 @@ public class ShoulderOnTarget extends CommandBase {
         }
         return false;
     }
-
 
     // Called once after isFinished returns true
     protected void end() {

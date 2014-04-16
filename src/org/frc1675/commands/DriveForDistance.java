@@ -24,8 +24,6 @@ public class DriveForDistance extends CommandBase {
     public DriveForDistance(double inches) {
         requires(driveBase);
         distance = inches;
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time

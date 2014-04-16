@@ -52,8 +52,6 @@ public class Puncher extends Subsystem {
 
     public void initDefaultCommand() {
         setDefaultCommand(new WindWinchWithJoysticks());
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     }
 
     public void shoot() {

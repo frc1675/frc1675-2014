@@ -11,7 +11,9 @@ import org.frc1675.UPS2014;
 import org.frc1675.commands.CommandBase;
 
 /**
- * This will set the shoulder to the pickup angle set in RobotMap
+ * This will set the shoulder to the pickup angle set in RobotMap. This is a
+ * different command because we don't want to hold position at the floor.
+ * Something about the physics of the pickup mechanism.
  *
  * @author Tony
  */
@@ -22,8 +24,6 @@ public class SetShoulderToPickup extends CommandBase {
     public SetShoulderToPickup() {
         requires(shoulder);
         timer = new Timer();
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -40,9 +40,9 @@ public class SetShoulderToPickup extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(shoulder.potIsBad()){
+        if (shoulder.potIsBad()) {
             return true;
-        } 
+        }
         if ((shoulder.getPIDController().onTarget()) && (timer.get() == 0)) {
             timer.start();
         } else if (timer.get() > 0 && !(shoulder.getPIDController().onTarget())) {

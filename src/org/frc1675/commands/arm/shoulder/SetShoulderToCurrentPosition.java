@@ -9,18 +9,15 @@ import org.frc1675.UPS2014;
 import org.frc1675.commands.CommandBase;
 
 /**
- * When this is called, the shoulder will hold position.
+ * When this is called, the shoulder will hold position wherever it happens to
+ * be.
  *
  * @author Tony
  */
 public class SetShoulderToCurrentPosition extends CommandBase {
 
-    private int setpoint;
-
     public SetShoulderToCurrentPosition() {
         requires(shoulder);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time

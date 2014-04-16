@@ -18,7 +18,7 @@ import org.frc1675.commands.arm.shoulder.SetShoulder;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 
 /**
- * The shooter will wait for the target to be seen to shoot.  
+ * The shooter will wait for the target to be seen by the network table to shoot.  
  *
  * @author Tony
  */
@@ -35,20 +35,5 @@ public class NetworkHotAuton extends CommandGroup {
         addParallel(new DriveForDistance(-(RobotMap.DISTANCE_TO_SHOT + RobotMap.DISTANCE_EXTRA_TO_DRIVE_BACK)));
         addParallel(new SetShoulderToPickup());
         addParallel(new RollerIntake());
-
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
     }
 }

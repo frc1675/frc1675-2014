@@ -9,8 +9,8 @@ import org.frc1675.RobotMap;
 import org.frc1675.commands.CommandBase;
 
 /**
- * This will wind the winch until the Vex button is pressed. The encoder didn't
- * work too well.
+ * This will wind the winch back until the VEX button is pressed. The encoder
+ * didn't work too well.
  *
  * @author Tony
  */
@@ -21,8 +21,6 @@ public class PuncherGoToLimit extends CommandBase {
     public PuncherGoToLimit() {
 
         requires(puncher);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time

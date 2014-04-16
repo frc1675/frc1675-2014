@@ -16,33 +16,20 @@ import org.frc1675.commands.arm.shoulder.SetShoulderAuton;
 import org.frc1675.commands.arm.shoulder.StopShoulder;
 
 /**
+ * This runs into the low goal and spits a ball in it. Useful for when our
+ * shooter breaks. Not as useful for when the shoulder breaks.
  *
  * @author Tony
  */
 public class LowGoalTime extends CommandGroup {
-    
+
     public LowGoalTime() {
         addParallel(new ShiftLow());
-        addParallel(new SetShoulderAuton((RobotMap.STARTING_ANGLE + RobotMap.STATIC_FORWARD_SHOT_ANGLE)/2));
-        addSequential(new DriveForTime(3,1));
+        addParallel(new SetShoulderAuton((RobotMap.STARTING_ANGLE + RobotMap.STATIC_FORWARD_SHOT_ANGLE) / 2));
+        addSequential(new DriveForTime(3, 1));
         addParallel(new StopShoulder());
         addSequential(new Wait(2));
         addSequential(new RollForTime(2, false));
         addSequential(new DriveForTime(3, -1));
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
     }
 }

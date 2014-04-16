@@ -8,15 +8,15 @@ package org.frc1675.commands.autonomous;
 import org.frc1675.commands.CommandBase;
 
 /**
+ * This can be used for vision diagnostics. It is commented out because the
+ * camera was unplugged, and it causes hella errors.
  *
- * @author This can be used for vision diagnostics.  
+ * @author This can be used for vision diagnostics.
  */
 public class VisionTest extends CommandBase {
 
     public VisionTest() {
         //requires(vision);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time

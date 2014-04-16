@@ -31,10 +31,11 @@ import org.frc1675.commands.autonomous.ZeroBallAuton;
  * documentation. If you change the name of this class or the package after
  * creating this project, you must also update the manifest file in the resource
  * directory.
+ *
+ * @author SmartPersonAtWPI
  */
 public class UPS2014 extends IterativeRobot {
 
-//    Command autonomousCommand;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -70,9 +71,6 @@ public class UPS2014 extends IterativeRobot {
 //        }
 
         autonomousCommand.start();
-//        autonomousCommand.start();
-        // schedule the autonomous command (example)
-//        autonomousCommand.start();
     }
 
     /**
@@ -84,10 +82,6 @@ public class UPS2014 extends IterativeRobot {
     }
 
     public void teleopInit() {
-        // This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
         autonomousCommand.cancel();
     }
 

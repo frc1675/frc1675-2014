@@ -23,8 +23,6 @@ public class Wait extends CommandBase {
     public Wait(double seconds) {
         timer = new Timer();
         waitTime = seconds;
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time

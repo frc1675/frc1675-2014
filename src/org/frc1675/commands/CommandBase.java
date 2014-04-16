@@ -22,7 +22,7 @@ import org.frc1675.subsystems.VisionTracking;
  * subsystem elsewhere in your code in your code use
  * CommandBase.exampleSubsystem
  *
- * @author Author
+ * @author SmartPersonAtWPI
  */
 public abstract class CommandBase extends Command {
 
@@ -36,8 +36,7 @@ public abstract class CommandBase extends Command {
     public static CompressorSystem compressor = new CompressorSystem();
     public static DriveBase driveBase = new DriveBase(RobotMap.DRIVE_ENCODER_P, RobotMap.DRIVE_ENCODER_I, RobotMap.DRIVE_ENCODER_D); 
     public static Shifter shifter = new Shifter();
-    
-    //public static VisionTracking vision = new VisionTracking();
+
     public static NetworkTracking network = new NetworkTracking();
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely

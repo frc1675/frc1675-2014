@@ -8,14 +8,16 @@ package org.frc1675.commands.arm.shoulder;
 import org.frc1675.commands.CommandBase;
 
 /**
+ * This sets the shoulder the old way(without doing the weight shift
+ * calculation) so that it would still work after that was implemented.
  *
  * @author Tony
  */
 public class SetShoulderAuton extends CommandBase {
+
     double setpoint;
+
     public SetShoulderAuton(double angle) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
         requires(shoulder);
         setpoint = angle;
     }
@@ -43,6 +45,6 @@ public class SetShoulderAuton extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        end();        
+        end();
     }
 }

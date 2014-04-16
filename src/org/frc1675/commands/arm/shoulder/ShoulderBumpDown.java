@@ -8,15 +8,14 @@ package org.frc1675.commands.arm.shoulder;
 import org.frc1675.commands.CommandBase;
 
 /**
+ * This was designed to move the shoulder up a few degrees. It does not work.
  *
  * @author Tony
  */
 public class ShoulderBumpDown extends CommandBase {
-    
+
     public ShoulderBumpDown() {
         requires(shoulder);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time

@@ -11,7 +11,7 @@ import org.frc1675.RobotMap;
 import org.frc1675.XBoxControllerMap;
 
 /**
- * This class turns a trigger into a normal button.
+ * This class turns a trigger axis into a normal button.
  *
  * @author Tony
  */

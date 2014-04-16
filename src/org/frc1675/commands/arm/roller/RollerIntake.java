@@ -8,7 +8,7 @@ package org.frc1675.commands.arm.roller;
 import org.frc1675.commands.CommandBase;
 
 /**
- * Sets the roller claw to intake and does so until further command is issued
+ * Sets the roller claw to intake.  Set as a while held.
  *
  * @author Tony
  */

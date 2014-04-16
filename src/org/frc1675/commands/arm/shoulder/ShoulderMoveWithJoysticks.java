@@ -10,7 +10,7 @@ import org.frc1675.commands.CommandBase;
 
 /**
  * Set as initDefaultCommand. Will poll operator left y periodically and set
- * shoulder motor to that value.
+ * shoulder motor to that value.  Its a manual override.
  *
  * @author Tony
  */
@@ -32,10 +32,6 @@ public class ShoulderMoveWithJoysticks extends CommandBase {
     protected void execute() {
         shoulder.rawMoveShoulder(oi.getOperatorLeftY());
         System.out.println("ShoulderPotValue" +  shoulder.pot.get());
-        if (shoulder.pot.get() < potval - 10.0 || shoulder.pot.get() > potval + 10.0) {
-            potval = shoulder.pot.get();
-            UPS2014.table.putNumber("ShoulderPotValue", shoulder.pot.get());
-        }
         //System.out.println("ShoulderWithJoysticks " + shoulder.pot.get());
 
     }

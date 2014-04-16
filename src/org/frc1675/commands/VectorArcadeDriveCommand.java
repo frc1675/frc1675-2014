@@ -8,14 +8,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
+ * This class uses the left stick to control both throttle and turning. Its
+ * arcade drive. However, it does some really cool math so that you can be at
+ * full power and full turning at the same time.
  *
  * @author Elise
  */
 public class VectorArcadeDriveCommand extends CommandBase {
 
     public VectorArcadeDriveCommand() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
         requires(driveBase);
     }
 

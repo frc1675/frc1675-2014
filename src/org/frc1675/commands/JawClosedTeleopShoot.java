@@ -10,7 +10,7 @@ import org.frc1675.RobotMap;
 import org.frc1675.commands.arm.puncher.PuncherDisengage;
 
 /**
- * In teleop, this command shoots with the jaw closed and pulls back the
+ * In teleop, this command shoots with the jaw closed and then pulls back the
  * puncher.
  *
  * @author Tony
@@ -21,20 +21,5 @@ public class JawClosedTeleopShoot extends CommandGroup {
         addSequential(new PuncherDisengage());
         addSequential(new Wait(RobotMap.SHOOT_TIME));
         addSequential(new PostShoot());
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
     }
 }

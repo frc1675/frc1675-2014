@@ -40,7 +40,7 @@ public class PuncherDisengage extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        //motorPower += (rampIncrement);
+        //motorPower += (rampIncrement);  //This makes the power ramp from starting to ending power, if we decide thats necessary.
         if (timer.get() < RobotMap.PNEUMATIC_FIRE_TIME) {
             puncher.shoot();
         } else {

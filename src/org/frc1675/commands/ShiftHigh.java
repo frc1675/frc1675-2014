@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.Timer;
 import org.frc1675.RobotMap;
 
 /**
- *
- * @author Tony This shifts to the high gear, solenoid specified in robotMap
+ * This shifts to the high gear, solenoid specified in robotMap
+ * @author Tony 
  */
 public class ShiftHigh extends CommandBase {
 

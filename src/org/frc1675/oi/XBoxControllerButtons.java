@@ -14,6 +14,8 @@ import org.frc1675.RobotMap;
 import org.frc1675.XBoxControllerMap;
 
 /**
+ * This class contains all the buttons on an XBox controller so they can be used
+ * in multiple places.
  *
  * @author Elise
  */
@@ -33,7 +35,6 @@ public class XBoxControllerButtons {
     public static final TriggerButton driverLeftTrigger = new TriggerButton(driverController, TriggerButton.LEFT);
     public static final TriggerButton driverRightTrigger = new TriggerButton(driverController, TriggerButton.RIGHT);
 
-    
     public static final Joystick operatorController = new Joystick(RobotMap.OPERATOR_CONTROLLER);
     public static final RebindableJoystickButton operatorA = new RebindableJoystickButton(operatorController, XBoxControllerMap.A_BUTTON);
     public static final RebindableJoystickButton operatorB = new RebindableJoystickButton(operatorController, XBoxControllerMap.B_BUTTON);
@@ -49,7 +50,7 @@ public class XBoxControllerButtons {
     public static final DPadButton operatorDPadLeft = new DPadButton(operatorController, DPadButton.LEFT);
     public static final TriggerButton operatorLeftTrigger = new TriggerButton(operatorController, TriggerButton.LEFT);
     public static final TriggerButton operatorRightTrigger = new TriggerButton(operatorController, TriggerButton.RIGHT);
-    
+
     public static void init() {
     }
 }

@@ -8,7 +8,7 @@ package org.frc1675.commands.arm.roller;
 import org.frc1675.commands.CommandBase;
 
 /**
- * Sets the roller claw to eject an does that until further notice
+ * Sets the roller claw to eject.  Set as a WhileHeld.
  *
  * @author Tony
  */

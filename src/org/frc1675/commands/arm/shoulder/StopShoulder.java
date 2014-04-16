@@ -9,7 +9,7 @@ import org.frc1675.commands.CommandBase;
 
 /**
  *
- * This command should return the arm to operator control.
+ * This command stops the shoulder motor and return the arm to operator control.
  *
  * @author Tony.
  */
@@ -17,8 +17,6 @@ public class StopShoulder extends CommandBase {
 
     public StopShoulder() {
         requires(shoulder);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time

@@ -39,7 +39,6 @@ public class DriveBase extends Subsystem {
         leftTimer.start();
         rightTimer = new Timer();
         rightTimer.start();
-        //Change all Victor to Talon on real robot    
     }
 
     public void setLeftMotors(double power) {

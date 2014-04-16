@@ -19,13 +19,15 @@ import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 
 /**
  * This auton mode should be used for shooting two balls into a goal when we
- * don't have encoders. We need encoders. This ain't gonna work.
+ * don't have encoders. No guarantees! This is the old one. It is unused.
  *
  * @author Tony
  */
 public class TwoBallForTime extends CommandGroup {
+
     private static final double EXTRA_TIME_TO_DRIVE_FORWARD = 0;
     private static final double TIME_TO_REACH_SHOOT = .5;
+
     TwoBallForTime() {
         addParallel(new ShiftLow());
         addParallel(new SetShoulder(RobotMap.BACKWARD_SHOOT_ANGLE));
@@ -46,20 +48,5 @@ public class TwoBallForTime extends CommandGroup {
         addParallel(new SetShoulderToPickup());
         addParallel(new RollerIntake());
         addSequential(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_BACK, 1.0));
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
     }
 }

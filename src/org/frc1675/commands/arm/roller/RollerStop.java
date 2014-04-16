@@ -8,7 +8,7 @@ package org.frc1675.commands.arm.roller;
 import org.frc1675.commands.CommandBase;
 
 /**
- * Stops the roller claw and then has it do nothing
+ * Stops the roller claw and then has it do nothing.
  *
  * @author Tony
  */

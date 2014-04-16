@@ -12,7 +12,9 @@ import org.frc1675.commands.CommandBase;
 
 /**
  * Use this to set the shoulder to any angle other than the floor. It will
- * maintain this angle.
+ * maintain this angle. It does some logic to try to slow the arm down if its
+ * going over the top. This causes some weird inertia that the PID doesn't like,
+ * so this tries to remedy that.
  *
  * @author Tony
  */
@@ -39,22 +41,8 @@ public class SetShoulder extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         shoulder.setPIDSetpoint(setpoint);
-        isGoingOverWeightShift = shoulder.isGoingOverWeightShift();        
+        isGoingOverWeightShift = shoulder.isGoingOverWeightShift();
         System.out.println("IsGoingOverWeightShift: " + isGoingOverWeightShift);
-//        switch (isGoingOverWeightShift) {
-//            case 1:
-//                shoulder.setSetpoint(FORWARD_STOP_ANGLE);
-//                System.out.println("1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//                break;
-//            case -1:
-//                shoulder.setSetpoint(BACKWARD_STOP_ANGLE);
-//                System.out.println("-1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//                break;
-//            default:
-//                shoulder.setPIDSetpoint(setpoint);
-//                break;
-//        }
- 
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -67,16 +55,14 @@ public class SetShoulder extends CommandBase {
                 if (timer.get() == 0.0) {
                     timer.start();
                     shoulder.power = NEW_POWER;
-                    //shoulder.stopAndReset();
                     System.out.println("CHANGED POWER");
                 }
             }
-        } else {     //isGoingOverWeightShift == -1
+        } else {     //isGoingOverWeightShift is equal to -1
             if (Math.abs(shoulder.pot.get() - BACKWARD_STOP_ANGLE) < STOP_TOLERANCE) {
                 if (timer.get() == 0.0) {
                     timer.start();
                     shoulder.power = NEW_POWER;
-                    //shoulder.stopAndReset();
                     System.out.println("CHANGED POWER");
                 }
             }

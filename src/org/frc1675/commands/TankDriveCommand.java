@@ -5,13 +5,16 @@
 package org.frc1675.commands;
 
 /**
+ * This command, when set as default command on DriveBase sets the left motors
+ * to the values on the left stick and the right motors to values on the right
+ * stick, adjusted for deadzones.
  *
  * @author Elise
  */
 public class TankDriveCommand extends CommandBase {
-    
+
     public TankDriveCommand() {
-       requires(driveBase);
+        requires(driveBase);
     }
 
     // Called just before this Command runs the first time

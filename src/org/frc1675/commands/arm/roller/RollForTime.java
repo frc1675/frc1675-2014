@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.Timer;
 import org.frc1675.commands.CommandBase;
 
 /**
- * This will eject the ball from the roller claw for the specified amount of
- * time.
+ * This will eject or intake the ball from the roller claw for the specified
+ * amount of time.
  *
  * @author Tony
  */
@@ -30,9 +30,9 @@ public class RollForTime extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         timer.start();
-        if(isIntake){
+        if (isIntake) {
             rollerClaw.intake();
-        }else{
+        } else {
             rollerClaw.eject();
         }
     }

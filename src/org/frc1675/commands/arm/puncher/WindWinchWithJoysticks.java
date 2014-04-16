@@ -9,7 +9,7 @@ import org.frc1675.commands.CommandBase;
 
 /**
  * Set as initDefaultCommand. Will poll operator right y periodically and set
- * shoulder motor to that value. It cannot be backdriven. I was told that was
+ * winch motor to that value. It cannot be backdriven. I was told that was
  * really bad.
  *
  * @author Tony
@@ -18,8 +18,6 @@ public class WindWinchWithJoysticks extends CommandBase {
 
     public WindWinchWithJoysticks() {
         requires(puncher);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time

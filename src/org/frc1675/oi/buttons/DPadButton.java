@@ -10,6 +10,7 @@ import org.frc1675.RobotMap;
 import org.frc1675.XBoxControllerMap;
 
 /**
+ * This turns the DPad axis into a left button or a right button.
  *
  * @author josh
  */

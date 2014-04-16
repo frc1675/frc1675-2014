@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * This is a button combo. Pass it a button and a rebindable button, run
  * setDefaultButtonBindings and setEscapeButtonBingings, passing in the command
  * you want run when the button is pressed for escape, and the command you want
- * to normally run for default
+ * to normally run for default.
  *
  * @author michael
  */
