@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands.autonomous;
+package org.frc1675.commands.autonomous.twoball;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.RobotMap;
@@ -19,6 +19,7 @@ import org.frc1675.commands.arm.shoulder.SetShoulder;
 import org.frc1675.commands.arm.shoulder.SetShoulderAuton;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 import org.frc1675.commands.arm.shoulder.ShoulderOnTarget;
+import org.frc1675.commands.autonomous.ShootAfterTime;
 
 /**
  * This auton moves while shooting the first ball, stretching out the arc so it

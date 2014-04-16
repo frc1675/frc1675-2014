@@ -13,17 +13,17 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import org.frc1675.oi.XBoxControllerButtons;
-import org.frc1675.commands.autonomous.BabbysFirstAuton;
+import org.frc1675.commands.autonomous.noball.BabbysFirstAuton;
 import org.frc1675.commands.CommandBase;
-import org.frc1675.commands.autonomous.GoalColdAtFirstAuton;
-import org.frc1675.commands.autonomous.NetworkHotAuton;
+import org.frc1675.commands.autonomous.oneball.GoalColdAtFirstAuton;
+import org.frc1675.commands.autonomous.oneball.NetworkHotAuton;
 import org.frc1675.commands.MakeCompressorWork;
-import org.frc1675.commands.autonomous.LowGoalTime;
-import org.frc1675.commands.autonomous.OneBallDistance;
-import org.frc1675.commands.autonomous.OneBallTime;
-import org.frc1675.commands.autonomous.ShootFromStoppedAuton;
-import org.frc1675.commands.autonomous.TwoBallHighTensionAuton;
-import org.frc1675.commands.autonomous.ZeroBallAuton;
+import org.frc1675.commands.autonomous.oneball.LowGoalTime;
+import org.frc1675.commands.autonomous.oneball.OneBallDistance;
+import org.frc1675.commands.autonomous.oneball.OneBallTime;
+import org.frc1675.commands.autonomous.oneball.ShootFromStoppedAuton;
+import org.frc1675.commands.autonomous.twoball.TwoBallHighTensionAuton;
+import org.frc1675.commands.autonomous.noball.ZeroBallAuton;
 
 /**
  * The VM is configured to automatically run this class, and to call the

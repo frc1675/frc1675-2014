@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands.autonomous;
+package org.frc1675.commands.autonomous.oneball;
 
-import org.frc1675.commands.autonomous.OneBallTime;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.RobotMap;
 import org.frc1675.commands.PostShoot;
