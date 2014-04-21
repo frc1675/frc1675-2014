@@ -9,8 +9,8 @@ import org.frc1675.commands.CommandBase;
 
 /**
  * Set as initDefaultCommand. Will poll operator right y periodically and set
- * winch motor to that value. It cannot be backdriven. I was told that was
- * really bad.
+ * winch motor to that value. The subsystem will protect from backdriving the
+ * winch.
  *
  * @author Tony
  */

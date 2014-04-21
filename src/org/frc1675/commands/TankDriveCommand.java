@@ -8,6 +8,9 @@ package org.frc1675.commands;
  * This command, when set as default command on DriveBase sets the left motors
  * to the values on the left stick and the right motors to values on the right
  * stick, adjusted for deadzones.
+ * 
+ * This is designed to be a default subsystem command. It will not stop unless
+ * interrupted.
  *
  * @author Elise
  */

@@ -22,7 +22,7 @@ import org.frc1675.commands.arm.shoulder.ShoulderOnTarget;
 
 /**
  * This is the two ball for when we have enough tension to shoot from the middle
- * zone. Sometimes we do, other times we don't. No guarantees!
+ * zone. 
  *
  * @author Tony
  */

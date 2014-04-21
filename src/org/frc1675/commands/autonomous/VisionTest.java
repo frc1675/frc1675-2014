@@ -9,9 +9,7 @@ import org.frc1675.commands.CommandBase;
 
 /**
  * This can be used for vision diagnostics. It is commented out because the
- * camera was unplugged, and it causes hella errors.
- *
- * @author This can be used for vision diagnostics.
+ * camera was unplugged, and it causes errors.
  */
 public class VisionTest extends CommandBase {
 

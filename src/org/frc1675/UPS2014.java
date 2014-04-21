@@ -31,19 +31,17 @@ import org.frc1675.commands.autonomous.noball.ZeroBallAuton;
  * documentation. If you change the name of this class or the package after
  * creating this project, you must also update the manifest file in the resource
  * directory.
- *
- * @author SmartPersonAtWPI
  */
 public class UPS2014 extends IterativeRobot {
+ 
+    Command autonomousCommand;
+    public static NetworkTable table;
+    Solenoid lights = new Solenoid(RobotMap.LIGHTS);
 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
-    Command autonomousCommand;
-    public static NetworkTable table;
-    Solenoid lights = new Solenoid(RobotMap.LIGHTS);
-
     public void robotInit() {
         lights.set(true);
         table = NetworkTable.getTable("dataTable");

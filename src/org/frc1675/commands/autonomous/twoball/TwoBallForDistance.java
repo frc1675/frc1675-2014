@@ -19,8 +19,8 @@ import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 
 /**
  *
- * Use this for a two ball autonomous. This was the first one we wrote, and it
- * requires encoders that we don't have.
+ * Use this for a two ball autonomous. This was the first one we wrote. Requires
+ * encoders.
  *
  * @author Tony
  */

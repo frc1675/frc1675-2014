@@ -17,7 +17,7 @@ import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 
 /**
  * This autonomous mode uses encoders and PID to shoot one ball and drive back
- * to the middle zone.  It'd be really great if we had encoders.  
+ * to the middle zone.
  *
  * @author Tony
  */

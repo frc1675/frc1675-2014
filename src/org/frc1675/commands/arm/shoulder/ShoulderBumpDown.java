@@ -8,7 +8,7 @@ package org.frc1675.commands.arm.shoulder;
 import org.frc1675.commands.CommandBase;
 
 /**
- * This was designed to move the shoulder up a few degrees. It does not work.
+ * This was designed to move the shoulder up a few degrees.
  *
  * @author Tony
  */

@@ -8,9 +8,9 @@ package org.frc1675.commands;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * Tells drive motors to move for a given time and power(kind of, because it
- * gets scaled for acceleration and stuff). Use for autonomous
- *
+ * Tells drive motors to move for a given time and power (scaled for 
+ * acceleration). Use for autonomous control.
+ * 
  * @author Tony
  */
 public class DriveForTime extends CommandBase {
@@ -19,11 +19,11 @@ public class DriveForTime extends CommandBase {
     double time;
     double power;
 
-    public DriveForTime(double seconds, double kindOfLikePower) {
+    public DriveForTime(double time, double power) {
         requires(driveBase);
         timer = new Timer();
-        time = seconds;
-        power = kindOfLikePower;
+        this.time = time;
+        this.power = power;
     }
 
     // Called just before this Command runs the first time

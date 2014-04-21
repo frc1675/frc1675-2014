@@ -21,9 +21,13 @@ public class DriveForDistance extends CommandBase {
     Timer timer;
     double distance;
 
-    public DriveForDistance(double inches) {
+    /**
+     * Create command with the given setpoint
+     * @param distance 
+     */
+    public DriveForDistance(double distance) {
         requires(driveBase);
-        distance = inches;
+        this.distance = distance;
     }
 
     // Called just before this Command runs the first time

@@ -9,8 +9,7 @@ import org.frc1675.RobotMap;
 import org.frc1675.commands.CommandBase;
 
 /**
- * This will wind the winch back until the VEX button is pressed. The encoder
- * didn't work too well.
+ * This will wind the winch back until the limit switch is pressed.
  *
  * @author Tony
  */

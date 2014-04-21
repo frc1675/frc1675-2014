@@ -8,7 +8,7 @@ package org.frc1675.commands;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * Starts compressor working; the code behind the scenes periodically polls
+ * Starts the compressor. The code behind the scenes periodically polls
  * pressure switch and sets relay accordingly
  *
  * @author Tony

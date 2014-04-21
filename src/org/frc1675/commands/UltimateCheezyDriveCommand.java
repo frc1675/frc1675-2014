@@ -7,8 +7,11 @@ package org.frc1675.commands;
 
 /**
  * This class does a whole lot of complex math to make driving feel smoother.
- * Set it as default command, and its control should be the same as CheezyDrive,
- * just better. 254 did it, so we thought we would too.
+ * Set it as default command, and its control should be the same as CheesyDrive,
+ * just better. Based off of 254's implementation.
+ * 
+ * This is designed to be a default subsystem command. It will not stop unless
+ * interrupted.
  *
  * @author Tony
  */

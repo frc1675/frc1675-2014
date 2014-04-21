@@ -20,9 +20,7 @@ public class PuncherDisengage extends CommandBase {
     private static final double TIME_TO_SPIN_MOTORS = .25;
     private static final double PULSE_TIME = .2;
     private static final double PULSE_PERCENTAGE = 1;
-    private static final double POWER_TO_RAMP_TO = .3;
     private Timer timer;
-    private double rampIncrement;
     private double motorPower = START_POWER;
 
     public PuncherDisengage() {
@@ -34,7 +32,6 @@ public class PuncherDisengage extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         timer.start();
-        rampIncrement = (POWER_TO_RAMP_TO - START_POWER) / (50 * TIME_TO_SPIN_MOTORS);
 
     }
 

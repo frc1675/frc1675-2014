@@ -16,8 +16,8 @@ import org.frc1675.commands.arm.shoulder.SetShoulderAuton;
 import org.frc1675.commands.arm.shoulder.StopShoulder;
 
 /**
- * This runs into the low goal and spits a ball in it. Useful for when our
- * shooter breaks. Not as useful for when the shoulder breaks.
+ * This runs into the low goal and spits a ball in it. Useful for if our
+ * shooter breaks.
  *
  * @author Tony
  */

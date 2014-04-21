@@ -8,7 +8,7 @@ package org.frc1675.commands.arm.shoulder;
 import org.frc1675.commands.CommandBase;
 
 /**
- * This sets the shoulder the old way(without doing the weight shift
+ * This sets the shoulder the old way (without doing the weight shift
  * calculation) so that it would still work after that was implemented.
  *
  * @author Tony

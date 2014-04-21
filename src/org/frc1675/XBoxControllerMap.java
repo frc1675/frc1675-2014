@@ -7,8 +7,8 @@ package org.frc1675;
 /**
  * A map of values used by the WPILib Joystick class to interface with an XBox
  * Controller
- *
- * @author josh
+ * 
+ * @author pordonj
  */
 public class XBoxControllerMap {
 
@@ -16,6 +16,7 @@ public class XBoxControllerMap {
      * D-Pad vertical axis
      * Start, Back, and XBox buttons
      */
+    
     //AXES
     //Left analog stick
     public static final int LEFT_X_AXIS = 1;

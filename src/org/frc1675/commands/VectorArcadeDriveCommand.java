@@ -12,6 +12,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * arcade drive. However, it does some really cool math so that you can be at
  * full power and full turning at the same time.
  *
+ * This is designed to be a default subsystem command. It will not stop unless
+ * interrupted.
+ * 
  * @author Elise
  */
 public class VectorArcadeDriveCommand extends CommandBase {

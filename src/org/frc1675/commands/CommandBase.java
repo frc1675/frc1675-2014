@@ -16,13 +16,10 @@ import org.frc1675.subsystems.Shifter;
 import org.frc1675.subsystems.VisionTracking;
 
 /**
- *
  * The base for all commands. All atomic commands should subclass CommandBase.
  * CommandBase stores creates and stores each control system. To access a
  * subsystem elsewhere in your code in your code use
  * CommandBase.exampleSubsystem
- *
- * @author SmartPersonAtWPI
  */
 public abstract class CommandBase extends Command {
 

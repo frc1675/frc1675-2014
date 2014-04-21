@@ -8,9 +8,12 @@ package org.frc1675.commands;
 import org.frc1675.commands.CommandBase;
 
 /**
- * This command drives the robot using the left stick for throttle and the right
- * for turning. 254 did it first, so we named it after them.
+ * This command drives the robot using one stick (left) for throttle and the 
+ * other (right) for turning.
  *
+ * This is designed to be a default subsystem command. It will not stop unless
+ * interrupted.
+ * 
  * @author hemilia_bedilia
  */
 public class CheesyDriveCommand extends CommandBase {

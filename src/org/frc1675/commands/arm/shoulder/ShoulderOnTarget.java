@@ -10,8 +10,7 @@ import org.frc1675.RobotMap;
 import org.frc1675.commands.CommandBase;
 
 /**
- * Checks if the shoulder has reached its target. May be necessary for auton.
- * Does not work.
+ * Checks if the shoulder has reached its target.
  *
  * @author Tony
  */

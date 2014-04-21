@@ -13,7 +13,6 @@ import org.frc1675.commands.CommandBase;
 /**
  * This will set the shoulder to the pickup angle set in RobotMap. This is a
  * different command because we don't want to hold position at the floor.
- * Something about the physics of the pickup mechanism.
  *
  * @author Tony
  */

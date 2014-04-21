@@ -20,7 +20,6 @@ import org.frc1675.commands.CommandBase;
  */
 public class SetShoulder extends CommandBase {
 
-    private double potval;
     private int setpoint;
     private int isGoingOverWeightShift;
     Timer timer;

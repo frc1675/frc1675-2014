@@ -10,7 +10,7 @@ import org.frc1675.commands.CommandBase;
 
 /**
  * Set as initDefaultCommand. Will poll operator left y periodically and set
- * shoulder motor to that value.  Its a manual override.
+ * shoulder motor to that value.  Used for manual override.
  *
  * @author Tony
  */

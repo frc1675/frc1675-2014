@@ -16,8 +16,8 @@ import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 
 /**
  * This command group takes in a time, and waits until that time in autonomous
- * to shoot, disregarding anything else. Useful for a 2 ball when theres a bunch
- * of stuff going on at once and we want to be sure our ball gets off.
+ * to shoot, disregarding anything else. Used for a 2 ball when there's a 
+ * bunch of stuff going on at once and we want to be sure our ball gets off.
  *
  * @author Tony
  */

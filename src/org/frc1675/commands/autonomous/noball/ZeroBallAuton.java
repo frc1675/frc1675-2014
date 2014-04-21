@@ -11,9 +11,7 @@ import org.frc1675.commands.PostShoot;
 
 /**
  * Our shooter was working very poorly at Milwaukee. We wrote this so our
- * partner could do a two ball and we could get out of the way and mobility. It
- * does not account for that field issue with the teleopDisabled in the middle
- * of auton.
+ * partner could do a two ball and we could get out of the way and mobility.
  *
  * @author Tony
  */
