@@ -19,8 +19,6 @@ import org.frc1675.commands.arm.shoulder.SetShoulder;
 import org.frc1675.commands.arm.shoulder.SetShoulderAuton;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
 import org.frc1675.commands.arm.shoulder.ShoulderOnTarget;
-import org.frc1675.commands.autonomous.ShootAfterTime;
-
 /**
  * This auton moves while shooting the first ball, stretching out the arc so it
  * more consistently goes far enough. Needs Tuning!
@@ -32,11 +30,10 @@ public class TwoBallMovingAuton extends CommandGroup {
     private static final double TIME_TO_SUCK_BALL_FROM_TOP = 1; //+.7
     private static final double TIME_FROM_START_TO_SHOOTING_ANGLE = 1.0;
     private static final double TIME_FROM_HOME_TO_SHOOTING_ANGLE = 2.0;
-    private static final double TIME_TO_DRIVE_TO_PICKUP = 1.2; //+.6
+    private static final double TIME_TO_DRIVE_TO_PICKUP = 1.0; //+.6
     private static final double PICKUP_DRIVE_POWER = .5;
 
     public TwoBallMovingAuton() {
-        addParallel(new ShootAfterTime(9.5));
         addParallel(new ShiftLow());
         addParallel(new RollerIntake());
         addParallel(new PostShoot());
@@ -51,9 +48,12 @@ public class TwoBallMovingAuton extends CommandGroup {
         addParallel(new RollerIntake());
         addParallel(new SetShoulderToPickup());
         addSequential(new Wait(.5));
-        addSequential(new DriveForTime(TIME_TO_DRIVE_TO_PICKUP, .75));
+        addSequential(new DriveForTime(TIME_TO_DRIVE_TO_PICKUP, .6));
         addSequential(new Wait(RobotMap.TIME_TO_PICK_UP_BALL));
         addParallel(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_FORWARD + 1, -.6));
         addParallel(new SetShoulderAuton(RobotMap.BACKWARD_TWO_BALL_ANGLE + 4));
+        addSequential(new ShoulderOnTarget());
+        addSequential(new Shoot());
+        addSequential(new PostShoot());
     }
 }

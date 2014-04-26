@@ -6,8 +6,12 @@
 package org.frc1675.commands.autonomous.noball;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.frc1675.RobotMap;
 import org.frc1675.commands.DriveForTime;
 import org.frc1675.commands.PostShoot;
+import org.frc1675.commands.ShiftLow;
+import org.frc1675.commands.arm.roller.RollerStop;
+import org.frc1675.commands.arm.shoulder.SetShoulder;
 
 /**
  * Our shooter was working very poorly at Milwaukee. We wrote this so our
@@ -18,6 +22,7 @@ import org.frc1675.commands.PostShoot;
 public class ZeroBallAuton extends CommandGroup {
 
     public ZeroBallAuton() {
+        addSequential(new ShiftLow());
         addSequential(new DriveForTime(2, 1));
         addSequential(new PostShoot());
     }

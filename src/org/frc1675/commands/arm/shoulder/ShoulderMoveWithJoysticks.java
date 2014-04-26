@@ -30,8 +30,10 @@ public class ShoulderMoveWithJoysticks extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        shoulder.rawMoveShoulder(oi.getOperatorLeftY());
-        System.out.println("ShoulderPotValue" +  shoulder.pot.get());
+        if (!shoulder.getPIDController().isEnable()){
+            shoulder.rawMoveShoulder(oi.getOperatorLeftY());
+            System.out.println("ShoulderPotValue" +  shoulder.pot.get());
+        }
         //System.out.println("ShoulderWithJoysticks " + shoulder.pot.get());
 
     }

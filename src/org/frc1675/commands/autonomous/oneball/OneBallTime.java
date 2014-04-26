@@ -18,6 +18,7 @@ import org.frc1675.commands.arm.roller.RollerStop;
 import org.frc1675.commands.arm.shoulder.SetShoulder;
 import org.frc1675.commands.arm.shoulder.SetShoulderAuton;
 import org.frc1675.commands.arm.shoulder.SetShoulderToPickup;
+import org.frc1675.commands.arm.shoulder.ShoulderOnTarget;
 
 /**
  * This autonomous mode uses timers to shoot one ball and drive back to the
@@ -34,9 +35,10 @@ public class OneBallTime extends CommandGroup {
         addSequential(new Wait(1.2));
         addParallel(new ShiftLow());
         addParallel(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_FORWARD, 1.0));
-        addParallel(new Wait(TIME_BEFORE_SHOULDER));
+        //addParallel(new Wait(TIME_BEFORE_SHOULDER));  //this shouldn't do anything
         addParallel(new SetShoulderAuton(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
-        addSequential(new Wait(RobotMap.TIME_TO_REACH_SHOOT-TIME_BEFORE_SHOULDER));
+        //addSequential(new Wait(RobotMap.TIME_TO_REACH_SHOOT-TIME_BEFORE_SHOULDER));
+        addSequential(new ShoulderOnTarget());
         addParallel(new RollerStop());
         addSequential(new Shoot());
         addParallel(new SetShoulderToPickup());

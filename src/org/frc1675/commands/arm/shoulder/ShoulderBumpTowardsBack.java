@@ -12,34 +12,34 @@ import org.frc1675.commands.CommandBase;
  *
  * @author Tony
  */
-public class ShoulderBumpDown extends CommandBase {
+public class ShoulderBumpTowardsBack extends CommandBase {
 
-    public ShoulderBumpDown() {
+    private long timeStart;
+    
+    public ShoulderBumpTowardsBack() {
         requires(shoulder);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        shoulder.bumpTowardsBack();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        shoulder.bumpDown();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return shoulder.potIsBad();
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        shoulder.stopAndReset();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        end();
     }
 }

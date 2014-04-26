@@ -20,7 +20,7 @@ import org.frc1675.commands.arm.shoulder.ShoulderMoveWithJoysticks;
  * @author josh
  */
 public class Shoulder extends PIDSubsystem {
-    private static final double BUMP = 5;
+    private static final double BUMP = 30;
     private static final int ABSOLUTE_TOLERANCE = 10;  //degrees
     private static final int POT_SCALE = 50;
     public AnalogPotentiometer pot;
@@ -75,15 +75,17 @@ public class Shoulder extends PIDSubsystem {
             return 1; //going to forwards
         }else{
             return 0; //staying same side
-        }
-        
+        }      
     }
-    public void bumpUp(){
+    public void bumpTowardsHome(){
+        stopAndReset();
         setpoint += BUMP;
-        this.setSetpoint(setpoint);
-        this.enable();
+        if (setpoint > 0 && setpoint<256){
+            this.setSetpoint(setpoint);
+            this.enable();
+        }
     }
-    public void bumpDown(){
+    public void bumpTowardsBack(){
         setpoint -= BUMP;
         this.setSetpoint(setpoint);
         this.enable();

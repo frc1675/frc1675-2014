@@ -60,7 +60,7 @@ public class RobotMap {
     public static final double SHOULDER_P = .035;
     public static final double SHOULDER_I = .0001;
     public static final double SHOULDER_D = .038;
-    public static final double SHOULDER_PID_TARGET_TIME = .3;
+    public static final double SHOULDER_PID_TARGET_TIME = 1;
 
 
     public static final double DRIVE_ENCODER_P = 1;
@@ -88,7 +88,7 @@ public class RobotMap {
     public static final double DISTANCE_EXTRA_TO_DRIVE_BACK = 15; //inches
     public static final double EXTRA_DISTANCE_BACK_TO_BALL = 5; //inches
     
-    public static final double TIME_TO_PICK_UP_BALL = .7; //seconds
+    public static final double TIME_TO_PICK_UP_BALL = .6; //seconds
     public static final double SUCK_TIME_FOR_BALL_ON_TOP = .7;
 
     public static final double TIME_TO_REACH_SHOOT = 1.70;   //2

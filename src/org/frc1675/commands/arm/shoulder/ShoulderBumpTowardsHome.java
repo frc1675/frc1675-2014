@@ -12,15 +12,16 @@ import org.frc1675.commands.CommandBase;
  *
  * @author Tony
  */
-public class ShoulderBumpUp extends CommandBase {
+public class ShoulderBumpTowardsHome extends CommandBase {
 
-    public ShoulderBumpUp() {
+    public ShoulderBumpTowardsHome() {
         requires(shoulder);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        shoulder.bumpUp();
+        shoulder.bumpTowardsHome();
+        System.out.println("ShoulderBumpTowardsHome started");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -29,17 +30,15 @@ public class ShoulderBumpUp extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return shoulder.potIsBad();
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        shoulder.stopAndReset();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        end();
     }
 }

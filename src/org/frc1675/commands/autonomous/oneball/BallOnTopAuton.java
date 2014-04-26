@@ -8,6 +8,7 @@ package org.frc1675.commands.autonomous.oneball;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.RobotMap;
 import org.frc1675.commands.PostShoot;
+import org.frc1675.commands.ShiftLow;
 import org.frc1675.commands.arm.puncher.PuncherGoToLimit;
 import org.frc1675.commands.arm.roller.RollForTime;
 
@@ -18,6 +19,7 @@ import org.frc1675.commands.arm.roller.RollForTime;
 public class BallOnTopAuton extends CommandGroup {
 
     public BallOnTopAuton() {
+        addSequential(new ShiftLow());
         addSequential(new PostShoot());
         addSequential(new RollForTime(RobotMap.SUCK_TIME_FOR_BALL_ON_TOP, true));
         addSequential(new OneBallTime());
