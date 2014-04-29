@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands;
-
+package org.frc1675.commands.drive;
 import org.frc1675.commands.CommandBase;
+
 
 /**
  * This command drives the robot using one stick (left) for throttle and the 

@@ -6,7 +6,7 @@
 package org.frc1675.commands.autonomous.noball;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.frc1675.commands.DriveForTime;
+import org.frc1675.commands.autonomous.DriveForTime;
 import org.frc1675.commands.Wait;
 
 /**

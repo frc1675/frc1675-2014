@@ -5,7 +5,6 @@
 package org.frc1675.oi.buttons;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.buttons.Button;
 import org.frc1675.RobotMap;
 import org.frc1675.XBoxControllerMap;
 

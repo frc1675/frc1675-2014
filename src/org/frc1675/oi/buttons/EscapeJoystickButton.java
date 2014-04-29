@@ -5,9 +5,7 @@ package org.frc1675.oi.buttons;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**

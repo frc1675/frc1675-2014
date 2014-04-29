@@ -5,8 +5,6 @@
 package org.frc1675.oi;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.frc1675.oi.buttons.DPadButton;
 import org.frc1675.oi.buttons.RebindableJoystickButton;
 import org.frc1675.oi.buttons.TriggerButton;

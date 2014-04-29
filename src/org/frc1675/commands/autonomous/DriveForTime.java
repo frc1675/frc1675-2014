@@ -3,48 +3,52 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands;
+package org.frc1675.commands.autonomous;
 
 import edu.wpi.first.wpilibj.Timer;
-import org.frc1675.RobotMap;
+import org.frc1675.commands.CommandBase;
 
 /**
- * This shifts to the high gear, solenoid specified in robotMap
- * @author Tony 
+ * Tells drive motors to move for a given time and power (scaled for 
+ * acceleration). Use for autonomous control.
+ * 
+ * @author Tony
  */
-public class ShiftHigh extends CommandBase {
+public class DriveForTime extends CommandBase {
 
-    private Timer timer;
+    Timer timer;
+    double time;
+    double power;
 
-    public ShiftHigh() {
-        requires(shifter);
+    public DriveForTime(double time, double power) {
+        requires(driveBase);
         timer = new Timer();
+        this.time = time;
+        this.power = power;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        driveBase.setLeftMotors(0);
+        driveBase.setRightMotors(0);
         timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        shifter.shiftToHighGear();
+        driveBase.setLeftMotors(-power);
+        driveBase.setRightMotors(-power);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (timer.get() > RobotMap.PNEUMATIC_FIRE_TIME) {
-            return true;
-        } else {
-            return false;
-        }
-
+        return (timer.get() > time);
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        timer.stop();
-        timer.reset();
+        driveBase.setLeftMotors(0);
+        driveBase.setRightMotors(0);
     }
 
     // Called when another command which requires one or more of the same

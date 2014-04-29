@@ -6,12 +6,9 @@
 package org.frc1675.commands.autonomous.noball;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import org.frc1675.RobotMap;
-import org.frc1675.commands.DriveForTime;
-import org.frc1675.commands.PostShoot;
-import org.frc1675.commands.ShiftLow;
-import org.frc1675.commands.arm.roller.RollerStop;
-import org.frc1675.commands.arm.shoulder.SetShoulder;
+import org.frc1675.commands.autonomous.DriveForTime;
+import org.frc1675.commands.arm.puncher.shootsequences.PostShoot;
+import org.frc1675.commands.drive.ShiftLow;
 
 /**
  * Our shooter was working very poorly at Milwaukee. We wrote this so our

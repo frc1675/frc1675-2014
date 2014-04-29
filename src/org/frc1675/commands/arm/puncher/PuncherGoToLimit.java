@@ -5,7 +5,6 @@
  */
 package org.frc1675.commands.arm.puncher;
 
-import org.frc1675.RobotMap;
 import org.frc1675.commands.CommandBase;
 
 /**

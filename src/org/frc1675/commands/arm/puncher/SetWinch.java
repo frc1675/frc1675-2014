@@ -6,7 +6,6 @@
 package org.frc1675.commands.arm.puncher;
 
 import edu.wpi.first.wpilibj.Timer;
-import org.frc1675.RobotMap;
 import org.frc1675.commands.CommandBase;
 
 /**

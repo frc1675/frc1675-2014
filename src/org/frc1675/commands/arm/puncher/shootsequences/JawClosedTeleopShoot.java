@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands;
+package org.frc1675.commands.arm.puncher.shootsequences;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.frc1675.commands.Wait;
 import org.frc1675.RobotMap;
 import org.frc1675.commands.arm.puncher.PuncherDisengage;
 

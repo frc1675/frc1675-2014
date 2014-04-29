@@ -6,7 +6,6 @@
 package org.frc1675.commands;
 
 import edu.wpi.first.wpilibj.Timer;
-import org.frc1675.commands.CommandBase;
 
 /**
  * Use in command groups when you need a pause between commands.

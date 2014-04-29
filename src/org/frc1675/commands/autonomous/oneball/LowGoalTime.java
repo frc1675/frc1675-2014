@@ -7,11 +7,10 @@ package org.frc1675.commands.autonomous.oneball;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.frc1675.RobotMap;
-import org.frc1675.commands.DriveForTime;
-import org.frc1675.commands.ShiftLow;
+import org.frc1675.commands.autonomous.DriveForTime;
+import org.frc1675.commands.drive.ShiftLow;
 import org.frc1675.commands.Wait;
 import org.frc1675.commands.arm.roller.RollForTime;
-import org.frc1675.commands.arm.shoulder.SetShoulder;
 import org.frc1675.commands.arm.shoulder.SetShoulderAuton;
 import org.frc1675.commands.arm.shoulder.StopShoulder;
 

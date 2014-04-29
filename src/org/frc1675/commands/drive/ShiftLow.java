@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands;
+package org.frc1675.commands.drive;
 import edu.wpi.first.wpilibj.Timer;
 import org.frc1675.RobotMap;
+import org.frc1675.commands.CommandBase;
 
 /**
  * Shifts to low gear, solenoid specified in robotMap

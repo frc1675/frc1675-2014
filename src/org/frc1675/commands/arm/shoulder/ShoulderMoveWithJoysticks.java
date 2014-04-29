@@ -5,7 +5,6 @@
  */
 package org.frc1675.commands.arm.shoulder;
 
-import org.frc1675.UPS2014;
 import org.frc1675.commands.CommandBase;
 
 /**

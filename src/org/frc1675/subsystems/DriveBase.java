@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.frc1675.RobotMap;
-import org.frc1675.commands.CheesyDriveCommand;
-import org.frc1675.commands.TankDriveCommand;
-import org.frc1675.commands.UltimateCheezyDriveCommand;
+import org.frc1675.commands.drive.CheesyDriveCommand;
+import org.frc1675.commands.drive.TankDriveCommand;
+import org.frc1675.commands.drive.UltimateCheezyDriveCommand;
 
 /**
  *
