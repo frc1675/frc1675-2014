@@ -141,9 +141,9 @@ public class OI {
         operatorRightTriggerAndLeftBumper.setDefaultButtonBindings(new SetShoulderToPickup(), null, null);
         operatorRightTriggerAndLeftBumper.setEscapeButtonBindings(new SetShoulder(RobotMap.BACKWARD_SHOOT_ANGLE), null, null);
 
-        operatorLeftTriggerAndRightBumper.setDefaultButtonBindings(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE), null, null);
+        operatorLeftTriggerAndRightBumper.setDefaultButtonBindings(new SetShoulder(RobotMap.FORWARD_SHOOT_ANGLE), null, null);
         operatorLeftTriggerAndRightBumper.setEscapeButtonBindings(new SetShoulder(RobotMap.STARTING_ANGLE), null, null);
-        operatorRightTriggerAndRightBumper.setDefaultButtonBindings(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE), null, null);
+        operatorRightTriggerAndRightBumper.setDefaultButtonBindings(new SetShoulder(RobotMap.FORWARD_SHOOT_ANGLE), null, null);
         operatorRightTriggerAndRightBumper.setEscapeButtonBindings(new SetShoulder(RobotMap.TRUSS_ANGLE), null, null);
 
         operatorLeftTriggerAndRightDPad.setDefaultButtonBindings(null, new RollerEject(), null);

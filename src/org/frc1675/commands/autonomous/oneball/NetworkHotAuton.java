@@ -27,7 +27,7 @@ public class NetworkHotAuton extends CommandGroup {
     public NetworkHotAuton() {
         addSequential(new ShiftLow());
         addSequential(new Wait(.25));
-        addParallel(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
+        addParallel(new SetShoulder(RobotMap.FORWARD_SHOOT_ANGLE));
         addParallel(new DriveForDistance(RobotMap.DISTANCE_TO_SHOT));
         addSequential(new NetworkCheckForTarget());
         addSequential(new Shoot());

@@ -29,7 +29,7 @@ public class GoalColdAtFirstAuton extends CommandGroup {
 
     public GoalColdAtFirstAuton() {
         addParallel(new ShiftLow());
-        addParallel(new SetShoulder(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
+        addParallel(new SetShoulder(RobotMap.FORWARD_SHOOT_ANGLE));
         addSequential((new Wait(TIME_TO_WAIT_FOR_HOT)));
         addParallel(new DriveForTime(TIME_TO_REACH_SHOOT + EXTRA_TIME_TO_DRIVE_FORWARD, 1.0));
         addSequential(new Wait(TIME_TO_REACH_SHOOT));

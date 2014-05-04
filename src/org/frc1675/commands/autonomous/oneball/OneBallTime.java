@@ -34,9 +34,8 @@ public class OneBallTime extends CommandGroup {
         addParallel(new ShiftLow());
         addParallel(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_FORWARD, 1.0));
         //addParallel(new Wait(TIME_BEFORE_SHOULDER));  //this shouldn't do anything
-        addParallel(new SetShoulderAuton(RobotMap.STATIC_FORWARD_SHOT_ANGLE));
-        //addSequential(new Wait(RobotMap.TIME_TO_REACH_SHOOT-TIME_BEFORE_SHOULDER));
-        addSequential(new ShoulderOnTarget());
+        addParallel(new SetShoulderAuton(RobotMap.FORWARD_SHOOT_ANGLE));
+        addSequential(new Wait(RobotMap.TIME_TO_REACH_SHOOT-TIME_BEFORE_SHOULDER));
         addParallel(new RollerStop());
         addSequential(new Shoot());
         addParallel(new SetShoulderToPickup());

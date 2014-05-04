@@ -24,7 +24,7 @@ public class LowGoalTime extends CommandGroup {
 
     public LowGoalTime() {
         addParallel(new ShiftLow());
-        addParallel(new SetShoulderAuton((RobotMap.STARTING_ANGLE + RobotMap.STATIC_FORWARD_SHOT_ANGLE) / 2));
+        addParallel(new SetShoulderAuton((RobotMap.STARTING_ANGLE + RobotMap.FORWARD_SHOOT_ANGLE) / 2));
         addSequential(new DriveForTime(3, 1));
         addParallel(new StopShoulder());
         addSequential(new Wait(2));

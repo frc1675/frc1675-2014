@@ -18,7 +18,7 @@ import org.frc1675.commands.drive.UltimateCheezyDriveCommand;
 
 /**
  *
- * @author Daniel &    Elise    Tony
+ * @author Daniel &     Elise    Tony
  */
 public class DriveBase extends Subsystem {
 
