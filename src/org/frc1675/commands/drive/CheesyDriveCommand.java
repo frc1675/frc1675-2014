@@ -54,8 +54,8 @@ public class CheesyDriveCommand extends CommandBase {
             }
         }
 
-        driveBase.setLeftMotors(left);
-        driveBase.setRightMotors(right);
+        driveBase.setLeftMotorsWithAcceleration(left);
+        driveBase.setRightMotorsWithAcceleration(right);        
     }
 
     // Make this return true when this Command no longer needs to run execute()

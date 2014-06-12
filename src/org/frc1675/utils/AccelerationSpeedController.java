@@ -42,7 +42,7 @@ public class AccelerationSpeedController{
         //rampTime affects the amount of time it takes to ramp, but does not directly correlate.
     }
     
-    public void set(double speed) {
+    public void accelerate(double speed) {
         difference = speed - previousPower;
         accelerationDebt = accelerationDebt + difference; //AccelerationDebts has a maximum size?
         
@@ -74,6 +74,9 @@ public class AccelerationSpeedController{
         speedController.set(motorPower);
     }
     
+    public void set(double power){
+        speedController.set(power);        
+    }
     
     
 }
