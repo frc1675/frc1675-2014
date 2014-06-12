@@ -1,4 +1,4 @@
-/*
+/* Drivebase
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -6,66 +6,40 @@
 package org.frc1675.subsystems;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.frc1675.RobotMap;
 import org.frc1675.commands.drive.CheesyDriveCommand;
-import org.frc1675.commands.drive.TankDriveCommand;
-import org.frc1675.commands.drive.UltimateCheezyDriveCommand;
+import org.frc1675.utils.AccelerationSpeedController;
 
 /**
  *
- * @author Daniel &     Elise    Tony
+ * @author Daniel &    Elise    Tony
  */
 public class DriveBase extends Subsystem {
 
-    SpeedController leftFrontMotor, rightFrontMotor, leftBackMotor, rightBackMotor;
-    Timer leftTimer;
-    Timer rightTimer;
+    AccelerationSpeedController leftFrontMotor, rightFrontMotor, leftBackMotor, rightBackMotor;
     SideEncoder rightEncoder;
     SideEncoder leftEncoder;
 
     public DriveBase(double driveEncoderP, double driveEncoderI, double driveEncoderD) {
         leftEncoder = new SideEncoder(driveEncoderP, driveEncoderI, driveEncoderD, RobotMap.DRIVE_LEFT_ENCODER_CHANNEL_A, RobotMap.DRIVE_LEFT_ENCODER_CHANNEL_B, SideEncoder.LEFT);
         rightEncoder = new SideEncoder(driveEncoderP, driveEncoderI, driveEncoderD, RobotMap.DRIVE_RIGHT_ENCODER_CHANNEL_A, RobotMap.DRIVE_RIGHT_ENCODER_CHANNEL_B, SideEncoder.RIGHT);
-        leftFrontMotor = new Talon(RobotMap.DriveConstants.LEFT_FRONT_MOTOR);
-        leftBackMotor = new Talon(RobotMap.DriveConstants.LEFT_BACK_MOTOR);
-        rightFrontMotor = new Talon(RobotMap.DriveConstants.RIGHT_FRONT_MOTOR);
-        rightBackMotor = new Talon(RobotMap.DriveConstants.RIGHT_BACK_MOTOR);
-        leftTimer = new Timer();
-        leftTimer.start();
-        rightTimer = new Timer();
-        rightTimer.start();
+        leftFrontMotor = new AccelerationSpeedController(new Talon(RobotMap.DriveConstants.LEFT_FRONT_MOTOR));
+        leftBackMotor = new AccelerationSpeedController(new Talon(RobotMap.DriveConstants.LEFT_BACK_MOTOR));
+        rightFrontMotor = new AccelerationSpeedController(new Talon(RobotMap.DriveConstants.RIGHT_FRONT_MOTOR));
+        rightBackMotor = new AccelerationSpeedController(new Talon(RobotMap.DriveConstants.RIGHT_BACK_MOTOR));
     }
 
-    public void setLeftMotors(double power) {
-        power = adjustForDeadZone(power);
-
-        if (power == 0.0) {
-            leftTimer.reset();
-        } else if (leftTimer.get() < RobotMap.DriveConstants.RAMP_TIME) {
-            power = power * (leftTimer.get() / RobotMap.DriveConstants.RAMP_TIME);
-        }
-        //Acceleration code scales power with timer for left side.
-
-        leftFrontMotor.set(-power);
-        leftBackMotor.set(-power);
+    public void setLeftMotors(double powerFromController) {
+        leftFrontMotor.set(-powerFromController);
+        leftBackMotor.set(-powerFromController);
     }
 
-    public void setRightMotors(double power) {
-        power = adjustForDeadZone(power);
-
-        if (power == 0.0) {
-            rightTimer.reset();
-        } else if (rightTimer.get() < RobotMap.DriveConstants.RAMP_TIME) {
-            power = power * (rightTimer.get() / RobotMap.DriveConstants.RAMP_TIME);
-        }
-
-        rightFrontMotor.set(power);
-        rightBackMotor.set(power);
+    public void setRightMotors(double powerFromController) {
+        rightFrontMotor.set(powerFromController);
+        rightBackMotor.set(powerFromController);
     }
 
     public double adjustForDeadZone(double controllerInput) {
@@ -106,11 +80,12 @@ public class DriveBase extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
         //setDefaultCommand(new ArcadeDriveCommand());
-        //setDefaultCommand(new TankDriveCommand());
+//        setDefaultCommand(new TankDriveCommand());
+//        setDefaultCommand(CommandBase.thresholdFinder);
         setDefaultCommand(new CheesyDriveCommand());
         //setDefaultCommand(new UltimateCheezyDriveCommand(.5, 4));
     }
-
+    
     public class SideEncoder extends PIDSubsystem {
 
         public static final boolean LEFT = true;
