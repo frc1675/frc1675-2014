@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.frc1675.oi.XBoxControllerButtons;
 import org.frc1675.commands.autonomous.noball.BabbysFirstAuton;
 import org.frc1675.commands.CommandBase;
@@ -37,7 +38,6 @@ public class UPS2014 extends IterativeRobot {
     Command autonomousCommand;
     public static NetworkTable table;
     Solenoid lights = new Solenoid(RobotMap.LIGHTS);
-
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -45,14 +45,18 @@ public class UPS2014 extends IterativeRobot {
     public void robotInit() {
         lights.set(true);
         table = NetworkTable.getTable("dataTable");
-
+        SmartDashboard.putNumber("ShoulderP", RobotMap.SHOULDER_P);
+        SmartDashboard.putNumber("ShoulderI", RobotMap.SHOULDER_I);
+        SmartDashboard.putNumber("ShoulderD", RobotMap.SHOULDER_D);
+        
         //autonomousCommand = new BabbysFirstAuton();
         //autonomousCommand = new ZeroBallAuton();
         //autonomousCommand = new ShootFromStoppedAuton();
-        //autonomousCommand = new OneBallTime();
+        autonomousCommand = new OneBallTime();
         //autonomousCommand = new LowGoalTime();
         //autonomousCommand = new TwoBall();
-        autonomousCommand = new TwoBallHighTensionAuton();
+        //autonomousCommand = new TwoBallHighTensionAuton();
+        //autonomousCommand = new TwoBallArmSensingTunableAuton();
 
         XBoxControllerButtons.init();
         CommandBase.init();

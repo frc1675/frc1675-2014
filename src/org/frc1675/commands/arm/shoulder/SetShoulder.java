@@ -6,6 +6,7 @@
 package org.frc1675.commands.arm.shoulder;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.frc1675.commands.CommandBase;
 
 /**
@@ -25,7 +26,7 @@ public class SetShoulder extends CommandBase {
     private static final double FORWARD_STOP_ANGLE = 145;
     private static final double BACKWARD_STOP_ANGLE = 105;
     private static final double STOP_TOLERANCE = 5;
-    private static final double NEW_POWER = .5;
+    private static final double NEW_POWER = 1;
 
     public SetShoulder(int angle) {
         requires(shoulder);

@@ -6,6 +6,7 @@
 package org.frc1675.commands.arm.shoulder;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.frc1675.RobotMap;
 import org.frc1675.UPS2014;
 import org.frc1675.commands.CommandBase;

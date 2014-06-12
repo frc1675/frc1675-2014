@@ -58,9 +58,9 @@ public class RobotMap {
 
     //PID
     public static final double SHOULDER_P = .035;
-    public static final double SHOULDER_I = .0001;
-    public static final double SHOULDER_D = .038;
-    public static final double SHOULDER_PID_TARGET_TIME = 1;
+    public static final double SHOULDER_I = .000003;
+    public static final double SHOULDER_D = .045;
+    public static final double SHOULDER_PID_TARGET_TIME = .4;
 
 
     public static final double DRIVE_ENCODER_P = 1;
@@ -69,10 +69,10 @@ public class RobotMap {
     public static final double DRIVE_ENCODER_PID_TARGET_TIME = .25;
 
 //setpoints
-    public static final int FLOOR_ANGLE = 252;  //degrees
+    public static final int FLOOR_ANGLE = 251;  //degrees
     public static final int FORWARD_SHOOT_ANGLE = 183; //High Tension
     //public static final int FORWARD_SHOOT_ANGLE = 184; Practice Bot High Tension
-    public static final int BACKWARD_SHOOT_ANGLE = 69;
+    public static final int BACKWARD_SHOOT_ANGLE = 70;
     public static final int BACKWARD_TWO_BALL_ANGLE = 68;
     public static final int STARTING_ANGLE = 137;
     public static double STRAIGHT_UP_ANGLE = 125;

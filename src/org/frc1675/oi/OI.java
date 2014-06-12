@@ -3,6 +3,7 @@ package org.frc1675.oi;
 import org.frc1675.oi.buttons.EscapeJoystickButton;
 import org.frc1675.RobotMap;
 import org.frc1675.XBoxControllerMap;
+import org.frc1675.commands.ResetPid;
 import org.frc1675.commands.autonomous.noball.BabbysFirstAuton;
 import org.frc1675.commands.arm.puncher.shootsequences.JawClosedTeleopShoot;
 import org.frc1675.commands.drive.ShiftHigh;
@@ -109,12 +110,12 @@ public class OI {
         XBoxControllerButtons.driverRightBumper.whenReleased(new ShiftLow());
         XBoxControllerButtons.driverY.whenPressed(new PuncherDisengage());
         XBoxControllerButtons.driverB.whenPressed(new PuncherEngage());
-        XBoxControllerButtons.driverX.whenPressed(new ZeroBallAuton());
+
 
         XBoxControllerButtons.operatorDPadLeft.whileHeld(new RollerIntake());
         XBoxControllerButtons.operatorDPadRight.whileHeld(new RollerEject());
-        XBoxControllerButtons.operatorStart.whenPressed(new SetShoulder(RobotMap.BACKWARD_SHOOT_ANGLE));
-        XBoxControllerButtons.operatorBack.whenPressed(new StopShoulder());
+        XBoxControllerButtons.operatorStart.whenPressed(new ResetPid());
+        XBoxControllerButtons.operatorBack.whenPressed(new ResetPid());
 
         operatorLeftTriggerAndX.setDefaultButtonBindings(new JawOpen(), null, null);
         operatorLeftTriggerAndX.setEscapeButtonBindings(new PuncherDisengage(), null, null);

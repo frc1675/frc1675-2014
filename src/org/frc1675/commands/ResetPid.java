@@ -3,49 +3,49 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.frc1675.commands.arm.shoulder;
+package org.frc1675.commands;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.frc1675.UPS2014;
-import org.frc1675.commands.CommandBase;
-
+import org.frc1675.RobotMap;
 
 /**
- * When this is called, the shoulder will hold position wherever it happens to
- * be.
  *
  * @author Tony
  */
-public class SetShoulderToCurrentPosition extends CommandBase {
-
-    public SetShoulderToCurrentPosition() {
+public class ResetPid extends CommandBase {
+    double p, i, d;
+    public ResetPid() {
         requires(shoulder);
+                // Use requires() here to declare subsystem dependencies
+                // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        shoulder.setPIDSetpoint(shoulder.pot.get());
+        p = SmartDashboard.getNumber("ShoulderP", RobotMap.SHOULDER_P);
+        i = SmartDashboard.getNumber("ShoulderI", RobotMap.SHOULDER_I);
+        d = SmartDashboard.getNumber("ShoulderD", RobotMap.SHOULDER_D);
+        System.out.println("pTheoretical = " + p);
+        shoulder.stopAndReset();
+        shoulder.getPIDController().setPID(p, i, d);
+        System.out.println("pActual = " + shoulder.getPIDController().getP());
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println("SetShoulder: " + shoulder.pot.get());
-        UPS2014.table.putNumber("ShoulderPotValue", shoulder.pot.get());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return shoulder.potIsBad();
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        shoulder.stopAndReset();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        end();
     }
 }

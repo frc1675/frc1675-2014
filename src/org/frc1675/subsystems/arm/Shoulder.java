@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.frc1675.RobotMap;
 import org.frc1675.commands.arm.shoulder.ShoulderMoveWithJoysticks;
 
@@ -18,6 +19,7 @@ import org.frc1675.commands.arm.shoulder.ShoulderMoveWithJoysticks;
  *
  * @author josh
  */
+
 public class Shoulder extends PIDSubsystem {
     private static final double BUMP = 30;
     private static final int ABSOLUTE_TOLERANCE = 10;  //degrees
@@ -38,10 +40,10 @@ public class Shoulder extends PIDSubsystem {
     }
 
     public void setPower(double setpoint){
-        if(Math.abs(setpoint - pot.get())>40){
+        if(Math.abs(setpoint - pot.get())>50){
             power = 1.0;
         }else{
-            power = .60;
+            power = .70;
         }
     }
     
@@ -58,6 +60,9 @@ public class Shoulder extends PIDSubsystem {
     }
 
     protected void usePIDOutput(double d) {
+        SmartDashboard.putNumber("Shoulder", pot.get());
+        SmartDashboard.putNumber("Shoulder Error", pot.get() -this.getSetpoint());
+        SmartDashboard.putBoolean("Shoulder Is on target", Math.abs(pot.get() -this.getSetpoint())<1.675);
         motor.set(d*power);
     }
 
