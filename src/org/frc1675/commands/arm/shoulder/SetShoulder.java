@@ -31,8 +31,8 @@ public class SetShoulder extends CommandBase {
     public SetShoulder(int angle) {
         requires(shoulder);
         setpoint = angle;
-        timer = new Timer();        
-    //@param The angle for the arm to go to
+        timer = new Timer();
+        //@param The angle for the arm to go to
     }
 
     // Called just before this Command runs the first time
@@ -72,6 +72,12 @@ public class SetShoulder extends CommandBase {
         }
     }
 
+    public void setSetPointAngle(int angle) {
+        this.setpoint = angle;
+        shoulder.setPIDSetpoint(setpoint);
+        isGoingOverWeightShift = shoulder.isGoingOverWeightShift();
+    }
+
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return shoulder.potIsBad();
@@ -85,6 +91,10 @@ public class SetShoulder extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        end();
+    }
+
+    public void stop() {
         end();
     }
 }

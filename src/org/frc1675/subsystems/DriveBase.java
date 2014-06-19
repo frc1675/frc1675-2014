@@ -15,11 +15,11 @@ import org.frc1675.utils.AccelerationSpeedController;
 
 /**
  *
- * @author Daniel &    Elise    Tony
+ * @author Daniel & Elise Tony
  */
 public class DriveBase extends Subsystem {
 
-    AccelerationSpeedController leftFrontMotor, rightFrontMotor, leftBackMotor, rightBackMotor;    
+    AccelerationSpeedController leftFrontMotor, rightFrontMotor, leftBackMotor, rightBackMotor;
     SideEncoder rightEncoder;
     SideEncoder leftEncoder;
 
@@ -31,25 +31,25 @@ public class DriveBase extends Subsystem {
         rightFrontMotor = new AccelerationSpeedController(new Talon(RobotMap.DriveConstants.RIGHT_FRONT_MOTOR));
         rightBackMotor = new AccelerationSpeedController(new Talon(RobotMap.DriveConstants.RIGHT_BACK_MOTOR));
     }
-    
-    public void setLeftMotorsWithAcceleration(double powerFromController){
+
+    public void setLeftMotorsWithAcceleration(double powerFromController) {
         leftFrontMotor.accelerate(-powerFromController);
-        leftBackMotor.accelerate(-powerFromController);        
+        leftBackMotor.accelerate(-powerFromController);
     }
-    
-    public void setRightMotorsWithAcceleration(double powerFromController){
+
+    public void setRightMotorsWithAcceleration(double powerFromController) {
         rightFrontMotor.accelerate(powerFromController);
-        rightBackMotor.accelerate(powerFromController);        
-    }   
+        rightBackMotor.accelerate(powerFromController);
+    }
 
     public void setLeftMotors(double powerFromController) {
-        leftFrontMotor.set(powerFromController);
-        leftBackMotor.set(powerFromController);
+        leftFrontMotor.set(-powerFromController);
+        leftBackMotor.set(-powerFromController);
     }
 
     public void setRightMotors(double powerFromController) {
         rightFrontMotor.set(powerFromController);
-        rightBackMotor.set(powerFromController);        
+        rightBackMotor.set(powerFromController);
     }
 
     public double adjustForDeadZone(double controllerInput) {
@@ -95,7 +95,7 @@ public class DriveBase extends Subsystem {
         setDefaultCommand(new CheesyDriveCommand());
         //setDefaultCommand(new UltimateCheezyDriveCommand(.5, 4));
     }
-    
+
     public class SideEncoder extends PIDSubsystem {
 
         public static final boolean LEFT = true;

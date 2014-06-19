@@ -8,6 +8,7 @@ package org.frc1675.commands.autonomous.oneball;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.frc1675.RobotMap;
+import org.frc1675.UPS2014;
 import org.frc1675.commands.autonomous.DriveForTime;
 import org.frc1675.commands.arm.puncher.shootsequences.PostShoot;
 import org.frc1675.commands.drive.ShiftLow;
@@ -26,23 +27,24 @@ import org.frc1675.commands.arm.shoulder.ShoulderOnTarget;
  * @author Tony
  */
 public class OneBallTime extends CommandGroup {
+
     private static final double TIME_BEFORE_SHOULDER = .4;
     private static final double SHOOT_ANGLE = RobotMap.FORWARD_SHOOT_ANGLE;
-    
+
     public OneBallTime() {
         addParallel(new DriveForTime(10000, 0));  //This is so it cancels any weird drift from previous controller values.  It gets cancelled, so I just made it really long time
         addParallel(new PostShoot());
         addParallel(new RollerIntake());
         addSequential(new Wait(1.2));
         addParallel(new ShiftLow());
-        addParallel(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_FORWARD, 1.0));
+        addParallel(new DriveForTime(RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_FORWARD, UPS2014.oneBallPower));
         addParallel(new SetShoulderAuton(SHOOT_ANGLE));
-        addSequential(new Wait(RobotMap.TIME_TO_REACH_SHOOT-TIME_BEFORE_SHOULDER));
+        addSequential(new Wait(RobotMap.TIME_TO_REACH_SHOOT - TIME_BEFORE_SHOULDER));
         addParallel(new RollerStop());
         addSequential(new Shoot());
         addParallel(new SetShoulderToPickup());
         addParallel(new RollerIntake());
         addParallel(new PostShoot());
-        addParallel(new DriveForTime((RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_BACK), -1.0));
+        addParallel(new DriveForTime((RobotMap.TIME_TO_REACH_SHOOT + RobotMap.EXTRA_TIME_TO_DRIVE_BACK), -UPS2014.oneBallPower));
     }
 }

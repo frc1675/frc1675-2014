@@ -34,10 +34,20 @@ import org.frc1675.commands.autonomous.noball.ZeroBallAuton;
  * directory.
  */
 public class UPS2014 extends IterativeRobot {
- 
+
+    public static int twoBallFirstAngle = RobotMap.DashboardDefaults.TWO_BALL_FIRST_ANGLE;
+    public static int twoBallSecondAngle = RobotMap.DashboardDefaults.TWO_BALL_SECOND_ANGLE;
+    public static double twoBallDrivePower = RobotMap.DashboardDefaults.TWO_BALL_DRIVE_POWER;
+    public static double twoBallDriveTimeBeforeShooting = RobotMap.DashboardDefaults.TWO_BALL_DRIVE_TIME_BEFORE_SHOOTING;
+    public static int oneBallAngle = RobotMap.DashboardDefaults.ONE_BALL_ANGLE;
+    public static double oneBallPower = RobotMap.DashboardDefaults.ONE_BALL_DRIVE_POWER;
+    public static int forwardAngle = RobotMap.DashboardDefaults.FORWARD_SHOOT_ANGLE;
+    public static int backwardAngle = RobotMap.DashboardDefaults.BACKWARD_SHOOT_ANGLE;
+
     Command autonomousCommand;
     public static NetworkTable table;
     Solenoid lights = new Solenoid(RobotMap.LIGHTS);
+
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -45,18 +55,26 @@ public class UPS2014 extends IterativeRobot {
     public void robotInit() {
         lights.set(true);
         table = NetworkTable.getTable("dataTable");
+        SmartDashboard.putBoolean("Shoulder Is on target", false);
         SmartDashboard.putNumber("ShoulderP", RobotMap.SHOULDER_P);
         SmartDashboard.putNumber("ShoulderI", RobotMap.SHOULDER_I);
         SmartDashboard.putNumber("ShoulderD", RobotMap.SHOULDER_D);
-        
+        SmartDashboard.putNumber("First Ball Angle", RobotMap.DashboardDefaults.TWO_BALL_FIRST_ANGLE);
+        SmartDashboard.putNumber("Second Ball Angle", RobotMap.DashboardDefaults.TWO_BALL_SECOND_ANGLE);
+        SmartDashboard.putNumber("Two Ball Drive Power", RobotMap.DashboardDefaults.TWO_BALL_DRIVE_POWER);
+        SmartDashboard.putNumber("Two Ball Drive Time Before Shooting", RobotMap.DashboardDefaults.TWO_BALL_DRIVE_TIME_BEFORE_SHOOTING);
+        SmartDashboard.putNumber("One Ball Angle", RobotMap.DashboardDefaults.ONE_BALL_ANGLE);
+        SmartDashboard.putNumber("Forward Shoot Angle", RobotMap.DashboardDefaults.FORWARD_SHOOT_ANGLE);
+        SmartDashboard.putNumber("Backward Shoot Angle", RobotMap.DashboardDefaults.BACKWARD_SHOOT_ANGLE);
+        SmartDashboard.putNumber("One Ball Drive Power", RobotMap.DashboardDefaults.ONE_BALL_DRIVE_POWER);
+        SmartDashboard.putBoolean("Two Ball?", false);
         //autonomousCommand = new BabbysFirstAuton();
-        //autonomousCommand = new ZeroBallAuton();
+        autonomousCommand = new ZeroBallAuton();
         //autonomousCommand = new ShootFromStoppedAuton();
-        autonomousCommand = new OneBallTime();
+        //autonomousCommand = new OneBallTime();
         //autonomousCommand = new LowGoalTime();
         //autonomousCommand = new TwoBall();
         //autonomousCommand = new TwoBallHighTensionAuton();
-        //autonomousCommand = new TwoBallArmSensingTunableAuton();
 
         XBoxControllerButtons.init();
         CommandBase.init();
@@ -71,7 +89,18 @@ public class UPS2014 extends IterativeRobot {
 //            autonomousCommand = new GoalColdAtFirstAuton();
 //            System.out.println("COLD");
 //        }
-
+        System.out.println(SmartDashboard.getBoolean("Two Ball?"));
+        if (SmartDashboard.getBoolean("Two Ball?")) {
+            twoBallFirstAngle = (int) SmartDashboard.getNumber("First Ball Angle", RobotMap.DashboardDefaults.TWO_BALL_FIRST_ANGLE);
+            twoBallSecondAngle = (int) SmartDashboard.getNumber("Second Ball Angle", RobotMap.DashboardDefaults.TWO_BALL_SECOND_ANGLE);
+            twoBallDrivePower = SmartDashboard.getNumber("Two Ball Drive Power", RobotMap.DashboardDefaults.TWO_BALL_DRIVE_POWER);
+            twoBallDriveTimeBeforeShooting = SmartDashboard.getNumber("Two Ball Drive Time Before Shooting", RobotMap.DashboardDefaults.TWO_BALL_DRIVE_TIME_BEFORE_SHOOTING);
+            autonomousCommand = new TwoBallHighTensionAuton();
+        } else {
+            oneBallAngle = (int) SmartDashboard.getNumber("One Ball Angle", RobotMap.DashboardDefaults.ONE_BALL_ANGLE);
+            oneBallPower = SmartDashboard.getNumber("One Ball Drive Power", RobotMap.DashboardDefaults.ONE_BALL_DRIVE_POWER);
+            autonomousCommand = new OneBallTime();
+        }
         autonomousCommand.start();
     }
 
@@ -85,6 +114,9 @@ public class UPS2014 extends IterativeRobot {
 
     public void teleopInit() {
         autonomousCommand.cancel();
+        CommandBase.setShoulderAngleFromDashboard((int) SmartDashboard.getNumber("Forward Shoot Angle", RobotMap.DashboardDefaults.FORWARD_SHOOT_ANGLE),
+                (int) SmartDashboard.getNumber("Backward Shoot Angle", RobotMap.DashboardDefaults.BACKWARD_SHOOT_ANGLE));
+        Scheduler.getInstance().removeAll();
     }
 
     /**
@@ -96,7 +128,7 @@ public class UPS2014 extends IterativeRobot {
 
     public void testInit() {
         CommandBase.createTestOI();
-        
+
     }
 
     /**
@@ -109,4 +141,5 @@ public class UPS2014 extends IterativeRobot {
     public void disabledInit() {
         Scheduler.getInstance().removeAll();
     }
+
 }
