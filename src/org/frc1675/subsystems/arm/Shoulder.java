@@ -101,14 +101,9 @@ public class Shoulder extends PIDSubsystem {
         motor.set(0);
     }
     public boolean potIsBad(){
-        boolean potIsBad = pot.get()<5;
-        if(potIsBad && potWasBad && potWasWasBad){
-            return true;
-        }
-        potWasWasBad = potWasBad;
-        potWasBad = potIsBad;
-        return false;        
+        return true;
     }
+    
 
 
 }

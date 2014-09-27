@@ -89,7 +89,7 @@ public class RobotMap {
     public static final double TIME_TO_PICK_UP_BALL = .6; //seconds
     public static final double SUCK_TIME_FOR_BALL_ON_TOP = .7;
 
-    public static final double TIME_TO_REACH_SHOOT = 1.70;   //2
+    public static final double TIME_TO_REACH_SHOOT = 1.7;   //1.7 with truss tension
     public static final double EXTRA_TIME_TO_DRIVE_FORWARD = .5;
     public static final double EXTRA_TIME_TO_DRIVE_BACK = 0;
 
@@ -102,7 +102,7 @@ public class RobotMap {
         public static final double TWO_BALL_DRIVE_POWER = .7;
         public static final double TWO_BALL_DRIVE_TIME_BEFORE_SHOOTING = 2.0;
         public static final double ONE_BALL_DRIVE_POWER = 1;
-        public static final int ONE_BALL_ANGLE = 184;
+        public static final int ONE_BALL_ANGLE = 189;
         public static final int FORWARD_SHOOT_ANGLE = 182;
         public static final int BACKWARD_SHOOT_ANGLE = 70;
 

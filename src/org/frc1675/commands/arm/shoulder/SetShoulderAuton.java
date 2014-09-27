@@ -17,7 +17,9 @@ import org.frc1675.commands.CommandBase;
 public class SetShoulderAuton extends CommandBase {
 
     double setpoint;
-
+    boolean potWasBad = false;
+    boolean potWasWasBad = false;
+    
     public SetShoulderAuton(double angle) {
         requires(shoulder);
         setpoint = angle;
@@ -35,7 +37,14 @@ public class SetShoulderAuton extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return shoulder.potIsBad();
+        boolean potIsBad = shoulder.pot.get()<5;
+        if(potIsBad && potWasBad && potWasWasBad){
+            return true;
+        }
+        potWasWasBad = potWasBad;
+        potWasBad = potIsBad;
+        return false;        
+
     }
 
     // Called once after isFinished returns true

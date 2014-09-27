@@ -29,7 +29,7 @@ import org.frc1675.commands.arm.shoulder.ShoulderOnTarget;
 public class OneBallTime extends CommandGroup {
 
     private static final double TIME_BEFORE_SHOULDER = .4;
-    private static final double SHOOT_ANGLE = RobotMap.FORWARD_SHOOT_ANGLE;
+    private static final double SHOOT_ANGLE = 185.5;
 
     public OneBallTime() {
         addParallel(new DriveForTime(10000, 0));  //This is so it cancels any weird drift from previous controller values.  It gets cancelled, so I just made it really long time
